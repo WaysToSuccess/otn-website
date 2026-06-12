@@ -1,0 +1,4 @@
+# Claude Code / ruflo internals — machine-specific, not project source
+.claude/
+.claude-flow/
+.mcp.json
