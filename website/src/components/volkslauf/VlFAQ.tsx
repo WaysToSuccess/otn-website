@@ -1,16 +1,17 @@
 import { useRef, useEffect, useState } from 'react'
-import { ChevronDown, HelpCircle } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
 
 const faqs = [
-  { q: 'Wie kann ich mich anmelden?', a: 'Die Anmeldung erfolgt online über das Anmeldeformular auf dieser Seite oder per E-Mail an volkslauf@o-t-n.de.' },
-  { q: 'Muss ich trainiert sein, um teilzunehmen?', a: 'Nein! Der Volkslauf richtet sich an alle Hobbyläufer. Wichtig ist, dass Sie Spaß am Laufen haben.' },
-  { q: 'Welche Altersgruppen gibt es?', a: 'Es gibt Wertungsgruppen für Frauen und Männer in verschiedenen Altersklassen sowie eine Schülerkategorie.' },
-  { q: 'Was muss ich mitbringen?', a: 'Sportkleidung und Laufschuhe. Ihre Startnummer und den Chip erhalten Sie am Veranstaltungstag.' },
-  { q: 'Gibt es Verpflegung auf der Strecke?', a: 'Ja, es gibt eine Wasserstation auf der Strecke sowie Obst und Getränke im Zielbereich.' },
-  { q: 'Kann ich als Team teilnehmen?', a: 'Ja! Teams aus 2–5 Personen können sich gemeinsam anmelden und werden in der Teamwertung berücksichtigt.' },
-  { q: 'Wie hoch ist die Startgebühr?', a: 'Die Startgebühr beträgt ab 15 € pro Person. Kinder/Jugendliche zahlen ab 6 €. Frühbucher erhalten einen Rabatt.' },
-  { q: 'Gibt es genug Parkplätze?', a: 'Ja, direkt am Veranstaltungsgelände stehen ausreichend kostenlose Parkplätze zur Verfügung.' },
+  { q: 'Wie melde ich mich an?', a: 'Die Anmeldung erfolgt online über das Race Result Anmeldeformular auf dieser Seite. Benötigt werden Name, Geburtsjahr, Geschlecht (optional), Verein/Firma (optional) und ein Notfallkontakt.' },
+  { q: 'Welche Strecken gibt es?', a: 'Es gibt drei Distanzen: Bambini (400 m), Freizeitlauf (5 km) und Hauptlauf (10 km). Alle Strecken starten und enden am MTSV Olympia Gelände.' },
+  { q: 'Muss ich trainiert sein?', a: 'Nein! Der Volkslauf richtet sich an Freizeitläufer, Einsteiger und Familien. Wichtig ist, dass Sie dabei sind und Spaß haben.' },
+  { q: 'Wie wird die Zeit gemessen?', a: 'Die Zeitmessung erfolgt professionell über Race Result mit Zeitmesschip. Die Ergebnisse sind live abrufbar.' },
+  { q: 'Was passiert nach dem Lauf?', a: 'Ab 18:15 Uhr findet die Siegerehrung statt. Ab 19:00 Uhr öffnet das 1. Gartenstadt Open Air mit Musik und Verpflegung für alle.' },
+  { q: 'Gibt es ausreichend Parkplätze?', a: 'Ja, direkt am Veranstaltungsgelände (Forstweg 5) stehen kostenlose Parkplätze zur Verfügung.' },
+  { q: 'Wohin gehen die Startgebühren?', a: '100 % der Einnahmen werden an gemeinnützige Projekte in Neumünster gespendet.' },
+  { q: 'Welche medizinische Versorgung gibt es?', a: 'Ein Sanitätsdienst mit Rettungsfahrzeug ist vor Ort. Es gibt definierte Rettungswege und ein Notfalltelefon.' },
+  { q: 'Kann ich als Laufteilnehmer an der Gartenstadt Open Air Party teilnehmen?', a: 'Ja! Alle Laufteilnehmer können mit ihrem Laufticket kostenlos an der Gartenstadt Open Air Party teilnehmen. Externe Besucher benötigen ein separates Ticket.' },
 ]
 
 function FAQItem({ faq, index, isOpen, onToggle }: {
@@ -18,17 +19,16 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
-  const answerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
-      { threshold: 0.15 }
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true) },
+      { threshold: 0.1 }
     )
-    observer.observe(el)
-    return () => observer.disconnect()
+    obs.observe(el)
+    return () => obs.disconnect()
   }, [])
 
   return (
@@ -37,34 +37,50 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(16px)',
-        transition: `opacity 0.45s ease ${index * 70}ms, transform 0.45s ease ${index * 70}ms`,
+        transition: `opacity 0.45s ease ${index * 55}ms, transform 0.45s ease ${index * 55}ms`,
       }}
-      className="border border-gray-100 rounded-2xl overflow-hidden bg-white hover:border-teal-200 transition-colors"
     >
-      <button
-        onClick={onToggle}
-        className={`w-full flex items-center justify-between px-6 py-4 text-left transition-colors ${isOpen ? 'bg-teal-50' : 'hover:bg-gray-50'}`}
-      >
-        <div className="flex items-center gap-3 pr-4">
-          <HelpCircle className={`w-4 h-4 shrink-0 transition-colors ${isOpen ? 'text-[#0d9488]' : 'text-gray-300'}`} />
-          <span className={`font-medium transition-colors ${isOpen ? 'text-[#0d9488]' : 'text-[#1a3a5c]'}`}>{faq.q}</span>
-        </div>
-        <ChevronDown
-          className={`w-5 h-5 text-[#0d9488] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-        />
-      </button>
-
-      {/* Smooth accordion */}
       <div
-        ref={answerRef}
-        style={{
-          maxHeight: isOpen ? '200px' : '0px',
-          overflow: 'hidden',
-          transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-        }}
+        className={`rounded-2xl overflow-hidden transition-all duration-300 ${
+          isOpen
+            ? 'bg-white shadow-lg shadow-[#003399]/8 ring-1 ring-[#003399]/15'
+            : 'bg-white shadow-sm hover:shadow-md ring-1 ring-gray-100 hover:ring-[#003399]/15'
+        }`}
       >
-        <div className="px-6 pb-4 pt-1 text-gray-500 text-sm leading-relaxed border-t border-teal-100 ml-6">
-          {faq.a}
+        <button
+          onClick={onToggle}
+          className="w-full flex items-center justify-between px-6 py-5 text-left group"
+        >
+          {/* Number badge */}
+          <div className="flex items-center gap-4 pr-4">
+            <span
+              className={`flex-shrink-0 w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center transition-colors duration-300 ${
+                isOpen ? 'bg-[#003399] text-white' : 'bg-[#003399]/8 text-[#003399] group-hover:bg-[#003399]/15'
+              }`}
+            >
+              {index + 1}
+            </span>
+            <span className={`font-semibold text-sm sm:text-base transition-colors duration-200 ${isOpen ? 'text-[#003399]' : 'text-gray-800 group-hover:text-[#003399]'}`}>
+              {faq.q}
+            </span>
+          </div>
+          <ChevronDown
+            className={`w-5 h-5 shrink-0 transition-all duration-300 ${isOpen ? 'rotate-180 text-[#003399]' : 'text-gray-300 group-hover:text-[#003399]'}`}
+          />
+        </button>
+
+        <div
+          style={{
+            maxHeight: isOpen ? '300px' : '0px',
+            overflow: 'hidden',
+            transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+        >
+          <div className="px-6 pb-6 pt-0">
+            <div className="ml-11 pl-0 border-l-2 border-[#003399]/15 pl-4">
+              <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -74,16 +90,22 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 export default function VlFAQ() {
   const [open, setOpen] = useState<number | null>(null)
   const { ref: headRef, visible: headVisible } = useInView()
+  const { ref: ctaRef, visible: ctaVisible } = useInView()
 
   return (
-    <section id="faq" className="py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-24">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-14">
-          <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">FAQ</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-4">Häufige Fragen</h2>
-          <p className="text-gray-400 text-sm">Alles Wichtige auf einen Blick — klicken Sie auf eine Frage.</p>
+          <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">FAQ</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
+            Häufige <span className="text-[#003399]">Fragen</span>
+          </h2>
+          <p className="text-gray-400 text-sm">Klicken Sie auf eine Frage für die Antwort.</p>
         </div>
 
+        {/* Items */}
         <div className="space-y-3">
           {faqs.map((faq, i) => (
             <FAQItem
@@ -95,6 +117,21 @@ export default function VlFAQ() {
             />
           ))}
         </div>
+
+        {/* CTA */}
+        <div
+          ref={ctaRef}
+          style={anim(ctaVisible, 100)}
+          className="mt-12 text-center"
+        >
+          <p className="text-gray-400 text-sm">
+            Noch eine Frage?{' '}
+            <a href="#kontakt" className="text-[#003399] font-semibold hover:underline">
+              Schreiben Sie uns →
+            </a>
+          </p>
+        </div>
+
       </div>
     </section>
   )

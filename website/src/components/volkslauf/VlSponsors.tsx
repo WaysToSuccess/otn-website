@@ -1,83 +1,173 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, Heart } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
 
-const sponsors = Array.from({ length: 8 }, (_, i) => `Sponsor ${i + 1}`)
+const openAirSponsors = [
+  { name: 'H-Projektierung', logo: '/images/Sponsor/H-Projektierung Logo Transparent.png', href: 'https://www.h-projektierung.de/' },
+  { name: 'Rohrstar', logo: '/images/Sponsor/RohrStar Rorreinigung transparent Logo.png', href: 'https://rohrstar.de/' },
+]
 
-function SponsorBox({ label, index }: { label: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+const allSponsors = [
+  { name: 'H-Projektierung', logo: '/images/Sponsor/H-Projektierung Logo Transparent.png', href: 'https://www.h-projektierung.de/' },
+  { name: 'Rohrstar', logo: '/images/Sponsor/RohrStar Rorreinigung transparent Logo.png', href: 'https://rohrstar.de/' },
+  { name: 'Netkom', logo: '/images/Sponsor/Netkom_Logo transparent.png', href: 'http://www.netkom-nms.de/' },
+  { name: 'Glaus', logo: '/images/Sponsor/glaus_logo transparent.png', href: 'https://www.glaus.de/' },
+  { name: 'PerfectOne', logo: '/images/Sponsor/perfectone-werbeagentur-removebg-preview.png', href: 'https://www.perfectone-werbeagentur.de/' },
+  { name: 'JUZO', logo: '/images/Sponsor/juzo_logo transparent.png', href: 'https://www.juzo.com/de' },
+  { name: 'Provinzial', logo: '/images/Sponsor/provinzial_nord_logo-removebg-preview.png', href: 'https://www.provinzial.de/west/' },
+  { name: 'MKS Bauelemente', logo: '/images/Sponsor/mks_bauelemente transparent.png', href: 'https://mks-bauelemente.de/' },
+  { name: 'Össur', logo: '/images/Sponsor/ossur logo transparent.png', href: 'https://www.ossur.com/de-de' },
+  { name: 'Bauerfeind', logo: '/images/Sponsor/Bauerfeind_Logo Transparent.png', href: 'https://www.bauerfeind.de/de' },
+  { name: 'Bäckerei Tackmann', logo: '/images/Sponsor/Tackmann_Bäckerei_Logo Transparent.png', href: 'https://baeckerei-tackmann.de/' },
+  { name: 'VR Bank', logo: '/images/Sponsor/VR_Bank_zwischen_den_Meeren Logo Transparent.png', href: 'https://www.meine-vrbank.de/startseite.html' },
+  { name: 'MediCar', logo: '/images/Sponsor/MediCar Logo transparent.png', href: 'https://www.medi-car.info/' },
+  { name: 'Transcoject', logo: '/images/Sponsor/transcoject Logo transparent.png', href: 'https://www.transcoject.com/index.php/de' },
+]
+
+function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: string; logo: string; href: string; large?: boolean; index?: number }) {
+  const ref = useRef<HTMLAnchorElement>(null)
   const [visible, setVisible] = useState(false)
-  const [hovered, setHovered] = useState(false)
-
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
-      { threshold: 0.2 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.1 })
+    obs.observe(el)
+    return () => obs.disconnect()
   }, [])
-
   return (
-    <div
+    <a
       ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={name}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible
-          ? hovered ? 'scale(1.05)' : 'none'
-          : 'scale(0.85)',
-        transition: `opacity 0.4s ease ${index * 80}ms, transform ${hovered ? '0.2s' : `0.4s ease ${index * 80}ms`}`,
-        boxShadow: hovered ? '0 6px 20px rgba(13,148,136,0.18)' : undefined,
+        transform: visible ? 'none' : 'translateY(20px) scale(0.95)',
+        transition: `opacity 0.45s ease ${index * 60}ms, transform 0.45s ease ${index * 60}ms`,
       }}
-      className="bg-white rounded-2xl p-6 flex items-center justify-center border border-gray-100 h-20 cursor-pointer"
+      className={`group bg-white rounded-2xl border border-gray-100 flex items-center justify-center hover:border-[#003399]/30 hover:shadow-lg hover:shadow-[#003399]/10 transition-all duration-200 ${large ? 'p-8 h-36' : 'p-5 h-24'}`}
     >
-      <span className={`text-sm font-medium transition-colors ${hovered ? 'text-[#0d9488]' : 'text-gray-300'}`}>
-        {label}
-      </span>
-    </div>
+      <img
+        src={logo}
+        alt={name}
+        className={`object-contain transition-all duration-200 group-hover:scale-105 ${large ? 'max-h-20 max-w-[220px]' : 'max-h-12 max-w-[140px]'}`}
+      />
+    </a>
   )
 }
 
+
 export default function VlSponsors() {
   const { ref: headRef, visible: headVisible } = useInView()
+  const { ref: veranstalterRef, visible: veranstalterVisible } = useInView()
+  const { ref: openAirHeadRef, visible: openAirHeadVisible } = useInView()
+  const { ref: allHeadRef, visible: allHeadVisible } = useInView()
   const { ref: ctaRef, visible: ctaVisible } = useInView()
 
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={headRef} style={anim(headVisible)} className="text-center mb-12">
-          <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Partner</span>
-          <h2 className="text-3xl font-bold text-[#1a3a5c] mt-2 mb-4">Unterstützer des Volkslaufs</h2>
-          <p className="text-gray-500">Wir danken unseren Sponsoren für die Unterstützung dieses Charity-Events.</p>
-        </div>
+    <section id="sponsoren">
 
-        {/* Wave sponsor grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-          {sponsors.map((s, i) => (
-            <SponsorBox key={s} label={s} index={i} />
-          ))}
-        </div>
+      {/* ── Veranstalter ─────────────────────────────────────────── */}
+      <div className="py-20 border-b border-[#003399]/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={headRef} style={anim(headVisible)} className="text-center mb-12">
+            <span className="inline-block text-[#003399] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#003399]/8 rounded-full mb-4">Veranstalter</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#003399]">o.t.n 51 Volkslauf bei Olympia</h2>
+            <p className="text-gray-500 mt-3 text-base">präsentiert von</p>
+          </div>
 
-        {/* CTA */}
-        <div
-          ref={ctaRef}
-          style={anim(ctaVisible, 0, 'scale')}
-          className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center"
-        >
-          <Heart className="w-8 h-8 text-rose-400 mx-auto mb-3" style={{ animation: ctaVisible ? 'heartbeat 1s ease 400ms' : 'none' }} />
-          <h3 className="font-bold text-[#1a3a5c] text-xl mb-2">Werden Sie Sponsor</h3>
-          <p className="text-gray-500 mb-5">Unterstützen Sie einen guten Zweck und profitieren Sie von der Sichtbarkeit bei über 900 Teilnehmern.</p>
-          <a
-            href="mailto:volkslauf@o-t-n.de?subject=Sponsoring Anfrage"
-            className="inline-flex items-center gap-2 bg-[#1a3a5c] hover:bg-[#1e4976] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:scale-105 active:scale-95"
+          <div
+            ref={veranstalterRef}
+            style={anim(veranstalterVisible, 100, 'scale')}
+            className="flex flex-col sm:flex-row items-center justify-center gap-10"
           >
-            Sponsoring anfragen
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            {/* OTN Logo */}
+            <a
+              href="#"
+              className="group flex flex-col items-center gap-4 bg-white rounded-3xl px-6 sm:px-12 py-8 sm:py-10 border border-[#003399]/15 shadow-md hover:shadow-xl hover:shadow-[#003399]/12 hover:border-[#003399]/35 transition-all duration-300 w-full sm:w-auto"
+            >
+              <img
+                src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
+                alt="o.t.n."
+                className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="text-center">
+                <div className="font-bold text-[#003399] text-sm">o.t.n Neumünster</div>
+                <div className="text-gray-400 text-xs mt-0.5">Orthopädie Technik Neumünster</div>
+              </div>
+            </a>
+
+            {/* MSTV Olympia */}
+            <a
+              href="https://www.mstv-olympia.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-4 bg-white rounded-3xl px-6 sm:px-12 py-8 sm:py-10 border border-[#003399]/15 shadow-md hover:shadow-xl hover:shadow-[#003399]/12 hover:border-[#003399]/35 transition-all duration-300 w-full sm:w-auto"
+            >
+              <img
+                src="/images/MSTV_Olympia_Neumünster transparent.png"
+                alt="MSTV Olympia Neumünster"
+                className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="text-center">
+                <div className="font-bold text-[#003399] text-sm">MSTV Olympia 1965 e.V.</div>
+                <div className="text-gray-400 text-xs mt-0.5">Neumünster</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Volkslauf Sponsoren ────────────────────────────────────────── */}
+      <div className="py-20 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={allHeadRef} style={anim(allHeadVisible)} className="text-center mb-12">
+            <span className="inline-block text-[#003399] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#003399]/8 rounded-full mb-4">Volkslauf Sponsoren</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Unsere Unterstützer</h3>
+            <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {allSponsors.map((s, i) => (
+              <SponsorCard key={s.name} {...s} index={i} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Gartenstadt Open Air Party Sponsoren ──────────────────────────────── */}
+      <div className="py-20 border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={openAirHeadRef} style={anim(openAirHeadVisible)} className="text-center mb-12">
+            <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Gartenstadt Open Air Party</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Sponsoren der Gartenstadt Open Air Party</h3>
+            <p className="text-gray-400 mt-2 text-sm">mit DJ und Live-Band ab 19 Uhr · 5. September 2026</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {openAirSponsors.map((s, i) => (
+              <SponsorCard key={s.name} {...s} large index={i} />
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div
+            ref={ctaRef}
+            style={anim(ctaVisible, 100, 'scale')}
+            className="mt-14 bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center"
+          >
+            <Heart className="w-8 h-8 text-rose-400 mx-auto mb-3" style={{ animation: ctaVisible ? 'heartbeat 1s ease 400ms' : 'none' }} />
+            <h3 className="font-bold text-[#003399] text-xl mb-2">Werden Sie Sponsor</h3>
+            <p className="text-gray-500 mb-5 max-w-md mx-auto">Unterstützen Sie einen guten Zweck und profitieren Sie von der enormen Sichtbarkeit.</p>
+            <a
+              href="mailto:info@o-t-n-volkslauf.de?subject=Sponsoring Anfrage"
+              className="inline-flex items-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:scale-105 active:scale-95"
+            >
+              Sponsoring anfragen
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
 

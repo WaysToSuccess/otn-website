@@ -71,7 +71,7 @@ export default function LeistungenPage() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#1a3a5c] to-[#0d9488] py-20 text-center">
+      <section className="bg-gradient-to-br from-[#003399] to-[#0d9488] py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <span className="text-[#2dd4bf] font-semibold text-sm uppercase tracking-wider">Leistungen</span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">Unser Leistungsangebot</h1>
@@ -94,10 +94,10 @@ export default function LeistungenPage() {
                 <div className={`w-12 h-12 ${s.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <s.icon className="w-6 h-6" />
                 </div>
-                <h2 className="font-bold text-[#1a3a5c] text-xl mb-1">{s.title}</h2>
+                <h2 className="font-bold text-[#003399] text-xl mb-1">{s.title}</h2>
                 <p className="text-[#0d9488] text-sm font-medium mb-3">{s.tagline}</p>
                 <p className="text-gray-500 text-sm leading-relaxed mb-4">{s.description}</p>
-                <div className="flex items-center gap-1 text-[#1a3a5c] text-sm font-medium group-hover:gap-2 transition-all">
+                <div className="flex items-center gap-1 text-[#003399] text-sm font-medium group-hover:gap-2 transition-all">
                   Mehr erfahren <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>
@@ -109,9 +109,9 @@ export default function LeistungenPage() {
       {/* CTA */}
       <section className="py-16 bg-white text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-[#1a3a5c] mb-4">Nicht sicher, welcher Bereich für Sie passt?</h2>
+          <h2 className="text-2xl font-bold text-[#003399] mb-4">Nicht sicher, welcher Bereich für Sie passt?</h2>
           <p className="text-gray-500 mb-6">Wir beraten Sie gerne und finden gemeinsam die beste Lösung für Ihre Situation.</p>
-          <Link to="/filialen-kontakt" className="inline-flex items-center gap-2 bg-[#1a3a5c] hover:bg-[#1e4976] text-white font-semibold px-6 py-3 rounded-xl transition-colors">
+          <Link to="/filialen-kontakt" className="inline-flex items-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-semibold px-6 py-3 rounded-xl transition-colors">
             Termin vereinbaren <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

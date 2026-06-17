@@ -58,7 +58,7 @@ export default function Branches() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Standorte</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">
             Von Kaltenkirchen bis Büdelsdorf
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
@@ -73,7 +73,7 @@ export default function Branches() {
                 <div className="w-8 h-8 bg-teal-50 group-hover:bg-teal-100 rounded-lg flex items-center justify-center shrink-0 transition-colors">
                   <MapPin className="w-4 h-4 text-[#0d9488]" />
                 </div>
-                <h3 className="font-semibold text-[#1a3a5c] text-sm">{b.city}</h3>
+                <h3 className="font-semibold text-[#003399] text-sm">{b.city}</h3>
               </div>
               <p className="text-gray-400 text-xs mb-2">{b.address}</p>
               <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-1">

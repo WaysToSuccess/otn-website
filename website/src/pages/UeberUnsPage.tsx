@@ -18,7 +18,7 @@ const testimonials = [
 export default function UeberUnsPage() {
   return (
     <main className="pt-16">
-      <section className="bg-gradient-to-br from-[#1a3a5c] to-[#0d9488] py-20 text-center">
+      <section className="bg-gradient-to-br from-[#003399] to-[#0d9488] py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <span className="text-[#2dd4bf] font-semibold text-sm uppercase tracking-wider">Über uns</span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">o.t.n. ...um Menschen zu helfen</h1>
@@ -33,7 +33,7 @@ export default function UeberUnsPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-[#1a3a5c] mb-6">Unsere Geschichte</h2>
+              <h2 className="text-3xl font-bold text-[#003399] mb-6">Unsere Geschichte</h2>
               <p className="text-gray-500 leading-relaxed mb-4">
                 Die Orthopädie Technik Nord GmbH wurde 1996 gegründet. Aus einer kleinen orthopädischen Werkstatt ist ein erfolgreiches Sanitätshausunternehmen mit über 100 Mitarbeitern an sieben Standorten in Norddeutschland geworden.
               </p>
@@ -46,7 +46,7 @@ export default function UeberUnsPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#1a3a5c] rounded-2xl p-6 text-white text-center">
+              <div className="bg-[#003399] rounded-2xl p-6 text-white text-center">
                 <div className="text-4xl font-bold text-[#2dd4bf] mb-2">1996</div>
                 <div className="text-blue-200 text-sm">Gründungsjahr</div>
               </div>
@@ -55,11 +55,11 @@ export default function UeberUnsPage() {
                 <div className="text-teal-100 text-sm">Mitarbeiter</div>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100">
-                <div className="text-4xl font-bold text-[#1a3a5c] mb-2">7</div>
+                <div className="text-4xl font-bold text-[#003399] mb-2">7</div>
                 <div className="text-gray-500 text-sm">Standorte</div>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100">
-                <div className="text-4xl font-bold text-[#1a3a5c] mb-2">7</div>
+                <div className="text-4xl font-bold text-[#003399] mb-2">7</div>
                 <div className="text-gray-500 text-sm">Fachbereiche</div>
               </div>
             </div>
@@ -70,15 +70,15 @@ export default function UeberUnsPage() {
       {/* Führung */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-[#1a3a5c] mb-10 text-center">Führung & Team</h2>
+          <h2 className="text-3xl font-bold text-[#003399] mb-10 text-center">Führung & Team</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-[#1a3a5c] rounded-full flex items-center justify-center">
+                <div className="w-14 h-14 bg-[#003399] rounded-full flex items-center justify-center">
                   <Users className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[#1a3a5c] text-lg">Stefan Fehlandt</h3>
+                  <h3 className="font-bold text-[#003399] text-lg">Stefan Fehlandt</h3>
                   <p className="text-[#0d9488] text-sm">Orthopädiemeister · Inhaber</p>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default function UeberUnsPage() {
                   <Award className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[#1a3a5c] text-lg">Dr. Marco Weingarten</h3>
+                  <h3 className="font-bold text-[#003399] text-lg">Dr. Marco Weingarten</h3>
                   <p className="text-[#0d9488] text-sm">Sportwissenschaftler · Lauflabor</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function UeberUnsPage() {
       {/* Werte */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-[#1a3a5c] mb-10 text-center">Unsere Werte</h2>
+          <h2 className="text-3xl font-bold text-[#003399] mb-10 text-center">Unsere Werte</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {values.map((v) => (
               <div key={v} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4">
@@ -122,7 +122,7 @@ export default function UeberUnsPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-[#1a3a5c]">
+      <section className="py-16 bg-[#003399]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-10 text-center">Was unsere Patienten sagen</h2>
           <div className="grid md:grid-cols-3 gap-6">

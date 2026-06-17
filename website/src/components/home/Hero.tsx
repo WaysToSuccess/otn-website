@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#1a3a5c] via-[#1e4976] to-[#0d9488] flex items-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-br from-[#003399] via-[#0040cc] to-[#0d9488] flex items-center pt-16 overflow-hidden">
       {/* Pattern overlay */}
       <div className="absolute inset-0 opacity-[0.06]"
         style={{
@@ -44,7 +44,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link to="/leistungen" className="inline-flex items-center justify-center gap-2 bg-white text-[#1a3a5c] font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
+              <Link to="/leistungen" className="inline-flex items-center justify-center gap-2 bg-white text-[#003399] font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
                 Unsere Leistungen
                 <ArrowRight className="w-4 h-4" />
               </Link>

@@ -16,7 +16,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Über uns</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-6">
               Mehr als nur ein Ersatz
             </h2>
             <p className="text-gray-500 leading-relaxed mb-6">
@@ -36,7 +36,7 @@ export default function About() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#1a3a5c] rounded-2xl p-6 text-white text-center">
+            <div className="bg-[#003399] rounded-2xl p-6 text-white text-center">
               <div className="text-4xl font-bold text-[#2dd4bf] mb-2">25+</div>
               <div className="text-blue-200 text-sm">Jahre Erfahrung</div>
             </div>
@@ -45,11 +45,11 @@ export default function About() {
               <div className="text-teal-100 text-sm">Standorte</div>
             </div>
             <div className="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm">
-              <div className="text-4xl font-bold text-[#1a3a5c] mb-2">7</div>
+              <div className="text-4xl font-bold text-[#003399] mb-2">7</div>
               <div className="text-gray-500 text-sm">Fachbereiche</div>
             </div>
             <div className="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm">
-              <div className="text-4xl font-bold text-[#1a3a5c] mb-2">51.</div>
+              <div className="text-4xl font-bold text-[#003399] mb-2">51.</div>
               <div className="text-gray-500 text-sm">Volkslauf in Folge</div>
             </div>
           </div>

@@ -104,7 +104,7 @@ const branches = [
 export default function FilialenPage() {
   return (
     <main className="pt-16">
-      <section className="bg-gradient-to-br from-[#1a3a5c] to-[#0d9488] py-20 text-center">
+      <section className="bg-gradient-to-br from-[#003399] to-[#0d9488] py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <span className="text-[#2dd4bf] font-semibold text-sm uppercase tracking-wider">Standorte & Kontakt</span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">Filialen & Kontakt</h1>
@@ -124,7 +124,7 @@ export default function FilialenPage() {
                     <MapPin className="w-5 h-5 text-[#0d9488]" />
                   </div>
                   <div>
-                    <h2 className="font-bold text-[#1a3a5c]">{b.name}</h2>
+                    <h2 className="font-bold text-[#003399]">{b.name}</h2>
                     <p className="text-gray-400 text-sm">{b.address}, {b.city}</p>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ export default function FilialenPage() {
                   href={b.maps}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 bg-[#1a3a5c] hover:bg-[#1e4976] text-white text-sm font-medium py-2.5 rounded-xl transition-colors"
+                  className="flex items-center justify-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white text-sm font-medium py-2.5 rounded-xl transition-colors"
                 >
                   <MapPin className="w-4 h-4" />
                   Route planen

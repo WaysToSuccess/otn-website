@@ -33,16 +33,16 @@ export default function VlRoute() {
   const { ref: rightRef, visible: rightVisible } = useInView()
 
   return (
-    <section id="strecke" className="py-24 bg-gray-50">
+    <section id="strecke" className="py-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-14">
-          <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Strecke</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-4">
+          <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Strecke</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">
             Die schönste Route durch Neumünster
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            5 km Rundkurs durch Park und Stadtgebiet — landschaftlich schön und bestens ausgeschildert.
+            5 km Rundkurs durch Park und Stadtgebiet. Gut ausgeschildert, mit Verpflegungsstation auf halber Strecke.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function VlRoute() {
                   <c.icon className={`w-5 h-5 ${c.iconColor}`} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#1a3a5c] mb-1">{c.title}</h3>
+                  <h3 className="font-semibold text-[#003399] mb-1">{c.title}</h3>
                   <p className="text-gray-500 text-sm whitespace-pre-line">{c.text}</p>
                 </div>
               </div>
@@ -76,13 +76,14 @@ export default function VlRoute() {
               }}
             >
               <iframe
-                title="Volkslauf Strecke Neumünster"
+                title="MSTV Olympia 1965 e.V. – Forstweg 5, Neumünster"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 loading="lazy"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=9.94,54.06,10.06,54.12&layer=mapnik&marker=54.0782,9.9994"
+                src="https://maps.google.com/maps?q=MSTV+Olympia+1965+eV,+Forstweg+5,+24537+Neumünster&hl=de&z=16&output=embed"
               />
             </div>
             <a
@@ -90,7 +91,7 @@ export default function VlRoute() {
               target="_blank"
               rel="noreferrer"
               style={anim(rightVisible, 350, 'right')}
-              className="flex items-center justify-center gap-2.5 bg-[#1a3a5c] hover:bg-[#1e4976] text-white font-semibold py-3.5 rounded-xl transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center justify-center gap-2.5 bg-[#003399] hover:bg-[#0040cc] text-white font-semibold py-3.5 rounded-xl transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
             >
               <Navigation className="w-5 h-5" />
               Route planen mit Google Maps

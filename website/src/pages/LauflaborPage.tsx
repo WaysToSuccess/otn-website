@@ -12,7 +12,7 @@ const included = [
 export default function LauflaborPage() {
   return (
     <main className="pt-16">
-      <section className="bg-gradient-to-br from-[#1a3a5c] to-[#0d9488] py-20">
+      <section className="bg-gradient-to-br from-[#003399] to-[#0d9488] py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <Link to="/leistungen" className="text-[#2dd4bf] text-sm hover:underline mb-3 inline-block">← Alle Leistungen</Link>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">Lauflabor</h1>
@@ -24,7 +24,7 @@ export default function LauflaborPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-3xl font-bold text-[#1a3a5c] mb-4">Professionelle Gangbildanalyse</h2>
+              <h2 className="text-3xl font-bold text-[#003399] mb-4">Professionelle Gangbildanalyse</h2>
               <p className="text-gray-500 leading-relaxed mb-4">
                 Das Lauflabor der Orthopädie Technik Nord GmbH bietet eine professionelle Lauf- und Bewegungsanalyse mit Hochgeschwindigkeitskameras und Spezialsoftware. Wir erkennen kleine biomechanische Auffälligkeiten, die Leistung und Gesundheit beeinflussen.
               </p>
@@ -35,22 +35,22 @@ export default function LauflaborPage() {
               <div className="grid grid-cols-3 gap-3 mb-8">
                 <div className="bg-gray-50 rounded-xl p-4 text-center">
                   <Clock className="w-5 h-5 text-[#0d9488] mx-auto mb-2" />
-                  <div className="font-bold text-[#1a3a5c]">~60 Min.</div>
+                  <div className="font-bold text-[#003399]">~60 Min.</div>
                   <div className="text-gray-400 text-xs">Dauer</div>
                 </div>
                 <div className="bg-gray-50 rounded-xl p-4 text-center">
                   <Euro className="w-5 h-5 text-[#0d9488] mx-auto mb-2" />
-                  <div className="font-bold text-[#1a3a5c]">109 €</div>
+                  <div className="font-bold text-[#003399]">109 €</div>
                   <div className="text-gray-400 text-xs">Kosten</div>
                 </div>
                 <div className="bg-gray-50 rounded-xl p-4 text-center">
                   <User className="w-5 h-5 text-[#0d9488] mx-auto mb-2" />
-                  <div className="font-bold text-[#1a3a5c]">Alle Level</div>
+                  <div className="font-bold text-[#003399]">Alle Level</div>
                   <div className="text-gray-400 text-xs">Zielgruppe</div>
                 </div>
               </div>
 
-              <h3 className="font-bold text-[#1a3a5c] text-lg mb-4">Inhalte der Analyse</h3>
+              <h3 className="font-bold text-[#003399] text-lg mb-4">Inhalte der Analyse</h3>
               <ul className="space-y-3">
                 {included.map((item) => (
                   <li key={item} className="flex items-start gap-3">
@@ -62,7 +62,7 @@ export default function LauflaborPage() {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-[#1a3a5c] rounded-2xl p-6 text-white">
+              <div className="bg-[#003399] rounded-2xl p-6 text-white">
                 <h3 className="font-bold text-lg mb-2">Ihr Ansprechpartner</h3>
                 <p className="text-[#2dd4bf] font-semibold mb-1">Dr. Marco Weingarten</p>
                 <p className="text-blue-200 text-sm mb-4">Sportwissenschaftler</p>
@@ -76,7 +76,7 @@ export default function LauflaborPage() {
               </div>
 
               <div className="bg-teal-50 rounded-2xl p-6 border border-teal-100">
-                <h3 className="font-bold text-[#1a3a5c] mb-2">Tipp: Volkslauf 2026</h3>
+                <h3 className="font-bold text-[#003399] mb-2">Tipp: Volkslauf 2026</h3>
                 <p className="text-gray-600 text-sm mb-3">
                   Bereiten Sie sich optimal auf den o.t.n. Volkslauf vor — mit einer Laufanalyse und dem kostenlosen Vorbereitungstraining!
                 </p>

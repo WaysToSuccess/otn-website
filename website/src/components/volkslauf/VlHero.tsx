@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, Calendar, MapPin } from 'lucide-react'
+import { ArrowRight, Calendar, MapPin, PartyPopper } from 'lucide-react'
 
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(target.getTime() - Date.now())
@@ -7,11 +7,13 @@ function useCountdown(target: Date) {
     const id = setInterval(() => setDiff(target.getTime() - Date.now()), 1000)
     return () => clearInterval(id)
   }, [target])
-  const d = Math.max(0, Math.floor(diff / 86400000))
-  const h = Math.max(0, Math.floor((diff % 86400000) / 3600000))
-  const m = Math.max(0, Math.floor((diff % 3600000) / 60000))
-  const s = Math.max(0, Math.floor((diff % 60000) / 1000))
-  return { d, h, m, s }
+  const total = Math.max(0, diff)
+  return {
+    d: Math.floor(total / 86400000),
+    h: Math.floor((total % 86400000) / 3600000),
+    m: Math.floor((total % 3600000) / 60000),
+    s: Math.floor((total % 60000) / 1000),
+  }
 }
 
 function CountBox({ value, label, delay }: { value: number; label: string; delay: number }) {
@@ -21,131 +23,140 @@ function CountBox({ value, label, delay }: { value: number; label: string; delay
     <div
       style={{
         opacity: on ? 1 : 0,
-        transform: on ? 'none' : 'translateY(20px) scale(0.9)',
+        transform: on ? 'none' : 'translateY(16px)',
         transition: 'opacity 0.5s ease, transform 0.5s ease',
       }}
-      className="bg-white/20 backdrop-blur-md rounded-2xl p-4 sm:p-5 text-center border border-white/30 min-w-[80px] shadow-lg"
+      className="bg-white/15 backdrop-blur-md rounded-xl px-3 sm:px-5 py-3 sm:py-4 text-center border border-white/25 flex-1 min-w-0"
     >
-      <div
-        className="text-4xl sm:text-5xl font-extrabold text-white tabular-nums leading-none"
-        style={{ textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}
-      >
+      <div className="text-2xl sm:text-4xl font-extrabold text-white tabular-nums leading-none"
+        style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
         {String(value).padStart(2, '0')}
       </div>
-      <div className="text-white/80 text-xs sm:text-sm mt-2 uppercase tracking-widest font-medium">{label}</div>
+      <div className="text-white/65 text-xs mt-1.5 uppercase tracking-widest">{label}</div>
     </div>
   )
 }
 
 export default function VlHero() {
-  const race = new Date('2026-09-05T10:00:00')
-  const { d, h, m, s } = useCountdown(race)
+  const raceStart = new Date('2026-09-05T15:30:00')
+  const { d, h, m, s } = useCountdown(raceStart)
   const [on, setOn] = useState(false)
   useEffect(() => { const t = setTimeout(() => setOn(true), 80); return () => clearTimeout(t) }, [])
 
-  const fade = (delay: number, from = 'translateY(22px)') => ({
+  const fade = (delay: number) => ({
     opacity: on ? 1 : 0,
-    transform: on ? 'none' : from,
+    transform: on ? 'none' : 'translateY(18px)',
     transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
   })
 
   return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/images/volkslauf-hero.png')`,
-          animation: 'heroZoom 12s ease-out forwards',
+          animation: 'heroZoom 14s ease-out forwards',
         }}
       />
 
-      {/* Layered overlay: strong at edges, lighter in center for image visibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a5c]/80 via-[#0f4c75]/60 to-[#0d9488]/70" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
+      {/* Light overlay at top for dark-blue text, dark at bottom for white counter/buttons */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/30 to-[#002080]/95" />
 
       {/* Content */}
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center w-full">
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center pt-10 sm:pt-12 pb-14 sm:pb-18 flex flex-col items-center gap-5 sm:gap-6">
 
-        {/* Badge */}
-        <div style={fade(100)} className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-sm px-5 py-2.5 rounded-full mb-8 border border-white/30 shadow-md">
-          <span className="w-2 h-2 bg-[#2dd4bf] rounded-full animate-pulse shrink-0" />
-          MTSV Olympia von 1859 e.V. · Laufen für einen guten Zweck
+        {/* Veranstalter badge — etwas niedriger = kleineres Logo + weniger py */}
+        <div style={fade(60)} className="flex flex-wrap items-center justify-center gap-2 bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-[#003399]/20 shadow-sm max-w-xs sm:max-w-none">
+          <img src="/images/MSTV_Olympia_Neumünster transparent.png" alt="MSTV Olympia" className="h-5 sm:h-6 w-auto object-contain shrink-0" />
+          <span className="text-[#003399] text-[11px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">Veranstalter: MSTV Olympia 1965 e.V.</span>
         </div>
 
-        {/* Title */}
-        <h1
-          style={{ ...fade(250), textShadow: '0 4px 24px rgba(0,0,0,0.6)' }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-4 leading-tight"
-        >
-          51. o.t.n.<br />
-          <span className="text-[#2dd4bf]" style={{ textShadow: '0 4px 20px rgba(45,212,191,0.4)' }}>
-            Volkslauf
+        {/* H1 */}
+        <h1 style={fade(160)} className="text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+          <img
+            src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
+            alt="o.t.n."
+            className="h-12 sm:h-20 lg:h-24 w-auto object-contain"
+            style={{ filter: 'drop-shadow(2px 2px 0 rgba(255,255,255,0.6))' }}
+          />
+          <span
+            style={{
+              background: 'linear-gradient(135deg, #003399 0%, #0055ff 60%, #003db3 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(2px 2px 0 rgba(255,255,255,0.6))',
+            }}
+          >
+            51. Volkslauf
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p
-          style={{ ...fade(400), textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}
-          className="text-white text-xl mb-6 font-medium"
-        >
-          100 % der Einnahmen gehen an einen guten Zweck
-        </p>
-
         {/* Info pills */}
-        <div style={fade(550)} className="flex flex-wrap justify-center gap-4 text-white text-sm mb-10">
-          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 shadow-sm">
-            <Calendar className="w-4 h-4 text-[#2dd4bf]" />
-            5. September 2026 · 10:00 Uhr
+        <div style={fade(300)} className="flex flex-wrap justify-center gap-2">
+          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
+            <PartyPopper className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
+            Gartenstadt Open Air mit DJ und Live-Band ab 19 Uhr
           </span>
-          <span className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 shadow-sm">
-            <MapPin className="w-4 h-4 text-[#2dd4bf]" />
+          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
+            <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
+            5. September 2026 · 15:30 Uhr
+          </span>
+          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
+            <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
             Forstweg 5, 24537 Neumünster
           </span>
         </div>
 
-        {/* Countdown */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-14">
-          <CountBox value={d} label="Tage" delay={700} />
-          <CountBox value={h} label="Stunden" delay={850} />
-          <CountBox value={m} label="Minuten" delay={1000} />
-          <CountBox value={s} label="Sekunden" delay={1150} />
+        {/* Countdown — on dark area */}
+        <div style={fade(480)} className="flex justify-center gap-2 sm:gap-3 w-full">
+          <CountBox value={d} label="Tage" delay={580} />
+          <CountBox value={h} label="Stunden" delay={700} />
+          <CountBox value={m} label="Minuten" delay={820} />
+          <CountBox value={s} label="Sekunden" delay={940} />
         </div>
 
-        {/* Buttons */}
-        <div style={fade(1200, 'translateY(16px)')} className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* CTAs */}
+        <div style={fade(860)} className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#anmelden"
-            id="anmelden"
-            className="inline-flex items-center justify-center gap-2 bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#1a3a5c] font-bold px-8 py-4 rounded-xl transition-all text-lg shadow-xl shadow-teal-900/40 hover:scale-105 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-extrabold px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all text-sm sm:text-base hover:scale-105 active:scale-95 w-full sm:w-auto"
+            style={{ animation: 'heroGlow 2s ease-in-out infinite' }}
           >
             Jetzt anmelden
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </a>
           <a
             href="#uebersicht"
-            className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold px-8 py-4 rounded-xl transition-all border border-white/30 text-lg backdrop-blur-sm hover:scale-105 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/35 text-white font-semibold px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all border border-white/30 text-sm sm:text-base backdrop-blur-sm hover:scale-105 active:scale-95 w-full sm:w-auto"
           >
-            Mehr Infos
+            Mehr erfahren
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div style={fade(1400)} className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-white/50 text-xs uppercase tracking-widest">Scroll</span>
-        <div className="w-5 h-8 border-2 border-white/40 rounded-full flex justify-center pt-1">
-          <div className="w-1 h-2 bg-white/70 rounded-full animate-bounce" />
+      {/* Soft bottom fade — taller, softer */}
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+
+      {/* Scroll indicator — dark blue, sits in the white fade zone */}
+      <div
+        style={{ opacity: on ? 1 : 0, transition: 'opacity 0.6s ease 1400ms' }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+      >
+        <div className="w-7 h-11 border-2 border-[#003399] rounded-full flex justify-center pt-2 bg-[#003399]/10">
+          <div className="w-1.5 h-3 bg-[#003399] rounded-full animate-bounce" />
         </div>
       </div>
-
-      {/* Fade transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none" />
 
       <style>{`
         @keyframes heroZoom {
           from { transform: scale(1.05); }
           to   { transform: scale(1); }
+        }
+        @keyframes heroGlow {
+          0%,100% { box-shadow: 0 4px 24px rgba(0,51,153,0.5); }
+          50%     { box-shadow: 0 0 28px 8px rgba(0,51,153,0.75), 0 6px 32px rgba(0,51,153,0.6); }
         }
       `}</style>
     </section>
