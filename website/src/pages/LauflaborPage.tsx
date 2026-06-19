@@ -78,7 +78,7 @@ export default function LauflaborPage() {
               <div className="bg-teal-50 rounded-2xl p-6 border border-teal-100">
                 <h3 className="font-bold text-[#003399] mb-2">Tipp: Volkslauf 2026</h3>
                 <p className="text-gray-600 text-sm mb-3">
-                  Bereiten Sie sich optimal auf den o.t.n. Volkslauf vor — mit einer Laufanalyse und dem kostenlosen Vorbereitungstraining!
+                  Bereiten Sie sich optimal auf den o.t.n Volkslauf vor — mit einer Laufanalyse und dem kostenlosen Vorbereitungstraining!
                 </p>
                 <Link to="/volkslauf" className="inline-flex items-center gap-1 text-[#0d9488] text-sm font-medium hover:underline">
                   Zum Volkslauf <ArrowRight className="w-4 h-4" />

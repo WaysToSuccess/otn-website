@@ -14,7 +14,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Kontakt</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">Wir sind für Sie da</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-4">Wir sind für Sie da</h2>
           <p className="text-gray-500 max-w-xl mx-auto">Haben Sie Fragen oder möchten einen Termin vereinbaren? Wir freuen uns auf Ihre Nachricht.</p>
         </div>
 
@@ -26,7 +26,7 @@ export default function Contact() {
                   <Phone className="w-5 h-5 text-[#0d9488]" />
                 </div>
                 <div>
-                  <div className="font-semibold text-[#003399] mb-1">Telefon</div>
+                  <div className="font-semibold text-[#1a3a5c] mb-1">Telefon</div>
                   <a href="tel:+494321979449" className="text-gray-500 hover:text-[#0d9488] transition-colors">+49 4321 9794-49</a>
                 </div>
               </div>
@@ -35,7 +35,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5 text-[#0d9488]" />
                 </div>
                 <div>
-                  <div className="font-semibold text-[#003399] mb-1">E-Mail</div>
+                  <div className="font-semibold text-[#1a3a5c] mb-1">E-Mail</div>
                   <a href="mailto:info@o-t-n.de" className="text-gray-500 hover:text-[#0d9488] transition-colors">info@o-t-n.de</a>
                 </div>
               </div>
@@ -44,14 +44,14 @@ export default function Contact() {
                   <MapPin className="w-5 h-5 text-[#0d9488]" />
                 </div>
                 <div>
-                  <div className="font-semibold text-[#003399] mb-1">Zentrale</div>
+                  <div className="font-semibold text-[#1a3a5c] mb-1">Zentrale</div>
                   <p className="text-gray-500">Wendenstraße 1<br />24539 Neumünster</p>
                 </div>
               </div>
             </div>
 
             <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-semibold text-[#003399] mb-3">Öffnungszeiten</h3>
+              <h3 className="font-semibold text-[#1a3a5c] mb-3">Öffnungszeiten</h3>
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex justify-between"><span>Mo – Fr</span><span>08:00 – 18:00 Uhr</span></div>
                 <div className="flex justify-between"><span>Samstag</span><span>09:00 – 13:00 Uhr</span></div>
@@ -66,7 +66,7 @@ export default function Contact() {
                 <div className="w-16 h-16 bg-[#0d9488] rounded-full flex items-center justify-center mb-4">
                   <Send className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="font-bold text-[#003399] text-xl mb-2">Nachricht gesendet!</h3>
+                <h3 className="font-bold text-[#1a3a5c] text-xl mb-2">Nachricht gesendet!</h3>
                 <p className="text-gray-500">Wir melden uns schnellstmöglich bei Ihnen.</p>
               </div>
             ) : (
@@ -98,7 +98,7 @@ export default function Contact() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Nachricht</label>
                   <textarea rows={4} required className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0d9488] transition-colors resize-none" />
                 </div>
-                <button type="submit" className="w-full bg-[#003399] hover:bg-[#0040cc] text-white font-semibold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                <button type="submit" className="w-full bg-[#1a3a5c] hover:bg-[#1e4976] text-white font-semibold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" />
                   Nachricht senden
                 </button>

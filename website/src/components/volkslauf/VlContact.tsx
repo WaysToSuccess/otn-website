@@ -35,7 +35,7 @@ export default function VlContact() {
                 </div>
                 <div>
                   <div className="font-semibold text-white mb-0.5 text-sm">E-Mail</div>
-                  <a href="mailto:info@o-t-n-volkslauf.de" className="text-blue-200 hover:text-white transition-colors text-sm">info@o-t-n-volkslauf.de</a>
+                  <a href="mailto:info@otn-olympia-volkslauf.de" className="text-blue-200 hover:text-white transition-colors text-sm">info@otn-olympia-volkslauf.de</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">

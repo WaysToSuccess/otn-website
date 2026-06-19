@@ -51,7 +51,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <span className="text-[#0d9488] font-semibold text-sm uppercase tracking-wider">Unsere Leistungen</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-2 mb-4">
             Mehr als nur Versorgung
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ export default function Services() {
               <div className={`w-12 h-12 ${s.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                 <s.icon className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-[#003399] text-lg mb-2">{s.title}</h3>
+              <h3 className="font-bold text-[#1a3a5c] text-lg mb-2">{s.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{s.description}</p>
             </div>
           ))}

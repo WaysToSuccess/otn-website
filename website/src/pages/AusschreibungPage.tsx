@@ -77,7 +77,7 @@ const sectionBody: React.CSSProperties = {
 }
 
 export default function AusschreibungPage() {
-  useEffect(() => { document.title = 'Ausschreibung · 51. O.T.N. Volkslauf 2026' }, [])
+  useEffect(() => { document.title = 'Ausschreibung · 51. o.t.n Volkslauf 2026' }, [])
 
   return (
     <>
@@ -91,7 +91,7 @@ export default function AusschreibungPage() {
 
       {/* Toolbar */}
       <div className="no-print bg-gray-100 border-b border-gray-200 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
-        <span className="text-sm text-gray-600 font-medium">Ausschreibung · 51. O.T.N. Volkslauf 2026</span>
+        <span className="text-sm text-gray-600 font-medium">Ausschreibung · 51. o.t.n Volkslauf 2026</span>
         <button
           onClick={printViaPopup}
           className="inline-flex items-center gap-2 bg-[#003399] text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-[#0040cc] transition-colors shadow-md"
@@ -134,7 +134,7 @@ export default function AusschreibungPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <img src={OTN_LOGO} alt="O.T.N." style={{ height: 48, objectFit: 'contain' }} />
                 <div style={{ borderLeft: '2px solid #003399', paddingLeft: 12 }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#003399' }}>Orthopädie-Technik Neumünster GmbH</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#003399' }}>orthopädie.technik.nord GmbH</div>
                   <div style={{ fontSize: 9, color: '#0d9488', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 2 }}>Titelsponsor · 51. Volkslauf Neumünster</div>
                 </div>
               </div>
@@ -149,7 +149,7 @@ export default function AusschreibungPage() {
             {/* ── EMPFÄNGER ── */}
             <div style={{ padding: '6mm 14mm 4mm' }}>
               <div style={{ fontSize: 8, color: '#aaa', borderBottom: '0.5px solid #ddd', paddingBottom: 2, marginBottom: 8 }}>
-                Orthopädie-Technik Neumünster GmbH · Boostedter Straße 31 · 24537 Neumünster
+                orthopädie.technik.nord GmbH · Wendenstraße 1 · 24539 Neumünster
               </div>
               <div style={{ height: 28 }} />
               <div style={{ textAlign: 'right', fontSize: 9, color: '#666' }}>
@@ -159,8 +159,8 @@ export default function AusschreibungPage() {
 
             {/* ── TITLE ── */}
             <div style={{ padding: '3mm 14mm 4mm', borderBottom: '1px solid #e5e7eb' }}>
-              <div style={{ fontSize: 7.5, fontWeight: 700, color: '#0d9488', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 3 }}>Offiziell · Titelsponsor O.T.N.</div>
-              <h1 style={{ fontSize: 21, fontWeight: 900, color: '#003399', lineHeight: 1.1, margin: 0 }}>51. O.T.N. Volkslauf Neumünster</h1>
+              <div style={{ fontSize: 7.5, fontWeight: 700, color: '#0d9488', letterSpacing: '0.18em', marginBottom: 3 }}>Offiziell · Titelsponsor o.t.n</div>
+              <h1 style={{ fontSize: 21, fontWeight: 900, color: '#003399', lineHeight: 1.1, margin: 0 }}>51. o.t.n Volkslauf Neumünster</h1>
               <p style={{ fontSize: 9.5, color: '#555', marginTop: 4, marginBottom: 0 }}>
                 Samstag, 5. September 2026 · 15:30 Uhr · MTSV Olympia von 1859 e.V., Forstweg 5, 24537 Neumünster
               </p>
@@ -171,7 +171,7 @@ export default function AusschreibungPage() {
 
               {/* Intro */}
               <p style={{ fontSize: 9.5, color: '#333', lineHeight: 1.6, margin: 0 }}>
-                Der <strong>51. Volkslauf Neumünster</strong> wird am <strong>5. September 2026</strong> vom <strong>MTSV Olympia von 1859 e.V.</strong> ausgetragen.
+                Der <strong>51. o.t.n Volkslauf Neumünster</strong> wird am <strong>5. September 2026</strong> vom <strong>MTSV Olympia von 1859 e.V.</strong> ausgetragen.
                 Zeitmessung via <strong>Race Result</strong>. Anschließend: <strong>1. Gartenstadt Open Air</strong> mit DJ & Live-Band (Einlass 19:00 Uhr). 100&nbsp;% der Einnahmen fließen in gemeinnützige Zwecke.
               </p>
 
@@ -277,7 +277,7 @@ export default function AusschreibungPage() {
                     ))}
                   </div>
                   <div style={{ marginTop: 6, padding: '4px 8px', background: '#f0f4ff', borderRadius: 4, fontSize: 8, color: '#003399', borderLeft: '3px solid #0d9488' }}>
-                    <strong>Anmeldung:</strong> ausschließlich online über das Race Result Portal · <strong>www.o-t-n-volkslauf.de</strong>
+                    <strong>Anmeldung:</strong> ausschließlich online über das Race Result Portal · <strong>www.otn-olympia-volkslauf.de</strong>
                   </div>
                 </div>
               </div>
@@ -299,8 +299,8 @@ export default function AusschreibungPage() {
                   <div style={{ padding: '7px 10px', display: 'flex', alignItems: 'center', gap: 10 }}>
                     <img src={OTN_LOGO} alt="O.T.N." style={{ height: 34, objectFit: 'contain', flexShrink: 0 }} />
                     <div>
-                      <div style={{ fontSize: 8.5, fontWeight: 800, color: '#003399' }}>Orthopädie-Technik Neumünster GmbH</div>
-                      <div style={{ fontSize: 8, color: '#555', lineHeight: 1.5, marginTop: 2 }}>Boostedter Straße 31 · 24537 Neumünster<br />www.o-t-n-volkslauf.de</div>
+                      <div style={{ fontSize: 8.5, fontWeight: 800, color: '#003399' }}>orthopädie.technik.nord GmbH</div>
+                      <div style={{ fontSize: 8, color: '#555', lineHeight: 1.5, marginTop: 2 }}>Wendenstraße 1 · 24539 Neumünster<br />www.otn-olympia-volkslauf.de</div>
                     </div>
                   </div>
                 </div>
@@ -339,16 +339,16 @@ export default function AusschreibungPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <img src={OTN_LOGO} alt="O.T.N." style={{ height: 30, objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
                 <div style={{ color: '#fff' }}>
-                  <div style={{ fontSize: 8.5, fontWeight: 800 }}>Orthopädie-Technik Neumünster GmbH</div>
+                  <div style={{ fontSize: 8.5, fontWeight: 800 }}>orthopädie.technik.nord GmbH</div>
                   <div style={{ fontSize: 7.5, color: '#93c5fd', marginTop: 1 }}>Titelsponsor · 51. Volkslauf 2026</div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 16 }}>
                 {[
-                  { Icon: MapPin, lines: ['Boostedter Str. 31', '24537 Neumünster'] },
+                  { Icon: MapPin, lines: ['Wendenstraße 1', '24539 Neumünster'] },
                   { Icon: Phone,  lines: ['04321 / 9794-49'] },
-                  { Icon: Mail,   lines: ['info@o-t-n-volkslauf.de'] },
-                  { Icon: Globe,  lines: ['www.o-t-n-volkslauf.de'] },
+                  { Icon: Mail,   lines: ['info@otn-olympia-volkslauf.de'] },
+                  { Icon: Globe,  lines: ['www.otn-olympia-volkslauf.de'] },
                 ].map(({ Icon, lines }) => (
                   <div key={lines[0]} style={{ display: 'flex', alignItems: 'flex-start', gap: 4 }}>
                     <Icon style={{ width: 8, height: 8, color: '#2dd4bf', marginTop: 2, flexShrink: 0 }} />

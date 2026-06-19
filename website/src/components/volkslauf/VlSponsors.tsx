@@ -89,7 +89,7 @@ export default function VlSponsors() {
             >
               <img
                 src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-                alt="o.t.n."
+                alt="o.t.n"
                 className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
               />
               <div className="text-center">
@@ -161,7 +161,7 @@ export default function VlSponsors() {
             <h3 className="font-bold text-[#003399] text-xl mb-2">Werden Sie Sponsor</h3>
             <p className="text-gray-500 mb-5 max-w-md mx-auto">Unterstützen Sie einen guten Zweck und profitieren Sie von der enormen Sichtbarkeit.</p>
             <a
-              href="mailto:info@o-t-n-volkslauf.de?subject=Sponsoring Anfrage"
+              href="mailto:info@otn-olympia-volkslauf.de?subject=Sponsoring Anfrage"
               className="inline-flex items-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:scale-105 active:scale-95"
             >
               Sponsoring anfragen

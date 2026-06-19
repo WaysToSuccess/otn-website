@@ -21,7 +21,7 @@ export default function UeberUnsPage() {
       <section className="bg-gradient-to-br from-[#003399] to-[#0d9488] py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <span className="text-[#2dd4bf] font-semibold text-sm uppercase tracking-wider">Über uns</span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">o.t.n. ...um Menschen zu helfen</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">o.t.n ...um Menschen zu helfen</h1>
           <p className="text-blue-100 text-lg max-w-2xl mx-auto">
             Seit 1996 Ihr kompetenter und zuverlässiger Partner in Schleswig-Holstein.
           </p>

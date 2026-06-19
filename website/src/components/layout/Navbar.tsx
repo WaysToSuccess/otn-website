@@ -56,7 +56,7 @@ export default function Navbar() {
           <a href="#" className="flex items-center gap-3">
             <img
               src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-              alt="o.t.n."
+              alt="o.t.n"
               className="h-8 w-auto"
               style={{ filter: 'none' }}
               onError={(e) => {

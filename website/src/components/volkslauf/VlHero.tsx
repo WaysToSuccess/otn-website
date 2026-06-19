@@ -55,7 +55,7 @@ export default function VlHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/volkslauf-hero.png')`,
+          backgroundImage: `url('/images/o.t.n Laufbild herosection.JPG.jpeg')`,
           animation: 'heroZoom 14s ease-out forwards',
         }}
       />
@@ -74,12 +74,6 @@ export default function VlHero() {
 
         {/* H1 */}
         <h1 style={fade(160)} className="text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-          <img
-            src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-            alt="o.t.n."
-            className="h-12 sm:h-20 lg:h-24 w-auto object-contain"
-            style={{ filter: 'drop-shadow(2px 2px 0 rgba(255,255,255,0.6))' }}
-          />
           <span
             style={{
               background: 'linear-gradient(135deg, #003399 0%, #0055ff 60%, #003db3 100%)',
@@ -89,7 +83,7 @@ export default function VlHero() {
               filter: 'drop-shadow(2px 2px 0 rgba(255,255,255,0.6))',
             }}
           >
-            51. Volkslauf
+            51. o.t.n Volkslauf
           </span>
         </h1>
 
@@ -118,7 +112,7 @@ export default function VlHero() {
         </div>
 
         {/* CTAs */}
-        <div style={fade(860)} className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div style={fade(860)} className="flex flex-col sm:flex-row gap-4 justify-center relative z-[9999]">
           <a
             href="#anmelden"
             className="inline-flex items-center justify-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-extrabold px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all text-sm sm:text-base hover:scale-105 active:scale-95 w-full sm:w-auto"

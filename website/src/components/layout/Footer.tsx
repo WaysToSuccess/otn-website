@@ -10,14 +10,14 @@ export default function Footer() {
             <div className="inline-block bg-white/95 rounded-xl px-4 py-2 mb-4">
               <img
                 src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-                alt="o.t.n."
+                alt="o.t.n"
                 className="h-8 w-auto"
                 style={{ filter: 'none' }}
                 onError={(e) => { e.currentTarget.parentElement!.style.display = 'none' }}
               />
             </div>
             <p className="text-blue-300 text-sm leading-relaxed">
-              51. o.t.n. Volkslauf<br />
+              51. o.t.n Volkslauf<br />
               Veranstalter: MTSV Olympia Neumünster, o.t.n, Gartenstadt
             </p>
           </div>
@@ -35,8 +35,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#2dd4bf] shrink-0" />
-                <a href="mailto:info@o-t-n-volkslauf.de" className="hover:text-white transition-colors">
-                  info@o-t-n-volkslauf.de
+                <a href="mailto:info@otn-olympia-volkslauf.de" className="hover:text-white transition-colors">
+                  info@otn-olympia-volkslauf.de
                 </a>
               </li>
             </ul>

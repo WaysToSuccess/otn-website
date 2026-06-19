@@ -1,5 +1,5 @@
 import { useInView, anim } from '../../hooks/useInView'
-import { ExternalLink, User, Calendar, Mail, Heart, Flag } from 'lucide-react'
+import { User, Calendar, Mail, Heart, Flag } from 'lucide-react'
 
 const fields = [
   { icon: Flag, label: 'Laufauswahl', hint: 'Bambini · 5 km · 10 km' },
@@ -69,59 +69,21 @@ export default function VlRegister() {
             </div>
           </div>
 
-          {/* Race Result embed placeholder */}
+          {/* Race Result embed */}
           <div ref={formRef} style={anim(formVisible, 120, 'right')} className="lg:col-span-3">
-            <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 overflow-hidden">
-
-              {/* Placeholder header */}
-              <div className="bg-[#003399] px-6 py-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-                    <ExternalLink className="w-4 h-4 text-[#2dd4bf]" />
-                  </div>
-                  <span className="text-white font-semibold text-sm">Race Result · Anmeldeformular</span>
-                </div>
-                <span className="text-blue-300 text-xs border border-blue-300/30 rounded-full px-3 py-1">Wird eingebettet</span>
+            <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm">
+              <div className="bg-[#003399] px-6 py-4 flex items-center gap-3">
+                <div className="w-2 h-2 bg-[#2dd4bf] rounded-full animate-pulse" />
+                <span className="text-white font-semibold text-sm">Race Result · Anmeldeformular</span>
               </div>
-
-              {/* Embed area */}
-              <div className="p-8 text-center min-h-[400px] flex flex-col items-center justify-center gap-6">
-
-                {/* Placeholder illustration */}
-                <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center">
-                  <ExternalLink className="w-9 h-9 text-[#0d9488]" />
-                </div>
-
-                <div>
-                  <h3 className="text-[#003399] font-bold text-lg mb-2">
-                    Race Result Formular
-                  </h3>
-                  <p className="text-gray-500 text-sm max-w-xs mx-auto leading-relaxed">
-                    Hier wird das offizielle Anmelde- und Ticketformular von <strong>Race Result</strong> eingebettet.
-                  </p>
-                  <p className="text-gray-400 text-xs mt-2">
-                    Ersetzen Sie diesen Bereich durch Ihren Race Result Embed-Code.
-                  </p>
-                </div>
-
-                {/* Example embed code comment */}
-                <div className="w-full bg-gray-900 rounded-xl p-4 text-left overflow-x-auto">
-                  <p className="text-gray-400 text-xs mb-2">Embed-Code einfügen:</p>
-                  <code className="text-[#2dd4bf] text-xs font-mono whitespace-pre-wrap break-all">
-                    {'<iframe\n  src="https://my.raceresult.com/IHRE-EVENT-ID/registration"\n  width="100%" height="600"\n  frameborder="0" />'}
-                  </code>
-                </div>
-
-                <a
-                  href="https://my.raceresult.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#0d9488] hover:bg-[#0f766e] text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm shadow-md hover:scale-105 active:scale-95"
-                >
-                  Zu Race Result
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
+              <iframe
+                src="https://my.raceresult.com/407322/registration"
+                width="100%"
+                height="600"
+                frameBorder="0"
+                title="Race Result Anmeldung"
+                className="block"
+              />
             </div>
           </div>
         </div>

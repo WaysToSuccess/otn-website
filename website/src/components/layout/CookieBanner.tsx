@@ -19,7 +19,7 @@ export default function CookieBanner() {
   if (!visible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] p-3 sm:p-5">
+    <div className="fixed bottom-0 left-0 right-0 z-[99999] p-3 sm:p-5">
       <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl shadow-black/15 border border-gray-100 overflow-hidden">
         <div className="h-[3px] bg-gradient-to-r from-[#003399] to-[#0d9488]" />
 

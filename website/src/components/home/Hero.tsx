@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#003399] via-[#0040cc] to-[#0d9488] flex items-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-br from-[#1a3a5c] via-[#1e4976] to-[#0d9488] flex items-center pt-16 overflow-hidden">
       {/* Pattern overlay */}
       <div className="absolute inset-0 opacity-[0.06]"
         style={{
@@ -19,7 +19,7 @@ export default function Hero() {
             <div className="mb-8">
               <img
                 src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-                alt="o.t.n. Orthopädie Technik Nord"
+                alt="o.t.n Orthopädie Technik Nord"
                 className="h-14 w-auto brightness-0 invert"
                 onError={(e) => { e.currentTarget.style.display = 'none' }}
               />
@@ -36,7 +36,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-[#2dd4bf]/80 text-xl font-medium italic mb-4">
-              o.t.n. ...um Menschen zu helfen
+              o.t.n ...um Menschen zu helfen
             </p>
 
             <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-lg">
@@ -44,7 +44,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link to="/leistungen" className="inline-flex items-center justify-center gap-2 bg-white text-[#003399] font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
+              <Link to="/leistungen" className="inline-flex items-center justify-center gap-2 bg-white text-[#1a3a5c] font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors">
                 Unsere Leistungen
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -87,7 +87,7 @@ export default function Hero() {
               {/* Volkslauf teaser */}
               <div className="bg-[#0d9488]/30 rounded-2xl p-4 border border-[#2dd4bf]/20">
                 <p className="text-white/70 text-xs mb-1">Nächste Veranstaltung</p>
-                <p className="text-white font-bold">51. o.t.n. Volkslauf</p>
+                <p className="text-white font-bold">51. o.t.n Volkslauf</p>
                 <p className="text-[#2dd4bf] text-sm">5. September 2026 · 10:00 Uhr</p>
                 <Link to="/volkslauf" className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm mt-2 transition-colors">
                   Jetzt anmelden <ArrowRight className="w-3 h-3" />
