@@ -10,6 +10,23 @@ body {
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  background-color: #002266;
+}
+
+/* Reset to white once React mounts */
+body.app-ready {
+  background-color: #fff;
+}
+
+/* Hero: Hintergrundbild nur auf Desktop laden */
+@media (max-width: 767px) {
+  .hero-bg-image { display: none !important; }
+}
+
+/* Performance: Below-fold Sektionen erst beim Einblenden rendern */
+.content-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
 }
 
 #root {

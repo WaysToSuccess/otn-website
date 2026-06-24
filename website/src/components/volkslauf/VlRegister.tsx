@@ -24,6 +24,9 @@ export default function VlRegister() {
           <p className="text-gray-500 max-w-lg mx-auto text-sm">
             Anmeldung über Race Result, das offizielle Zeitmess- und Anmeldesystem für Laufveranstaltungen.
           </p>
+          <p className="mt-3 text-[#003399] font-semibold text-sm">
+            Der Erlös geht zu 100 % dem gemeinnützigen Zweck zugute.
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 items-start">
@@ -64,7 +67,7 @@ export default function VlRegister() {
                 </div>
               </div>
               <p className="text-teal-600 text-xs mt-3">
-                100 % der Einnahmen gehen an gemeinnützige Zwecke.
+                Der Erlös geht zu 100 % dem gemeinnützigen Zweck zugute.
               </p>
             </div>
           </div>

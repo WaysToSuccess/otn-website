@@ -1,20 +1,64 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Mail, MapPin, Send, Bell, Phone } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
 
+const RECIPIENT = 'info@otn-olympia-volkslauf.de'
+const FORMSUBMIT_URL = `https://formsubmit.co/${RECIPIENT}`
+
 export default function VlContact() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [newsletter, setNewsletter] = useState(false)
+  const [newsletterEmail, setNewsletterEmail] = useState('')
   const [agreed, setAgreed] = useState(false)
   const [agreeError, setAgreeError] = useState(false)
+  const honeypotRef = useRef<HTMLInputElement>(null)
   const { ref: headRef, visible: headVisible } = useInView()
   const { ref: leftRef, visible: leftVisible } = useInView()
   const { ref: rightRef, visible: rightVisible } = useInView()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!agreed) { setAgreeError(true); return }
-    setSent(true)
+    // Honeypot check — bots fill hidden field
+    if (honeypotRef.current?.value) return
+
+    const form = e.currentTarget
+    const data = new FormData(form)
+    data.append('_subject', 'Neue Kontaktanfrage – Volkslauf Neumünster')
+    data.append('_template', 'table')
+    data.append('_captcha', 'false')
+
+    setStatus('sending')
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (res.ok) {
+        setStatus('sent')
+        form.reset()
+        setAgreed(false)
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const handleNewsletterSubmit = async () => {
+    if (!newsletterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) return
+    const data = new FormData()
+    data.append('Email', newsletterEmail)
+    data.append('Anfrage', 'Newsletter-Anmeldung')
+    data.append('_subject', 'Newsletter-Anmeldung – Volkslauf Neumünster')
+    data.append('_template', 'table')
+    data.append('_captcha', 'false')
+    try {
+      await fetch(FORMSUBMIT_URL, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    } catch { /* silent */ }
+    setNewsletter(true)
   }
 
   return (
@@ -70,11 +114,13 @@ export default function VlContact() {
                 <div className="flex gap-2">
                   <input
                     type="email"
+                    value={newsletterEmail}
+                    onChange={e => setNewsletterEmail(e.target.value)}
                     placeholder="Ihre E-Mail"
                     className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-blue-300 text-sm focus:outline-none focus:border-[#2dd4bf] transition-colors"
                   />
                   <button
-                    onClick={() => setNewsletter(true)}
+                    onClick={handleNewsletterSubmit}
                     className="bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#003399] font-semibold px-4 py-2.5 rounded-xl text-sm transition-all hover:scale-105 active:scale-95"
                   >
                     OK
@@ -85,7 +131,7 @@ export default function VlContact() {
           </div>
 
           <div ref={rightRef} style={anim(rightVisible, 150, 'right')}>
-            {sent ? (
+            {status === 'sent' ? (
               <div className="bg-white/10 rounded-2xl p-8 text-center h-full flex flex-col items-center justify-center border border-white/10">
                 <div className="w-16 h-16 bg-[#2dd4bf] rounded-full flex items-center justify-center mb-4">
                   <Send className="w-8 h-8 text-[#003399]" />
@@ -95,11 +141,17 @@ export default function VlContact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot — verstecktes Feld, Bots füllen es aus */}
+                <input ref={honeypotRef} type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
                 <div>
                   <label className="block text-xs font-medium text-blue-300 mb-1.5 uppercase tracking-wider">Name</label>
                   <input
                     type="text"
+                    name="Name"
                     required
+                    maxLength={100}
+                    autoComplete="name"
                     className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-blue-400 text-sm focus:outline-none focus:border-[#2dd4bf] transition-colors"
                     placeholder="Ihr vollständiger Name"
                   />
@@ -108,7 +160,10 @@ export default function VlContact() {
                   <label className="block text-xs font-medium text-blue-300 mb-1.5 uppercase tracking-wider">E-Mail</label>
                   <input
                     type="email"
+                    name="Email"
                     required
+                    maxLength={200}
+                    autoComplete="email"
                     className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-blue-400 text-sm focus:outline-none focus:border-[#2dd4bf] transition-colors"
                     placeholder="ihre@email.de"
                   />
@@ -116,8 +171,10 @@ export default function VlContact() {
                 <div>
                   <label className="block text-xs font-medium text-blue-300 mb-1.5 uppercase tracking-wider">Nachricht</label>
                   <textarea
+                    name="Nachricht"
                     rows={3}
                     required
+                    maxLength={2000}
                     className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-blue-400 text-sm focus:outline-none focus:border-[#2dd4bf] transition-colors resize-none"
                     placeholder="Ihre Frage oder Anmerkung..."
                   />
@@ -144,12 +201,20 @@ export default function VlContact() {
                   )}
                 </div>
 
+                {status === 'error' && (
+                  <p className="text-red-300 text-xs text-center">
+                    Fehler beim Senden. Bitte schreiben Sie direkt an{' '}
+                    <a href="mailto:info@otn-olympia-volkslauf.de" className="underline">info@otn-olympia-volkslauf.de</a>
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#003399] font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] shadow-lg"
+                  disabled={status === 'sending'}
+                  className="w-full bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#003399] font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  Nachricht senden
+                  {status === 'sending' ? 'Wird gesendet…' : 'Nachricht senden'}
                 </button>
               </form>
             )}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, Calendar, MapPin, PartyPopper } from 'lucide-react'
+import { ArrowRight, Calendar, Info, MapPin, PartyPopper } from 'lucide-react'
 
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(target.getTime() - Date.now())
@@ -50,12 +50,12 @@ export default function VlHero() {
   })
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background image */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: '#002266' }}>
+      {/* Background image — hidden on mobile via CSS to skip download */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="hero-bg-image absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/o.t.n Laufbild herosection.JPG.jpeg')`,
+          backgroundImage: `url('/images/o.t.n Laufbild neu.webp?v=20260623')`,
           animation: 'heroZoom 14s ease-out forwards',
         }}
       />
@@ -64,16 +64,18 @@ export default function VlHero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/30 to-[#002080]/95" />
 
       {/* Content */}
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center pt-10 sm:pt-12 pb-14 sm:pb-18 flex flex-col items-center gap-5 sm:gap-6">
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center pt-10 sm:pt-12 pb-14 sm:pb-18 flex flex-col items-center gap-3 sm:gap-4">
 
-        {/* Veranstalter badge — etwas niedriger = kleineres Logo + weniger py */}
-        <div style={fade(60)} className="flex flex-wrap items-center justify-center gap-2 bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-[#003399]/20 shadow-sm max-w-xs sm:max-w-none">
-          <img src="/images/MSTV_Olympia_Neumünster transparent.png" alt="MSTV Olympia" className="h-5 sm:h-6 w-auto object-contain shrink-0" />
-          <span className="text-[#003399] text-[11px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">Veranstalter: MSTV Olympia 1965 e.V.</span>
+        {/* Veranstalter badge */}
+        <div style={fade(60)} className="flex flex-wrap items-center justify-center gap-2.5 bg-white/85 backdrop-blur-sm px-4 py-2 rounded-full border border-[#003399]/20 shadow-sm">
+          <img src="/images/o.t.n_Logo transparent.webp" alt="o.t.n" className="h-6 sm:h-7 w-auto object-contain shrink-0" />
+          <span className="text-[#003399]/30 text-sm font-light">|</span>
+          <img src="/images/MSTV_Olympia_Neumünster transparent.webp" alt="MSTV Olympia" className="h-6 sm:h-7 w-auto object-contain shrink-0" />
+          <span className="text-[#003399] text-[11px] sm:text-xs font-semibold tracking-wide whitespace-nowrap">Veranstalter: o.t.n und MSTV Olympia 1859 e.V.</span>
         </div>
 
         {/* H1 */}
-        <h1 style={fade(160)} className="text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-none tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+        <h1 style={fade(160)} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5 pb-1">
           <span
             style={{
               background: 'linear-gradient(135deg, #003399 0%, #0055ff 60%, #003db3 100%)',
@@ -83,23 +85,34 @@ export default function VlHero() {
               filter: 'drop-shadow(2px 2px 0 rgba(255,255,255,0.6))',
             }}
           >
-            51. o.t.n Volkslauf
+            51. Volkslauf bei Olympia
           </span>
         </h1>
 
-        {/* Info pills */}
-        <div style={fade(300)} className="flex flex-wrap justify-center gap-2">
-          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
-            <PartyPopper className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
-            Gartenstadt Open Air mit DJ und Live-Band ab 19 Uhr
-          </span>
-          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
-            <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
-            5. September 2026 · 15:30 Uhr
-          </span>
-          <span className="flex items-center gap-2 bg-white/70 backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-[#003399]/25 font-semibold shadow-sm">
-            <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#003399] shrink-0" />
-            Forstweg 5, 24537 Neumünster
+        {/* Info cards */}
+        <div style={fade(300)} className="flex flex-col items-center gap-2 w-full">
+          {/* 3 white cards in a row on desktop */}
+          <div className="flex flex-col sm:flex-row justify-center gap-2 w-full">
+            <a
+              href="#uebersicht"
+              className="flex items-center gap-2.5 bg-white backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-xl border border-[#003399]/15 font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-all justify-center sm:justify-start"
+            >
+              <Info className="w-4 h-4 text-[#003399] shrink-0" />
+              Kostenloses Lauftraining ab 8.7
+            </a>
+            <span className="flex items-center gap-2.5 bg-white backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-xl border border-[#003399]/15 font-semibold shadow-md justify-center sm:justify-start">
+              <Calendar className="w-4 h-4 text-[#003399] shrink-0" />
+              5. September 2026 · 15:30 Uhr
+            </span>
+            <span className="flex items-center gap-2.5 bg-white backdrop-blur-sm text-[#003399] text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-xl border border-[#003399]/15 font-semibold shadow-md justify-center sm:justify-start">
+              <MapPin className="w-4 h-4 text-[#003399] shrink-0" />
+              Forstweg 5, 24537 Neumünster
+            </span>
+          </div>
+          {/* Green pill below, centered */}
+          <span className="flex items-center gap-2 bg-[#0d9488]/90 backdrop-blur-sm text-white text-xs sm:text-sm px-5 py-2.5 rounded-full font-semibold shadow-md">
+            <PartyPopper className="w-3.5 h-3.5 shrink-0" />
+            Gartenstadt Open Air mit DJ ab 19 Uhr
           </span>
         </div>
 

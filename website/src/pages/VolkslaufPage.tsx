@@ -1,12 +1,14 @@
+import { lazy, Suspense } from 'react'
 import VlHero from '../components/volkslauf/VlHero'
 import VlOverview from '../components/volkslauf/VlOverview'
-import VlRegister from '../components/volkslauf/VlRegister'
-import VlSchedule from '../components/volkslauf/VlSchedule'
-import VlRoute from '../components/volkslauf/VlRoute'
-import VlFAQ from '../components/volkslauf/VlFAQ'
-import VlContact from '../components/volkslauf/VlContact'
-import VlSponsors from '../components/volkslauf/VlSponsors'
 import PageBackground from '../components/layout/PageBackground'
+
+const VlRegister = lazy(() => import('../components/volkslauf/VlRegister'))
+const VlSchedule = lazy(() => import('../components/volkslauf/VlSchedule'))
+const VlRoute    = lazy(() => import('../components/volkslauf/VlRoute'))
+const VlFAQ      = lazy(() => import('../components/volkslauf/VlFAQ'))
+const VlContact  = lazy(() => import('../components/volkslauf/VlContact'))
+const VlSponsors = lazy(() => import('../components/volkslauf/VlSponsors'))
 
 function WaveBottom({ color }: { color: string }) {
   return (
@@ -30,17 +32,6 @@ function WaveTop({ color }: { color: string }) {
   )
 }
 
-function DiagonalCut({ colorTop, colorBottom }: { colorTop: string; colorBottom: string }) {
-  return (
-    <div style={{ lineHeight: 0, position: 'relative', height: 80, overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, background: colorBottom }} />
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"
-        style={{ display: 'block', width: '100%', height: 80, position: 'relative' }} aria-hidden="true">
-        <polygon points="0,0 1440,0 1440,30 0,80" fill={colorTop} />
-      </svg>
-    </div>
-  )
-}
 
 /* Dekorative Blur-Orbs für weiße Sektionen */
 function Orb({ style }: { style: React.CSSProperties }) {
@@ -66,26 +57,30 @@ export default function VolkslaufPage() {
         <VlHero />
 
         {/* ② Übersicht — weiß mit blauen Blurs */}
-        <div style={{ background: WHITE, position: 'relative' }}>
+        <div style={{ background: WHITE, position: 'relative', overflow: 'visible', zIndex: 1 }}>
           <Orb style={{
             width: 780, height: 780, top: -280, right: -240,
             background: 'radial-gradient(circle, rgba(0,60,200,0.13) 0%, rgba(0,80,220,0.05) 45%, transparent 70%)',
             filter: 'blur(70px)',
+            zIndex: 2,
           }} />
           <Orb style={{
-            width: 620, height: 620, bottom: -200, left: -220,
-            background: 'radial-gradient(circle, rgba(13,148,136,0.12) 0%, rgba(0,120,200,0.05) 45%, transparent 70%)',
+            width: 620, height: 620, bottom: -320, left: -220,
+            background: 'radial-gradient(circle, rgba(13,148,136,0.18) 0%, rgba(0,120,200,0.07) 45%, transparent 70%)',
             filter: 'blur(65px)',
+            zIndex: 2,
           }} />
           <Orb style={{
             width: 400, height: 400, top: '30%', left: -180,
             background: 'radial-gradient(circle, rgba(0,80,220,0.10) 0%, transparent 65%)',
             filter: 'blur(55px)',
+            zIndex: 2,
           }} />
           <Orb style={{
-            width: 350, height: 350, bottom: '10%', right: -140,
-            background: 'radial-gradient(circle, rgba(13,148,136,0.10) 0%, transparent 65%)',
-            filter: 'blur(50px)',
+            width: 500, height: 500, bottom: -250, right: -140,
+            background: 'radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 65%)',
+            filter: 'blur(60px)',
+            zIndex: 2,
           }} />
           <VlOverview />
         </div>
@@ -93,7 +88,9 @@ export default function VolkslaufPage() {
         <WaveBottom color={WHITE} />
 
         {/* ③ Anmeldung — blauer Background */}
-        <VlRegister />
+        <Suspense fallback={<div style={{ height: 400, background: '#002080' }} />}>
+          <div className="content-section"><VlRegister /></div>
+        </Suspense>
 
         <WaveTop color={WHITE} />
 
@@ -119,76 +116,43 @@ export default function VolkslaufPage() {
             background: 'radial-gradient(circle, rgba(13,148,136,0.10) 0%, transparent 65%)',
             filter: 'blur(48px)',
           }} />
-          <VlSchedule />
+          <Suspense fallback={<div style={{ height: 400 }} />}>
+            <div className="content-section"><VlSchedule /></div>
+          </Suspense>
         </div>
 
         <WaveBottom color={WHITE} />
 
         {/* ⑤ Strecke — blauer Background */}
-        <VlRoute />
+        <Suspense fallback={<div style={{ height: 500, background: '#f3f4f6' }} />}>
+          <div className="content-section"><VlRoute /></div>
+        </Suspense>
 
         <WaveTop color={WHITE} />
 
         {/* ⑥ FAQ — weiß mit Blurs */}
-        <div style={{ background: WHITE, position: 'relative' }}>
-          <Orb style={{
-            width: 720, height: 720, top: -240, right: -240,
-            background: 'radial-gradient(circle, rgba(0,60,200,0.13) 0%, rgba(0,90,230,0.05) 45%, transparent 70%)',
-            filter: 'blur(72px)',
-          }} />
-          <Orb style={{
-            width: 560, height: 560, bottom: -180, left: -200,
-            background: 'radial-gradient(circle, rgba(13,148,136,0.12) 0%, rgba(0,100,200,0.05) 45%, transparent 70%)',
-            filter: 'blur(65px)',
-          }} />
-          <Orb style={{
-            width: 380, height: 380, top: '30%', left: -160,
-            background: 'radial-gradient(circle, rgba(0,51,153,0.10) 0%, transparent 65%)',
-            filter: 'blur(52px)',
-          }} />
-          <Orb style={{
-            width: 300, height: 300, bottom: '20%', right: -130,
-            background: 'radial-gradient(circle, rgba(0,80,200,0.10) 0%, transparent 65%)',
-            filter: 'blur(46px)',
-          }} />
-          <VlFAQ />
+        <div style={{ background: WHITE, position: 'relative', overflow: 'visible', zIndex: 1 }}>
+          <Suspense fallback={<div style={{ height: 600 }} />}>
+            <div className="content-section"><VlFAQ /></div>
+          </Suspense>
         </div>
 
-        <DiagonalCut colorTop={WHITE} colorBottom={BLUE_DARK} />
+        {/* Gradient-Übergang: weiß → dunkelblau */}
+        <div style={{ height: 100, background: `linear-gradient(to bottom, ${WHITE}, ${BLUE_DARK})`, marginBottom: -1 }} />
 
         {/* ⑦ Kontakt — dunkelblau */}
-        <VlContact />
+        <Suspense fallback={<div style={{ height: 500, background: '#002080' }} />}>
+          <div className="content-section"><VlContact /></div>
+        </Suspense>
 
-        <WaveTop color={WHITE} />
+        {/* Gradient-Übergang: dunkelblau → weiß */}
+        <div style={{ height: 100, background: `linear-gradient(to bottom, ${BLUE_DARK}, ${WHITE})`, marginTop: -1 }} />
 
         {/* ⑧ Sponsoren — weiß mit Blurs */}
         <div style={{ background: WHITE, position: 'relative' }}>
-          <Orb style={{
-            width: 800, height: 800, top: -280, left: -260,
-            background: 'radial-gradient(circle, rgba(0,51,153,0.12) 0%, rgba(0,70,200,0.05) 45%, transparent 70%)',
-            filter: 'blur(75px)',
-          }} />
-          <Orb style={{
-            width: 640, height: 640, bottom: -220, right: -240,
-            background: 'radial-gradient(circle, rgba(0,80,220,0.12) 0%, rgba(13,148,136,0.05) 45%, transparent 70%)',
-            filter: 'blur(68px)',
-          }} />
-          <Orb style={{
-            width: 460, height: 460, top: '30%', right: -180,
-            background: 'radial-gradient(circle, rgba(13,148,136,0.10) 0%, transparent 65%)',
-            filter: 'blur(58px)',
-          }} />
-          <Orb style={{
-            width: 380, height: 380, bottom: '25%', left: -150,
-            background: 'radial-gradient(circle, rgba(0,60,200,0.10) 0%, transparent 65%)',
-            filter: 'blur(52px)',
-          }} />
-          <Orb style={{
-            width: 300, height: 300, top: '55%', left: '40%',
-            background: 'radial-gradient(circle, rgba(0,51,153,0.08) 0%, transparent 65%)',
-            filter: 'blur(45px)',
-          }} />
-          <VlSponsors />
+          <Suspense fallback={<div style={{ height: 600 }} />}>
+            <div className="content-section"><VlSponsors /></div>
+          </Suspense>
         </div>
 
       </main>

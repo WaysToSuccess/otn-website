@@ -42,7 +42,7 @@ export default function VlRoute() {
             Die schönste Route durch Neumünster
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            5 km Rundkurs durch Park und Stadtgebiet. Gut ausgeschildert, mit Verpflegungsstation auf halber Strecke.
+            5 km und 10 km Rundkurs durch Park und Stadtgebiet. Gut ausgeschildert, mit Verpflegungsstation auf halber Strecke.
           </p>
         </div>
 

@@ -3,18 +3,21 @@ import { useInView, anim } from '../../hooks/useInView'
 import { Music } from 'lucide-react'
 
 const steps = [
-  { time: '10:00', title: 'Aufbau', desc: 'Aufbau des Veranstaltungsgeländes auf dem Olympia Platz.' },
-  { time: '15:30', title: 'Startnummernausgabe', desc: 'Abholung von Startnummer und Zeitmesschip im Eingangsfoyer MTSV Olympia.' },
-  { time: '16:30', title: 'Start 5 km & 10 km', desc: 'Offizieller Startschuss im Stadion. Zeitmessung via Race Result.' },
-  { time: '18:00', title: 'Zieleinlauf geschlossen', desc: 'Letzter offizieller Zieleinlauf. Danach Abbau der Absperrungen.' },
-  { time: '18:15', title: 'Auswertung & Siegerehrung', desc: 'Pokalübergabe an die Erstplatzierten aller Kategorien im Stadion.' },
+  { time: '10:00', title: 'Aufbau der Veranstaltung', desc: 'Aufbau des Veranstaltungsgeländes auf dem Olympia Platz.' },
+  { time: '14:00', title: 'Startnummernausgabe', desc: 'Abholung von Startnummer und Zeitmesschip im Eingangsfoyer Olympia.' },
+  { time: '15:45', title: 'Begrüßung durch Olympia', desc: 'Offizielle Begrüßung durch den MTSV Olympia im Stadion.' },
+  { time: '16:00', title: 'Start Bambinilauf', desc: 'Startschuss für den Bambinilauf im Stadion.' },
+  { time: '16:15', title: 'Begrüßung durch o.t.n', desc: 'Begrüßung durch o.t.n Neumünster im Stadion.' },
+  { time: '16:30', title: 'Start 5 km & 10 km', desc: 'Offizieller Startschuss im Stadion. Zeitmessung via sportservice hamburg GmbH.' },
+  { time: '18:00', title: 'Zieleinlauf beendet', desc: 'Letzter offizieller Zieleinlauf. Einsatz Security im Stadion.' },
+  { time: '18:15', title: 'Auswertung & Siegerehrung', desc: 'Auswertung und anschließende Siegerehrung im Stadion.' },
   { time: '19:00', title: 'Einlass Gartenstadt Open Air', desc: 'Einlass zum 1. Gartenstadt Open Air auf dem Parkplatz / Gelände.', highlight: true },
   { time: '19:30', title: 'Gartenstadt Open Air Start', desc: 'Musik, Stimmung und gemeinsames Feiern nach dem Lauf.', highlight: true },
   { time: '01:00', title: 'Ende der Veranstaltung', desc: 'Offizielles Ende des 1. Gartenstadt Open Air.' },
 ]
 
 // First highlight index (step 5) → color change at ~71% of steps
-const HIGHLIGHT_FROM = 5
+const HIGHLIGHT_FROM = 8
 const COLOR_CHANGE_PCT = (HIGHLIGHT_FROM / (steps.length - 1)) * 100
 
 const CIRCLE = 36

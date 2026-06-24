@@ -6,7 +6,7 @@ const faqs = [
   { q: 'Wie melde ich mich an?', a: 'Die Anmeldung erfolgt online über das Race Result Anmeldeformular auf dieser Seite. Benötigt werden Name, Geburtsjahr, Geschlecht (optional), Verein/Firma (optional) und ein Notfallkontakt.' },
   { q: 'Welche Strecken gibt es?', a: 'Es gibt drei Distanzen: Bambini (400 m), Freizeitlauf (5 km) und Hauptlauf (10 km). Alle Strecken starten und enden am MTSV Olympia Gelände.' },
   { q: 'Muss ich trainiert sein?', a: 'Nein! Der Volkslauf richtet sich an Freizeitläufer, Einsteiger und Familien. Wichtig ist, dass Sie dabei sind und Spaß haben.' },
-  { q: 'Wie wird die Zeit gemessen?', a: 'Die Zeitmessung erfolgt professionell über Race Result mit Zeitmesschip. Die Ergebnisse sind live abrufbar.' },
+  { q: 'Wie wird die Zeit gemessen?', a: 'Die Zeitmessung erfolgt professionell durch die sportservice hamburg GmbH mit Zeitmesschip. Die Ergebnisse sind live abrufbar.' },
   { q: 'Was passiert nach dem Lauf?', a: 'Ab 18:15 Uhr findet die Siegerehrung statt. Ab 19:00 Uhr öffnet das 1. Gartenstadt Open Air mit Musik und Verpflegung für alle.' },
   { q: 'Gibt es ausreichend Parkplätze?', a: 'Ja, direkt am Veranstaltungsgelände (Forstweg 5) stehen kostenlose Parkplätze zur Verfügung.' },
   { q: 'Wohin gehen die Startgebühren?', a: '100 % der Einnahmen werden an gemeinnützige Projekte in Neumünster gespendet.' },

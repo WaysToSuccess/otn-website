@@ -1,0 +1,5 @@
+﻿User-agent: *
+Disallow: /intern
+Disallow: /intern/
+
+Sitemap: https://otn-olympia-volkslauf.de/sitemap.xml

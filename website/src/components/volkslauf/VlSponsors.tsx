@@ -3,25 +3,27 @@ import { ArrowRight, Heart } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
 
 const openAirSponsors = [
-  { name: 'H-Projektierung', logo: '/images/Sponsor/H-Projektierung Logo Transparent.png', href: 'https://www.h-projektierung.de/' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/RohrStar Rorreinigung transparent Logo.png', href: 'https://rohrstar.de/' },
+  { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp', href: 'https://www.h-projektierung.de/' },
+  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp', href: 'https://rohrstar.de/' },
+]
+
+const featuredSponsors = [
+  { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp', href: 'https://www.brandes.de/' },
+  { name: 'JUZO', logo: '/images/Sponsor/Bearbeitung - Raus/juzo_logo transparent.webp', href: 'https://www.juzo.com/' },
 ]
 
 const allSponsors = [
-  { name: 'H-Projektierung', logo: '/images/Sponsor/H-Projektierung Logo Transparent.png', href: 'https://www.h-projektierung.de/' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/RohrStar Rorreinigung transparent Logo.png', href: 'https://rohrstar.de/' },
-  { name: 'Netkom', logo: '/images/Sponsor/Netkom_Logo transparent.png', href: 'http://www.netkom-nms.de/' },
-  { name: 'Glaus', logo: '/images/Sponsor/glaus_logo transparent.png', href: 'https://www.glaus.de/' },
-  { name: 'PerfectOne', logo: '/images/Sponsor/perfectone-werbeagentur-removebg-preview.png', href: 'https://www.perfectone-werbeagentur.de/' },
-  { name: 'JUZO', logo: '/images/Sponsor/juzo_logo transparent.png', href: 'https://www.juzo.com/de' },
-  { name: 'Provinzial', logo: '/images/Sponsor/provinzial_nord_logo-removebg-preview.png', href: 'https://www.provinzial.de/west/' },
-  { name: 'MKS Bauelemente', logo: '/images/Sponsor/mks_bauelemente transparent.png', href: 'https://mks-bauelemente.de/' },
-  { name: 'Össur', logo: '/images/Sponsor/ossur logo transparent.png', href: 'https://www.ossur.com/de-de' },
-  { name: 'Bauerfeind', logo: '/images/Sponsor/Bauerfeind_Logo Transparent.png', href: 'https://www.bauerfeind.de/de' },
-  { name: 'Bäckerei Tackmann', logo: '/images/Sponsor/Tackmann_Bäckerei_Logo Transparent.png', href: 'https://baeckerei-tackmann.de/' },
-  { name: 'VR Bank', logo: '/images/Sponsor/VR_Bank_zwischen_den_Meeren Logo Transparent.png', href: 'https://www.meine-vrbank.de/startseite.html' },
-  { name: 'MediCar', logo: '/images/Sponsor/MediCar Logo transparent.png', href: 'https://www.medi-car.info/' },
-  { name: 'Transcoject', logo: '/images/Sponsor/transcoject Logo transparent.png', href: 'https://www.transcoject.com/index.php/de' },
+  { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp', href: 'https://www.h-projektierung.de/' },
+  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp', href: 'https://rohrstar.de/' },
+  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp', href: 'http://www.netkom-nms.de/' },
+  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/provinzial_nord_logo-removebg-preview.webp', href: 'https://www.provinzial.de/west/' },
+  { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp', href: 'https://mks-bauelemente.de/' },
+  { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de' },
+  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
+  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp', href: 'https://www.medi-car.info/' },
+  { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/' },
+  { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', href: 'https://www.mirekbau.de/' },
+  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: '#' },
 ]
 
 function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: string; logo: string; href: string; large?: boolean; index?: number }) {
@@ -51,6 +53,8 @@ function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: str
       <img
         src={logo}
         alt={name}
+        loading="lazy"
+        decoding="async"
         className={`object-contain transition-all duration-200 group-hover:scale-105 ${large ? 'max-h-20 max-w-[220px]' : 'max-h-12 max-w-[140px]'}`}
       />
     </a>
@@ -73,7 +77,7 @@ export default function VlSponsors() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={headRef} style={anim(headVisible)} className="text-center mb-12">
             <span className="inline-block text-[#003399] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#003399]/8 rounded-full mb-4">Veranstalter</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#003399]">o.t.n 51 Volkslauf bei Olympia</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#003399]">51. Volkslauf bei Olympia</h2>
             <p className="text-gray-500 mt-3 text-base">präsentiert von</p>
           </div>
 
@@ -106,12 +110,14 @@ export default function VlSponsors() {
               className="group flex flex-col items-center gap-4 bg-white rounded-3xl px-6 sm:px-12 py-8 sm:py-10 border border-[#003399]/15 shadow-md hover:shadow-xl hover:shadow-[#003399]/12 hover:border-[#003399]/35 transition-all duration-300 w-full sm:w-auto"
             >
               <img
-                src="/images/MSTV_Olympia_Neumünster transparent.png"
+                src="/images/MSTV_Olympia_Neumünster transparent.webp"
                 alt="MSTV Olympia Neumünster"
+                loading="lazy"
+                decoding="async"
                 className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
               />
               <div className="text-center">
-                <div className="font-bold text-[#003399] text-sm">MSTV Olympia 1965 e.V.</div>
+                <div className="font-bold text-[#003399] text-sm">MSTV Olympia 1859 e.V.</div>
                 <div className="text-gray-400 text-xs mt-0.5">Neumünster</div>
               </div>
             </a>
@@ -128,9 +134,15 @@ export default function VlSponsors() {
             <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
           </div>
 
+          {/* Featured: Brandes + JUZO — größer, oben */}
+          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-4">
+            {featuredSponsors.map((s, i) => (
+              <SponsorCard key={s.name} {...s} large index={i} />
+            ))}
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {allSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} index={i} />
+              <SponsorCard key={s.name} {...s} index={i + featuredSponsors.length} />
             ))}
           </div>
         </div>
@@ -142,7 +154,7 @@ export default function VlSponsors() {
           <div ref={openAirHeadRef} style={anim(openAirHeadVisible)} className="text-center mb-12">
             <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Gartenstadt Open Air Party</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Sponsoren der Gartenstadt Open Air Party</h3>
-            <p className="text-gray-400 mt-2 text-sm">mit DJ und Live-Band ab 19 Uhr · 5. September 2026</p>
+            <p className="text-gray-400 mt-2 text-sm">mit DJ ab 19 Uhr · 5. September 2026</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">

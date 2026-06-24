@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { MapPin, Mail, Phone, Globe, Calendar, Ruler, Users, Trophy, Clock, Download } from 'lucide-react'
+import { MapPin, Mail, Phone, Globe, Calendar, Ruler, Users, Trophy, Clock, Download, ArrowLeft } from 'lucide-react'
 
 const OTN_LOGO = 'https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg'
 
@@ -23,20 +23,19 @@ const formSteps = [
 ]
 
 const sponsors = [
-  { name: 'H-Projektierung', logo: '/images/Sponsor/H-Projektierung Logo Transparent.png' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/RohrStar Rorreinigung transparent Logo.png' },
-  { name: 'Netkom', logo: '/images/Sponsor/Netkom_Logo transparent.png' },
-  { name: 'Glaus', logo: '/images/Sponsor/glaus_logo transparent.png' },
-  { name: 'PerfectOne', logo: '/images/Sponsor/perfectone-werbeagentur-removebg-preview.png' },
-  { name: 'JUZO', logo: '/images/Sponsor/juzo_logo transparent.png' },
-  { name: 'Provinzial', logo: '/images/Sponsor/provinzial_nord_logo-removebg-preview.png' },
-  { name: 'MKS Bauelemente', logo: '/images/Sponsor/mks_bauelemente transparent.png' },
-  { name: 'Össur', logo: '/images/Sponsor/ossur logo transparent.png' },
-  { name: 'Bauerfeind', logo: '/images/Sponsor/Bauerfeind_Logo Transparent.png' },
-  { name: 'Bäckerei Tackmann', logo: '/images/Sponsor/Tackmann_Bäckerei_Logo Transparent.png' },
-  { name: 'VR Bank', logo: '/images/Sponsor/VR_Bank_zwischen_den_Meeren Logo Transparent.png' },
-  { name: 'MediCar', logo: '/images/Sponsor/MediCar Logo transparent.png' },
-  { name: 'Transcoject', logo: '/images/Sponsor/transcoject Logo transparent.png' },
+  { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp' },
+  { name: 'JUZO', logo: '/images/Sponsor/Bearbeitung - Raus/juzo_logo transparent.webp' },
+  { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp' },
+  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp' },
+  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp' },
+  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/provinzial_nord_logo-removebg-preview.webp' },
+  { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp' },
+  { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp' },
+  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp' },
+  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp' },
+  { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp' },
+  { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp' },
+  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
 ]
 
 function printViaPopup() {
@@ -89,16 +88,26 @@ export default function AusschreibungPage() {
         }
       `}</style>
 
-      {/* Toolbar */}
-      <div className="no-print bg-gray-100 border-b border-gray-200 px-6 py-3 flex items-center justify-between sticky top-0 z-50">
-        <span className="text-sm text-gray-600 font-medium">Ausschreibung · 51. o.t.n Volkslauf 2026</span>
-        <button
-          onClick={printViaPopup}
-          className="inline-flex items-center gap-2 bg-[#003399] text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-[#0040cc] transition-colors shadow-md"
-        >
-          <Download className="w-4 h-4" />
-          Als PDF herunterladen
-        </button>
+      {/* Header */}
+      <div className="no-print bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
+        <img src={OTN_LOGO} alt="O.T.N." className="h-10 object-contain" />
+        <div className="flex items-center gap-3">
+          <a
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#003399] hover:text-[#0040cc] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Zurück zur Volkslaufseite
+          </a>
+          <a
+            href="https://my.raceresult.com/407322/registration"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#003399] text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-[#0040cc] transition-colors shadow-md"
+          >
+            Jetzt anmelden
+          </a>
+        </div>
       </div>
 
       {/* A4 canvas */}
@@ -142,7 +151,7 @@ export default function AusschreibungPage() {
                 <div style={{ background: '#003399', color: '#fff', fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '4px 11px', borderRadius: 5, display: 'inline-block' }}>
                   Ausschreibung 2026
                 </div>
-                <div style={{ fontSize: 8.5, color: '#666', marginTop: 4 }}>Race Result · Zeitmessung & Anmeldung</div>
+                <div style={{ fontSize: 8.5, color: '#666', marginTop: 4 }}>sportservice hamburg GmbH · Zeitmessung</div>
               </div>
             </div>
 
@@ -172,7 +181,7 @@ export default function AusschreibungPage() {
               {/* Intro */}
               <p style={{ fontSize: 9.5, color: '#333', lineHeight: 1.6, margin: 0 }}>
                 Der <strong>51. o.t.n Volkslauf Neumünster</strong> wird am <strong>5. September 2026</strong> vom <strong>MTSV Olympia von 1859 e.V.</strong> ausgetragen.
-                Zeitmessung via <strong>Race Result</strong>. Anschließend: <strong>1. Gartenstadt Open Air</strong> mit DJ & Live-Band (Einlass 19:00 Uhr). 100&nbsp;% der Einnahmen fließen in gemeinnützige Zwecke.
+                Zeitmessung via <strong>sportservice hamburg GmbH</strong>. Anschließend: <strong>1. Gartenstadt Open Air</strong> mit DJ & Live-Band (Einlass 19:00 Uhr). 100&nbsp;% der Einnahmen fließen in gemeinnützige Zwecke.
               </p>
 
               {/* Key facts */}
@@ -287,7 +296,7 @@ export default function AusschreibungPage() {
                 <div style={{ border: '0.5px solid #e5e7eb', borderRadius: 6, overflow: 'hidden' }}>
                   <div style={sectionHeader('#003399')}>Veranstalter</div>
                   <div style={{ padding: '7px 10px', display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <img src="/images/MSTV_Olympia_Neumünster transparent.png" alt="MTSV Olympia" style={{ height: 34, objectFit: 'contain', flexShrink: 0 }} />
+                    <img src="/images/MSTV_Olympia_Neumünster transparent.webp" alt="MTSV Olympia" style={{ height: 34, objectFit: 'contain', flexShrink: 0 }} />
                     <div>
                       <div style={{ fontSize: 8.5, fontWeight: 800, color: '#003399' }}>MTSV Olympia von 1859 e.V.</div>
                       <div style={{ fontSize: 8, color: '#555', lineHeight: 1.5, marginTop: 2 }}>Forstweg 5 · 24537 Neumünster<br />Abteilung Laufsport</div>
@@ -359,6 +368,17 @@ export default function AusschreibungPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* PDF Download Button */}
+      <div className="no-print bg-gray-200 pb-8 flex justify-center">
+        <button
+          onClick={printViaPopup}
+          className="inline-flex items-center gap-2 bg-[#003399] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#0040cc] transition-colors shadow-md"
+        >
+          <Download className="w-4 h-4" />
+          Als PDF herunterladen
+        </button>
       </div>
     </>
   )
