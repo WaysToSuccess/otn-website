@@ -10,6 +10,7 @@ const openAirSponsors = [
 const featuredSponsors = [
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp', href: 'https://www.brandes.de/' },
   { name: 'JUZO', logo: '/images/Sponsor/Bearbeitung - Raus/juzo_logo transparent.webp', href: 'https://www.juzo.com/' },
+  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
 ]
 
 const allSponsors = [
@@ -19,11 +20,12 @@ const allSponsors = [
   { name: 'Provinzial', logo: '/images/Sponsor/Dabei/provinzial_nord_logo-removebg-preview.webp', href: 'https://www.provinzial.de/west/' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp', href: 'https://mks-bauelemente.de/' },
   { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de' },
-  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
   { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp', href: 'https://www.medi-car.info/' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', href: 'https://www.mirekbau.de/' },
   { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: '#' },
+  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Bearbeitung - Raus/Tackmann_Bäckerei_Logo Transparent.webp', href: '#' },
+  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Bearbeitung - Raus/perfectone-werbeagentur-removebg-preview.webp', href: '#' },
 ]
 
 function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: string; logo: string; href: string; large?: boolean; index?: number }) {
@@ -134,8 +136,8 @@ export default function VlSponsors() {
             <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
           </div>
 
-          {/* Featured: Brandes + JUZO — größer, oben */}
-          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-4">
+          {/* Featured: Brandes + JUZO + VR Bank — größer, oben */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-6">
             {featuredSponsors.map((s, i) => (
               <SponsorCard key={s.name} {...s} large index={i} />
             ))}
@@ -154,7 +156,7 @@ export default function VlSponsors() {
           <div ref={openAirHeadRef} style={anim(openAirHeadVisible)} className="text-center mb-12">
             <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Gartenstadt Open Air Party</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Sponsoren der Gartenstadt Open Air Party</h3>
-            <p className="text-gray-400 mt-2 text-sm">mit DJ ab 19 Uhr · 5. September 2026</p>
+            <p className="text-gray-400 mt-2 text-sm">mit DJ · Einlass ab 19 Uhr · 5. September 2026</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">

@@ -24,7 +24,7 @@ const facts = [
   { icon: Users, label: 'Teilnehmer', value: 'Sportler, Familien, Vereine, Firmen' },
   { icon: Trophy, label: 'Auszeichnungen', value: 'Siegerehrung mit Pokalen, Medaillen und Urkunden · Zeitmessung' },
   { icon: Shield, label: 'Sicherheit', value: 'Sanitätsdienst & Rettungsfahrzeug vor Ort' },
-  { icon: Music, label: 'Open Air', value: 'Ab 19:00 Uhr · 1. Gartenstadt Open Air', highlight: true },
+  { icon: Music, label: 'Open Air', value: 'Einlass ab 19:00 Uhr · 1. Gartenstadt Open Air', highlight: true },
 ]
 
 const distances = [

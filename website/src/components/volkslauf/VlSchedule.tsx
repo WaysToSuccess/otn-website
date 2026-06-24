@@ -4,7 +4,7 @@ import { Music } from 'lucide-react'
 
 const steps = [
   { time: '10:00', title: 'Aufbau der Veranstaltung', desc: 'Aufbau des Veranstaltungsgeländes auf dem Olympia Platz.' },
-  { time: '14:00', title: 'Startnummernausgabe', desc: 'Abholung von Startnummer und Zeitmesschip im Eingangsfoyer Olympia.' },
+  { time: '14:00', title: 'Startnummernausgabe', desc: 'Abholung in der o.t.n Zentrale – Wendenstr. 1, 24539 Neumünster. Mittwoch, Donnerstag und Freitag in der Laufwoche (02.09, 03.09 und 04.09) von 14:00 – 17:00 Uhr.' },
   { time: '15:45', title: 'Begrüßung durch Olympia', desc: 'Offizielle Begrüßung durch den MTSV Olympia im Stadion.' },
   { time: '16:00', title: 'Start Bambinilauf', desc: 'Startschuss für den Bambinilauf im Stadion.' },
   { time: '16:15', title: 'Begrüßung durch o.t.n', desc: 'Begrüßung durch o.t.n Neumünster im Stadion.' },

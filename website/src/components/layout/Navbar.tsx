@@ -71,6 +71,11 @@ export default function Navbar() {
             >
               o.t.n
             </span>
+            <img
+              src="/images/MSTV_Olympia_Neumünster transparent.webp"
+              alt="MSTV Olympia Neumünster"
+              className="h-8 w-auto"
+            />
           </a>
 
           <nav className="hidden md:flex items-center gap-1">

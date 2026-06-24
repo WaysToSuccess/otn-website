@@ -55,7 +55,7 @@ export default function VlHero() {
       <div
         className="hero-bg-image absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/o.t.n Laufbild neu.webp?v=20260623')`,
+          backgroundImage: `url('/images/o.t.n Laufbanner aktuell.png')`,
           animation: 'heroZoom 14s ease-out forwards',
         }}
       />
@@ -75,7 +75,7 @@ export default function VlHero() {
         </div>
 
         {/* H1 */}
-        <h1 style={fade(160)} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5 pb-1">
+        <h1 style={fade(160)} className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5 pb-1">
           <span
             style={{
               background: 'linear-gradient(135deg, #003399 0%, #0055ff 60%, #003db3 100%)',

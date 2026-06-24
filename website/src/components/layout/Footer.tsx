@@ -7,15 +7,6 @@ export default function Footer() {
         <div className="grid sm:grid-cols-3 gap-8 mb-10">
 
           <div>
-            <div className="inline-block bg-white/95 rounded-xl px-4 py-2 mb-4">
-              <img
-                src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
-                alt="o.t.n"
-                className="h-8 w-auto"
-                style={{ filter: 'none' }}
-                onError={(e) => { e.currentTarget.parentElement!.style.display = 'none' }}
-              />
-            </div>
             <p className="text-blue-300 text-sm leading-relaxed">
               51. o.t.n Volkslauf<br />
               Veranstalter: MTSV Olympia Neumünster, o.t.n, Gartenstadt
