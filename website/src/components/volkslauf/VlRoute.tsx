@@ -23,7 +23,7 @@ const infoCards = [
     color: 'bg-teal-50',
     iconColor: 'text-[#0d9488]',
     title: 'Parken',
-    text: 'Ausreichend kostenlose Parkplätze direkt am Veranstaltungsgelände verfügbar.',
+    text: 'Parken auf dem Veranstaltungsgelände nicht möglich, bitte ausweichen.',
   },
 ]
 

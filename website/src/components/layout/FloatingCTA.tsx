@@ -16,13 +16,34 @@ export default function FloatingCTA() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const handler = () => {
-      // Show after scrolling past ~80vh (hero CTA area)
-      setVisible(window.scrollY > window.innerHeight * 0.75)
+    let footerVisible = false
+    let vh = window.innerHeight
+
+    const resizeHandler = () => { vh = window.innerHeight }
+    window.addEventListener('resize', resizeHandler, { passive: true })
+
+    const scrollHandler = () => {
+      const pastHero = window.scrollY > vh * 0.75
+      setVisible(pastHero && !footerVisible)
     }
-    window.addEventListener('scroll', handler, { passive: true })
-    handler()
-    return () => window.removeEventListener('scroll', handler)
+
+    const footer = document.querySelector('footer')
+    let obs: IntersectionObserver | null = null
+    if (footer) {
+      obs = new IntersectionObserver(([e]) => {
+        footerVisible = e.isIntersecting
+        scrollHandler()
+      }, { threshold: 0 })
+      obs.observe(footer)
+    }
+
+    window.addEventListener('scroll', scrollHandler, { passive: true })
+    scrollHandler()
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+      window.removeEventListener('resize', resizeHandler)
+      obs?.disconnect()
+    }
   }, [])
 
   return (

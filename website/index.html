@@ -5,11 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>51. Volkslauf bei Olympia · Neumünster 2026</title>
-    <style>html,body{background:#002266;margin:0}#root{min-height:100vh}</style>
-    <!-- Preload hero image for desktop (WebP) -->
-    <link rel="preload" as="image" href="/images/o.t.n%20Laufbild%20neu.webp" media="(min-width:768px)" fetchpriority="high" />
-    <!-- Preconnect for RaceResult registration iframe -->
-    <link rel="preconnect" href="https://my.raceresult.com" crossorigin />
+    <style>
+      html,body{margin:0;background:#002266}
+      #root{min-height:100vh;background:linear-gradient(to bottom,rgba(255,255,255,.8) 0%,rgba(255,255,255,.3) 50%,rgba(0,32,128,.95) 100%) #002266}
+    </style>
+    <!-- Preload critical hero images -->
+    <link rel="preload" as="image" href="/images/otn_logo_sm.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/MSTV_Olympia_sm.webp" fetchpriority="high" />
+    <!-- DNS-prefetch for RaceResult iframe (loaded on scroll) -->
     <link rel="dns-prefetch" href="https://my.raceresult.com" />
   </head>
   <body>

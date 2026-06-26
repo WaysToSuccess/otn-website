@@ -4,21 +4,23 @@ import { useInView, anim } from '../../hooks/useInView'
 
 const sponsorLogos = [
   { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp' },
   { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp' },
-  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/provinzial_nord_logo-removebg-preview.webp' },
+  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png' },
+  { name: 'Doksbau', logo: '/images/Sponsor/Dabei/doksbau logo transparent.png' },
+  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp' },
   { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp' },
   { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp' },
-  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp' },
+  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png' },
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp' },
+  { name: 'Bauerfeind', logo: '/images/Sponsor/Dabei/Bauerfeind_Logo Transparent.png' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp' },
   { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
 ]
 
 const facts = [
-  { icon: PersonStanding, label: 'Kostenloses Lauftraining', value: 'Ab 8. Juli · Jeden Mittwoch um 18:00 Uhr · Für Einsteiger und Fortgeschrittene' },
+  { icon: PersonStanding, label: 'Kostenlose Lauftrainings', value: 'Ab 8. Juli · Jeden Mittwoch um 18:00 Uhr · Für Einsteiger und Fortgeschrittene' },
   { icon: MapPin, label: 'Veranstaltungsort', value: 'MTSV Olympia · Forstweg 5, 24537 Neumünster' },
   { icon: Ruler, label: 'Strecken', value: 'Bambini 400 m · 5 km · 10 km' },
   { icon: Users, label: 'Teilnehmer', value: 'Sportler, Familien, Vereine, Firmen' },
@@ -29,7 +31,7 @@ const facts = [
 
 const distances = [
   { dist: '400 m', label: 'Bambini', desc: 'Für die jüngsten Sportler', color: '#2dd4bf' },
-  { dist: '5 km', label: 'Kurzlauf', desc: 'Für Einsteiger & Familien', color: '#0d9488' },
+  { dist: '5 km', label: 'Kurzstrecke', desc: 'Für Einsteiger & Familien', color: '#0d9488' },
   { dist: '10 km', label: 'Hauptlauf', desc: 'Für Vereine & Firmen', color: '#003399' },
 ]
 
@@ -115,7 +117,6 @@ export default function VlOverview() {
                 {d.dist}
               </div>
               <div className="font-bold text-[#003399] text-base mb-1">{d.label}</div>
-              <div className="text-gray-400 text-xs">{d.desc}</div>
               <div
                 className="mt-3 h-1 rounded-full mx-auto w-12"
                 style={{ background: d.color, opacity: 0.4 }}
@@ -142,8 +143,8 @@ export default function VlOverview() {
         <div className="absolute inset-y-0 left-0 w-24 pointer-events-none" style={{ background: 'linear-gradient(to right, white, transparent)', zIndex: 1 }} />
         <div className="absolute inset-y-0 right-0 w-24 pointer-events-none" style={{ background: 'linear-gradient(to left, white, transparent)', zIndex: 1 }} />
 
-        <div className="flex gap-12 items-center py-6" style={{ animation: 'sponsorScroll 30s linear infinite', width: 'max-content' }}>
-          {[...sponsorLogos, ...sponsorLogos].map((s, i) => (
+        <div className="flex gap-12 items-center py-6" style={{ animation: 'sponsorScroll 36s linear infinite', width: 'max-content', willChange: 'transform' }}>
+          {[...sponsorLogos, ...sponsorLogos, ...sponsorLogos].map((s, i) => (
             <img
               key={i}
               src={s.logo}
@@ -151,6 +152,8 @@ export default function VlOverview() {
               title={s.name}
               loading="lazy"
               decoding="async"
+              width={120}
+              height={40}
               className="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
               style={{ maxWidth: 120 }}
             />
@@ -161,7 +164,7 @@ export default function VlOverview() {
       <style>{`
         @keyframes sponsorScroll {
           from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          to   { transform: translateX(-33.333%); }
         }
       `}</style>
     </section>

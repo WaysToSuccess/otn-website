@@ -55,7 +55,7 @@ export default function VlRegister() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between text-gray-700">
                   <span>Bambini (400 m)</span>
-                  <span className="font-semibold text-[#003399]">kostenlos</span>
+                  <span className="font-semibold text-[#003399]">2,00 €</span>
                 </div>
                 <div className="flex justify-between text-gray-700">
                   <span>5 km / 10 km</span>
@@ -84,6 +84,7 @@ export default function VlRegister() {
                 width="100%"
                 height="600"
                 frameBorder="0"
+                loading="lazy"
                 title="Race Result Anmeldung"
                 className="block"
               />

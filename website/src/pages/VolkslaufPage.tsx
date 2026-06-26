@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
 import VlHero from '../components/volkslauf/VlHero'
-import VlOverview from '../components/volkslauf/VlOverview'
 import PageBackground from '../components/layout/PageBackground'
+
+const VlOverview = lazy(() => import('../components/volkslauf/VlOverview'))
 
 const VlRegister = lazy(() => import('../components/volkslauf/VlRegister'))
 const VlSchedule = lazy(() => import('../components/volkslauf/VlSchedule'))
@@ -82,7 +83,9 @@ export default function VolkslaufPage() {
             filter: 'blur(60px)',
             zIndex: 2,
           }} />
-          <VlOverview />
+          <Suspense fallback={<div style={{ height: 500 }} />}>
+            <VlOverview />
+          </Suspense>
         </div>
 
         <WaveBottom color={WHITE} />

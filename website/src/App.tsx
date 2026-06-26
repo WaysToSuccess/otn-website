@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { lazy, Suspense, useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
-import CookieBanner from './components/layout/CookieBanner'
-import FloatingCTA from './components/layout/FloatingCTA'
-import VolkslaufPage from './pages/VolkslaufPage'
+const Footer      = lazy(() => import('./components/layout/Footer'))
+const CookieBanner = lazy(() => import('./components/layout/CookieBanner'))
+const FloatingCTA  = lazy(() => import('./components/layout/FloatingCTA'))
 
+const VolkslaufPage           = lazy(() => import('./pages/VolkslaufPage'))
 const ImpressumPage           = lazy(() => import('./pages/ImpressumPage'))
 const DatenschutzPage         = lazy(() => import('./pages/DatenschutzPage'))
 const AusschreibungPage       = lazy(() => import('./pages/AusschreibungPage'))

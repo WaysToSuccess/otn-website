@@ -111,7 +111,7 @@ function HeroContent({ format }: { format: typeof FORMATS[number] }) {
             { icon: <PartyPopper style={{ width: s.pillIcon, height: s.pillIcon, color: '#003399', flexShrink: 0 }} />, text: 'Gartenstadt Open Air mit DJ ab 19 Uhr' },
             { icon: <Calendar style={{ width: s.pillIcon, height: s.pillIcon, color: '#003399', flexShrink: 0 }} />, text: '5. September 2026 · 15:30 Uhr' },
             { icon: <MapPin style={{ width: s.pillIcon, height: s.pillIcon, color: '#003399', flexShrink: 0 }} />, text: 'Forstweg 5, 24537 Neumünster' },
-            { icon: <Info style={{ width: s.pillIcon, height: s.pillIcon, color: '#003399', flexShrink: 0 }} />, text: 'Kostenloses Lauftraining ab 8.7' },
+            { icon: <Info style={{ width: s.pillIcon, height: s.pillIcon, color: '#003399', flexShrink: 0 }} />, text: 'Kostenlose Lauftrainings ab 8.7' },
           ].map(({ icon, text }) => (
             <span key={text} style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,

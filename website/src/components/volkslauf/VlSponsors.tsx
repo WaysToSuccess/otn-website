@@ -4,31 +4,35 @@ import { useInView, anim } from '../../hooks/useInView'
 
 const openAirSponsors = [
   { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp', href: 'https://www.h-projektierung.de/' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp', href: 'https://rohrstar.de/' },
+  { name: 'Doksbau', logo: '/images/Sponsor/Dabei/doksbau logo transparent.png', href: 'https://doksbau.de/' },
 ]
 
-const featuredSponsors = [
+const topSponsors = [
+  { name: 'o.t.n Neumünster', logo: '/images/o.t.n_Logo transparent.webp', href: 'https://www.o-t-n.de/' },
+  { name: 'Doksbau', logo: '/images/Sponsor/Dabei/doksbau logo transparent.png', href: 'https://doksbau.de/' },
+  { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp', href: 'https://www.h-projektierung.de/' },
+  { name: 'JUZO', logo: '/images/Sponsor/Dabei/juzo_logo transparent.png', href: 'https://www.juzo.com/' },
+]
+
+const midSponsors = [
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp', href: 'https://www.brandes.de/' },
-  { name: 'JUZO', logo: '/images/Sponsor/Bearbeitung - Raus/juzo_logo transparent.webp', href: 'https://www.juzo.com/' },
-  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
+  { name: 'Bauerfeind', logo: '/images/Sponsor/Dabei/Bauerfeind_Logo Transparent.png', href: 'https://www.bauerfeind.com/' },
 ]
 
 const allSponsors = [
-  { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp', href: 'https://www.h-projektierung.de/' },
-  { name: 'Rohrstar', logo: '/images/Sponsor/Dabei/RohrStar Rorreinigung transparent Logo.webp', href: 'https://rohrstar.de/' },
+  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
   { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp', href: 'http://www.netkom-nms.de/' },
-  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/provinzial_nord_logo-removebg-preview.webp', href: 'https://www.provinzial.de/west/' },
+  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png', href: 'https://www.provinzial.de/nord/neumuenster.mitte' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp', href: 'https://mks-bauelemente.de/' },
   { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de' },
-  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp', href: 'https://www.medi-car.info/' },
+  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', href: '#' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', href: 'https://www.mirekbau.de/' },
   { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: '#' },
-  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Bearbeitung - Raus/Tackmann_Bäckerei_Logo Transparent.webp', href: '#' },
-  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Bearbeitung - Raus/perfectone-werbeagentur-removebg-preview.webp', href: '#' },
+  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', href: '#' },
 ]
 
-function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: string; logo: string; href: string; large?: boolean; index?: number }) {
+function SponsorCard({ name, logo, href, size = 'small', index = 0 }: { name: string; logo: string; href: string; size?: 'large' | 'medium' | 'small'; index?: number }) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -38,6 +42,14 @@ function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: str
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
+  const sizeClass = size === 'large' ? 'p-5 h-32' : size === 'medium' ? 'p-4 h-24' : 'p-3 h-16'
+  const imgClass = size === 'large'
+    ? 'max-h-16 max-w-full w-full'
+    : size === 'medium'
+    ? 'max-h-12 max-w-full w-full'
+    : 'max-h-9 max-w-[110px]'
+  const imgW = size === 'large' ? 200 : size === 'medium' ? 160 : 110
+  const imgH = size === 'large' ? 64 : size === 'medium' ? 48 : 36
   return (
     <a
       ref={ref}
@@ -50,14 +62,16 @@ function SponsorCard({ name, logo, href, large = false, index = 0 }: { name: str
         transform: visible ? 'none' : 'translateY(20px) scale(0.95)',
         transition: `opacity 0.45s ease ${index * 60}ms, transform 0.45s ease ${index * 60}ms`,
       }}
-      className={`group bg-white rounded-2xl border border-gray-100 flex items-center justify-center hover:border-[#003399]/30 hover:shadow-lg hover:shadow-[#003399]/10 transition-all duration-200 ${large ? 'p-8 h-36' : 'p-5 h-24'}`}
+      className={`group bg-white rounded-2xl border border-gray-100 flex items-center justify-center hover:border-[#003399]/30 hover:shadow-lg hover:shadow-[#003399]/10 transition-all duration-200 ${sizeClass}`}
     >
       <img
         src={logo}
         alt={name}
         loading="lazy"
         decoding="async"
-        className={`object-contain transition-all duration-200 group-hover:scale-105 ${large ? 'max-h-20 max-w-[220px]' : 'max-h-12 max-w-[140px]'}`}
+        width={imgW}
+        height={imgH}
+        className={`object-contain transition-all duration-200 group-hover:scale-105 ${imgClass}`}
       />
     </a>
   )
@@ -90,18 +104,20 @@ export default function VlSponsors() {
           >
             {/* OTN Logo */}
             <a
-              href="#"
+              href="https://www.o-t-n.de/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex flex-col items-center gap-4 bg-white rounded-3xl px-6 sm:px-12 py-8 sm:py-10 border border-[#003399]/15 shadow-md hover:shadow-xl hover:shadow-[#003399]/12 hover:border-[#003399]/35 transition-all duration-300 w-full sm:w-auto"
             >
               <img
-                src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
+                src="/images/o.t.n_Logo transparent.webp"
                 alt="o.t.n"
+                loading="lazy"
+                decoding="async"
+                width={220}
+                height={112}
                 className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="text-center">
-                <div className="font-bold text-[#003399] text-sm">o.t.n Neumünster</div>
-                <div className="text-gray-400 text-xs mt-0.5">Orthopädie Technik Neumünster</div>
-              </div>
             </a>
 
             {/* MSTV Olympia */}
@@ -116,12 +132,10 @@ export default function VlSponsors() {
                 alt="MSTV Olympia Neumünster"
                 loading="lazy"
                 decoding="async"
+                width={112}
+                height={112}
                 className="h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="text-center">
-                <div className="font-bold text-[#003399] text-sm">MSTV Olympia 1859 e.V.</div>
-                <div className="text-gray-400 text-xs mt-0.5">Neumünster</div>
-              </div>
             </a>
           </div>
         </div>
@@ -136,15 +150,22 @@ export default function VlSponsors() {
             <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
           </div>
 
-          {/* Featured: Brandes + JUZO + VR Bank — größer, oben */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-6">
-            {featuredSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} large index={i} />
+          {/* Tier 1: groß */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+            {topSponsors.map((s, i) => (
+              <SponsorCard key={s.name} {...s} size="large" index={i} />
             ))}
           </div>
+          {/* Tier 2: mittel */}
+          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-6">
+            {midSponsors.map((s, i) => (
+              <SponsorCard key={s.name} {...s} size="medium" index={i + topSponsors.length} />
+            ))}
+          </div>
+          {/* Tier 3: klein */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {allSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} index={i + featuredSponsors.length} />
+              <SponsorCard key={s.name} {...s} size="small" index={i + topSponsors.length + midSponsors.length} />
             ))}
           </div>
         </div>
@@ -161,8 +182,11 @@ export default function VlSponsors() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {openAirSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} large index={i} />
+              <SponsorCard key={s.name} {...s} size="large" index={i} />
             ))}
+          </div>
+          <div className="flex justify-center mt-6">
+            <SponsorCard name="MSTV Olympia 1859 e.V." logo="/images/MSTV_Olympia_Neumünster transparent.webp" href="https://www.mstv-olympia.de/" size="large" index={2} />
           </div>
 
           {/* CTA */}

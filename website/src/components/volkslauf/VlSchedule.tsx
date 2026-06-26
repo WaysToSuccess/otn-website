@@ -5,12 +5,11 @@ import { Music } from 'lucide-react'
 const steps = [
   { time: '10:00', title: 'Aufbau der Veranstaltung', desc: 'Aufbau des Veranstaltungsgeländes auf dem Olympia Platz.' },
   { time: '14:00', title: 'Startnummernausgabe', desc: 'Abholung in der o.t.n Zentrale – Wendenstr. 1, 24539 Neumünster. Mittwoch, Donnerstag und Freitag in der Laufwoche (02.09, 03.09 und 04.09) von 14:00 – 17:00 Uhr.' },
-  { time: '15:45', title: 'Begrüßung durch Olympia', desc: 'Offizielle Begrüßung durch den MTSV Olympia im Stadion.' },
-  { time: '16:00', title: 'Start Bambinilauf', desc: 'Startschuss für den Bambinilauf im Stadion.' },
-  { time: '16:15', title: 'Begrüßung durch o.t.n', desc: 'Begrüßung durch o.t.n Neumünster im Stadion.' },
-  { time: '16:30', title: 'Start 5 km & 10 km', desc: 'Offizieller Startschuss im Stadion. Zeitmessung via sportservice hamburg GmbH.' },
-  { time: '18:00', title: 'Zieleinlauf beendet', desc: 'Letzter offizieller Zieleinlauf. Einsatz Security im Stadion.' },
-  { time: '18:15', title: 'Auswertung & Siegerehrung', desc: 'Auswertung und anschließende Siegerehrung im Stadion.' },
+  { time: '15:45', title: 'Begrüßung durch o.t.n und Olympia', desc: 'Offizielle Begrüßung durch o.t.n und den MTSV Olympia im Stadion.' },
+  { time: '16:15', title: 'Start Bambinilauf', desc: 'Startschuss für den Bambinilauf im Stadion.' },
+  { time: '17:00', title: 'Start 5 km & 10 km', desc: 'Offizieller Startschuss im Stadion. Zeitmessung via sportservice hamburg GmbH.' },
+  { time: '18:30', title: 'Zieleinlauf beendet', desc: 'Letzter offizieller Zieleinlauf. Einsatz Security im Stadion.' },
+  { time: '18:45', title: 'Auswertung & Siegerehrung', desc: 'Auswertung und anschließende Siegerehrung im Stadion.' },
   { time: '19:00', title: 'Einlass Gartenstadt Open Air', desc: 'Einlass zum 1. Gartenstadt Open Air auf dem Parkplatz / Gelände.', highlight: true },
   { time: '19:30', title: 'Gartenstadt Open Air Start', desc: 'Musik, Stimmung und gemeinsames Feiern nach dem Lauf.', highlight: true },
   { time: '01:00', title: 'Ende der Veranstaltung', desc: 'Offizielles Ende des 1. Gartenstadt Open Air.' },
@@ -36,24 +35,25 @@ export default function VlSchedule() {
       const fill = fillRef.current
       if (!wrapper || !fill) return
 
-      const wRect = wrapper.getBoundingClientRect()
       const vh = window.innerHeight
       const trigger = vh * 0.65
 
-      // Overall progress: 0 when top of wrapper is at trigger, 1 when bottom is at trigger
+      // --- PHASE 1: all reads (no writes yet) ---
+      const wRect = wrapper.getBoundingClientRect()
+      const stepRects = stepRefs.current.map(el => el?.getBoundingClientRect() ?? null)
+
+      // --- PHASE 2: all writes (no reads after this) ---
       const totalHeight = wRect.height
       const scrolled = trigger - wRect.top
       const pct = Math.min(1, Math.max(0, scrolled / totalHeight))
-
       fill.style.height = `${pct * 100}%`
 
-      // Per-circle coloring
       steps.forEach((step, i) => {
         const stepEl = stepRefs.current[i]
         const circleEl = circleRefs.current[i]
-        if (!stepEl || !circleEl) return
+        const sRect = stepRects[i]
+        if (!stepEl || !circleEl || !sRect) return
 
-        const sRect = stepEl.getBoundingClientRect()
         const passed = sRect.top <= trigger
         const color = step.highlight ? '#0d9488' : '#003399'
 
@@ -68,9 +68,13 @@ export default function VlSchedule() {
       })
     }
 
+    // defer initial call to after first paint to avoid forced reflow on load
+    const raf = requestAnimationFrame(update)
     window.addEventListener('scroll', update, { passive: true })
-    update()
-    return () => window.removeEventListener('scroll', update)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', update)
+    }
   }, [])
 
   return (
@@ -79,7 +83,7 @@ export default function VlSchedule() {
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-16">
           <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Zeitplan</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">Ablauf des 5. September 2026</h2>
-          <p className="text-gray-500 text-sm">Vom Laufstart bis zum Gartenstadt Open Air am 5. September 2026.</p>
+          <p className="text-gray-500 text-sm">Von Startnummerausgabe zum Gartenstadt Open Air am 5. September 2026.</p>
         </div>
 
         {/* Timeline wrapper */}

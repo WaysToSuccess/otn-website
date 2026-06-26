@@ -55,25 +55,22 @@ export default function Navbar() {
 
           <a href="#" className="flex items-center gap-3">
             <img
-              src="https://o-t-n.de/assets/images/j/otn_logo_neu_2011-az9c925dm6a9aw8.svg"
+              src="/images/otn_logo_sm.webp"
               alt="o.t.n"
+              width={100}
+              height={49}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="h-8 w-auto"
-              style={{ filter: 'none' }}
-              onError={(e) => {
-                const t = e.currentTarget
-                t.style.display = 'none'
-                const fb = t.nextElementSibling as HTMLElement | null
-                if (fb) fb.style.display = 'flex'
-              }}
             />
-            <span
-              className="hidden items-center justify-center w-9 h-8 bg-[#003399] rounded-lg text-white font-bold text-xs"
-            >
-              o.t.n
-            </span>
             <img
-              src="/images/MSTV_Olympia_Neumünster transparent.webp"
+              src="/images/MSTV_Olympia_sm.webp"
               alt="MSTV Olympia Neumünster"
+              width={32}
+              height={32}
+              loading="eager"
+              decoding="async"
               className="h-8 w-auto"
             />
           </a>
