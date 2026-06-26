@@ -32,9 +32,42 @@ const allSponsors = [
   { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', href: '#' },
 ]
 
-function SponsorCard({ name, logo, href, size = 'small', index = 0 }: { name: string; logo: string; href: string; size?: 'large' | 'medium' | 'small'; index?: number }) {
+const tierStyles = {
+  gold: {
+    card: 'border-amber-400/70 hover:border-amber-500 hover:shadow-amber-200/60',
+    bg: 'rgba(255,248,220,0.65)',
+    shadow: '0 2px 16px rgba(251,191,36,0.18)',
+    hoverShadow: '0 6px 28px rgba(251,191,36,0.35)',
+  },
+  silver: {
+    card: 'border-gray-300/80 hover:border-gray-400 hover:shadow-gray-200/60',
+    bg: 'rgba(240,242,245,0.70)',
+    shadow: '0 2px 14px rgba(156,163,175,0.18)',
+    hoverShadow: '0 6px 24px rgba(156,163,175,0.35)',
+  },
+  bronze: {
+    card: 'border-orange-300/60 hover:border-orange-400 hover:shadow-orange-100/60',
+    bg: 'rgba(255,244,235,0.55)',
+    shadow: '0 1px 10px rgba(205,127,50,0.12)',
+    hoverShadow: '0 4px 18px rgba(205,127,50,0.25)',
+  },
+  plain: {
+    card: 'border-gray-100 hover:border-[#003399]/30 hover:shadow-[#003399]/10',
+    bg: 'rgba(255,255,255,1)',
+    shadow: '0 1px 4px rgba(0,0,0,0.04)',
+    hoverShadow: '0 6px 20px rgba(0,51,153,0.10)',
+  },
+}
+
+function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index = 0 }: {
+  name: string; logo: string; href: string
+  size?: 'large' | 'medium' | 'small'
+  tier?: 'gold' | 'silver' | 'bronze' | 'plain'
+  index?: number
+}) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [visible, setVisible] = useState(false)
+  const [hovered, setHovered] = useState(false)
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -42,12 +75,9 @@ function SponsorCard({ name, logo, href, size = 'small', index = 0 }: { name: st
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
+  const t = tierStyles[tier]
   const sizeClass = size === 'large' ? 'p-5 h-32' : size === 'medium' ? 'p-4 h-24' : 'p-3 h-16'
-  const imgClass = size === 'large'
-    ? 'max-h-16 max-w-full w-full'
-    : size === 'medium'
-    ? 'max-h-12 max-w-full w-full'
-    : 'max-h-9 max-w-[110px]'
+  const imgClass = size === 'large' ? 'max-h-16 max-w-full w-full' : size === 'medium' ? 'max-h-12 max-w-full w-full' : 'max-h-9 max-w-[110px]'
   const imgW = size === 'large' ? 200 : size === 'medium' ? 160 : 110
   const imgH = size === 'large' ? 64 : size === 'medium' ? 48 : 36
   return (
@@ -57,12 +87,17 @@ function SponsorCard({ name, logo, href, size = 'small', index = 0 }: { name: st
       target="_blank"
       rel="noopener noreferrer"
       title={name}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(20px) scale(0.95)',
         transition: `opacity 0.45s ease ${index * 60}ms, transform 0.45s ease ${index * 60}ms`,
+        background: t.bg,
+        backdropFilter: 'blur(8px)',
+        boxShadow: hovered ? t.hoverShadow : t.shadow,
       }}
-      className={`group bg-white rounded-2xl border border-gray-100 flex items-center justify-center hover:border-[#003399]/30 hover:shadow-lg hover:shadow-[#003399]/10 transition-all duration-200 ${sizeClass}`}
+      className={`group rounded-2xl border flex items-center justify-center transition-all duration-200 ${t.card} ${sizeClass}`}
     >
       <img
         src={logo}
@@ -74,6 +109,28 @@ function SponsorCard({ name, logo, href, size = 'small', index = 0 }: { name: st
         className={`object-contain transition-all duration-200 group-hover:scale-105 ${imgClass}`}
       />
     </a>
+  )
+}
+
+function TierBadge({ tier }: { tier: 'gold' | 'silver' | 'bronze' }) {
+  const styles = {
+    gold:   { label: 'Gold',   bg: 'rgba(255,248,220,0.9)', border: '#FBBF24', text: '#92600A', dot: '#F59E0B' },
+    silver: { label: 'Silber', bg: 'rgba(240,242,245,0.9)', border: '#9CA3AF', text: '#374151', dot: '#9CA3AF' },
+    bronze: { label: 'Bronze', bg: 'rgba(255,244,235,0.9)', border: '#FB923C', text: '#92400E', dot: '#CD7F32' },
+  }
+  const s = styles[tier]
+  return (
+    <div className="flex items-center justify-center gap-2 mb-5">
+      <div className="h-px flex-1 max-w-[80px]" style={{ background: `linear-gradient(to right, transparent, ${s.border})` }} />
+      <span
+        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] px-3 py-1 rounded-full border"
+        style={{ background: s.bg, borderColor: s.border, color: s.text, backdropFilter: 'blur(6px)' }}
+      >
+        <span className="w-2 h-2 rounded-full inline-block" style={{ background: s.dot }} />
+        {s.label}
+      </span>
+      <div className="h-px flex-1 max-w-[80px]" style={{ background: `linear-gradient(to left, transparent, ${s.border})` }} />
+    </div>
   )
 }
 
@@ -150,22 +207,27 @@ export default function VlSponsors() {
             <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
           </div>
 
-          {/* Tier 1: groß */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+          {/* Gold */}
+          <TierBadge tier="gold" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
             {topSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} size="large" index={i} />
+              <SponsorCard key={s.name} {...s} size="large" tier="gold" index={i} />
             ))}
           </div>
-          {/* Tier 2: mittel */}
-          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-6">
+
+          {/* Silber */}
+          <TierBadge tier="silver" />
+          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
             {midSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} size="medium" index={i + topSponsors.length} />
+              <SponsorCard key={s.name} {...s} size="medium" tier="silver" index={i} />
             ))}
           </div>
-          {/* Tier 3: klein */}
+
+          {/* Bronze */}
+          <TierBadge tier="bronze" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {allSponsors.map((s, i) => (
-              <SponsorCard key={s.name} {...s} size="small" index={i + topSponsors.length + midSponsors.length} />
+              <SponsorCard key={s.name} {...s} size="small" tier="bronze" index={i} />
             ))}
           </div>
         </div>

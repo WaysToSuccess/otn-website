@@ -5,6 +5,9 @@ import { ArrowRight, Calendar, Info, MapPin, PartyPopper } from 'lucide-react'
 
 const REGISTRATION_URL = 'https://my.raceresult.com/407322/registration'
 
+const BIB_W = 1200
+const BIB_H = 800
+
 // 16:9 = 1920×1080  |  9:16 = 1080×1920
 const FORMATS = [
   { label: '16:9 (Querformat)', slug: '16x9', w: 1920, h: 1080 },
@@ -171,15 +174,136 @@ function HeroContent({ format }: { format: typeof FORMATS[number] }) {
   )
 }
 
+function RaceBibContent() {
+  return (
+    <div
+      style={{
+        width: BIB_W,
+        height: BIB_H,
+        background: '#ffffff',
+        fontFamily: "'Arial Black', Arial, sans-serif",
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* TOP — blauer Header */}
+      <div style={{
+        background: 'linear-gradient(135deg, #002266 0%, #003399 60%, #0044cc 100%)',
+        flex: '0 0 27%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 64px',
+        borderBottom: '5px solid #ffd700',
+      }}>
+        <span style={{
+          color: '#ffffff',
+          fontWeight: 900,
+          fontSize: 46,
+          textAlign: 'center',
+          letterSpacing: '0.06em',
+          lineHeight: 1.2,
+          textTransform: 'uppercase',
+          textShadow: '0 2px 8px rgba(0,0,0,0.4)',
+        }}>
+          51. o.t.n. Volkslauf bei Olympia bei Neumünster
+        </span>
+      </div>
+
+      {/* MIDDLE — Schuh + Nummer, zentriert */}
+      <div style={{
+        flex: '1 1 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 72px',
+        gap: 48,
+        background: '#ffffff',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Dezente diagonale Hintergrundstreifen */}
+        {[...Array(6)].map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            top: 0, bottom: 0,
+            left: `${55 + i * 10}%`,
+            width: 7,
+            background: i % 2 === 0 ? 'rgba(0,51,153,0.06)' : 'rgba(0,51,153,0.025)',
+            transform: 'skewX(-12deg)',
+          }} />
+        ))}
+
+        <span style={{
+          fontSize: 320,
+          fontWeight: 900,
+          color: '#003399',
+          lineHeight: 0.9,
+          fontStyle: 'italic',
+          letterSpacing: '-0.06em',
+          textShadow: '6px 6px 0 rgba(0,51,153,0.12), 12px 12px 0 rgba(0,51,153,0.06)',
+          position: 'relative',
+          userSelect: 'none',
+        }}>
+          51
+        </span>
+      </div>
+
+      {/* BOTTOM — blauer Footer mit Logos */}
+      <div style={{
+        background: 'linear-gradient(135deg, #002266 0%, #003399 60%, #0044cc 100%)',
+        flex: '0 0 23%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 56,
+        padding: '0 64px',
+        borderTop: '5px solid #ffd700',
+      }}>
+        <div style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          padding: '12px 28px',
+          display: 'flex',
+          alignItems: 'center',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+        }}>
+          <img
+            src="/images/o.t.n_Logo transparent.png"
+            alt="o.t.n"
+            style={{ height: 108, width: 'auto', objectFit: 'contain' }}
+          />
+        </div>
+        <div style={{
+          background: '#ffffff',
+          borderRadius: 14,
+          padding: '12px 28px',
+          display: 'flex',
+          alignItems: 'center',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+        }}>
+          <img
+            src="/images/MSTV_Olympia_Neumünster transparent.png"
+            alt="MSTV Olympia"
+            style={{ height: 108, width: 'auto', objectFit: 'contain' }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ZeitungsartikelPage() {
   const preview169 = useRef<HTMLDivElement>(null)
   const preview916 = useRef<HTMLDivElement>(null)
+  const previewBib = useRef<HTMLDivElement>(null)
   const [downloading, setDownloading] = useState<string | null>(null)
 
   const [on, setOn] = useState(false)
   useEffect(() => { const t = setTimeout(() => setOn(true), 100); return () => clearTimeout(t) }, [])
 
-  const download = async (previewRef: React.RefObject<HTMLDivElement | null>, fmt: typeof FORMATS[number]) => {
+  const download = async (previewRef: React.RefObject<HTMLDivElement | null>, fmt: { label: string; slug: string; w: number; h: number }) => {
     const el = previewRef.current
     if (!el) return
     setDownloading(fmt.slug)
@@ -262,6 +386,46 @@ export default function ZeitungsartikelPage() {
           </div>
         )
       })}
+
+      {/* ── Startnummernschild ── */}
+      {(() => {
+        const previewW = 720
+        const scale = previewW / BIB_W
+        const previewH = BIB_H * scale
+        return (
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center gap-4">
+              <span className="text-white font-bold text-lg">Startnummernschild</span>
+              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 14 }}>{BIB_W}×{BIB_H}px</span>
+              <button
+                onClick={() => download(previewBib, { label: 'Startnummernschild', slug: 'bib', w: BIB_W, h: BIB_H } as const)}
+                disabled={downloading === 'bib'}
+                className="flex items-center gap-2 bg-white text-[#003399] font-bold px-5 py-2.5 rounded-xl shadow hover:bg-gray-100 transition-colors text-sm disabled:opacity-50"
+              >
+                {downloading === 'bib' ? 'Wird erstellt…' : 'Als PNG herunterladen'}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div style={{ width: previewW, height: previewH, overflow: 'hidden', boxShadow: '0 8px 40px rgba(0,0,0,0.6)' }}>
+              <div
+                ref={previewBib}
+                style={{
+                  width: BIB_W, height: BIB_H,
+                  position: 'relative', overflow: 'hidden',
+                  transformOrigin: 'top left',
+                  transform: `scale(${scale})`,
+                  opacity: on ? 1 : 0,
+                  transition: 'opacity 0.4s ease',
+                }}
+              >
+                <RaceBibContent />
+              </div>
+            </div>
+          </div>
+        )
+      })()}
+
     </div>
   )
 }
