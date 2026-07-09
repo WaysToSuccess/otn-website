@@ -4,19 +4,23 @@ import { useInView, anim } from '../../hooks/useInView'
 
 const sponsorLogos = [
   { name: 'H-Projektierung', logo: '/images/Sponsor/Dabei/H-Projektierung Logo Transparent.webp' },
-  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp' },
-  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png' },
   { name: 'Doksbau', logo: '/images/Sponsor/Dabei/doksbau logo transparent.png' },
-  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png' },
-  { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp' },
-  { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp' },
-  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp' },
-  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png' },
+  { name: 'JUZO', logo: '/images/Sponsor/Dabei/juzo_logo transparent.png' },
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp' },
   { name: 'Bauerfeind', logo: '/images/Sponsor/Dabei/Bauerfeind_Logo Transparent.png' },
+  { name: 'ARAG', logo: '/images/Sponsor/Dabei/ARAG_Logo transparent.png' },
+  { name: 'Glaus', logo: '/images/Sponsor/Dabei/glaus_logo transparent.webp' },
+  { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp' },
+  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp' },
+  { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png' },
+  { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp' },
+  { name: 'Ossur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp' },
+  { name: 'Tackmann Backerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp' },
-  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
+  { name: 'Partnerschaft fur Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
+  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png' },
+  { name: 'Transcoject', logo: '/images/Sponsor/Dabei/transcoject Logo transparent.webp' },
 ]
 
 const facts = [

@@ -78,7 +78,7 @@ export default function VlSchedule() {
   }, [])
 
   return (
-    <section id="zeitplan" className="py-24">
+    <section className="py-24">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-16">
           <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Zeitplan</span>

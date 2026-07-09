@@ -94,7 +94,7 @@ export default function VlFAQ() {
   const { ref: ctaRef, visible: ctaVisible } = useInView()
 
   return (
-    <section id="faq" className="py-24">
+    <section className="py-24">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}

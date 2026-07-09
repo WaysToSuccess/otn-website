@@ -1,27 +1,29 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { lazy, Suspense, useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
-const Footer      = lazy(() => import('./components/layout/Footer'))
+import VolkslaufPage from './pages/VolkslaufPage'
+
+const Footer       = lazy(() => import('./components/layout/Footer'))
 const CookieBanner = lazy(() => import('./components/layout/CookieBanner'))
 const FloatingCTA  = lazy(() => import('./components/layout/FloatingCTA'))
 
-const VolkslaufPage           = lazy(() => import('./pages/VolkslaufPage'))
-const ImpressumPage           = lazy(() => import('./pages/ImpressumPage'))
-const DatenschutzPage         = lazy(() => import('./pages/DatenschutzPage'))
-const AusschreibungPage       = lazy(() => import('./pages/AusschreibungPage'))
-const MarketplaceHowItWorksPage = lazy(() => import('./pages/MarketplaceHowItWorksPage'))
-const InternSocialMediaPage = lazy(() => import('./pages/intern/InternSocialMediaPage'))
-const InternBilderPage = lazy(() => import('./pages/intern/InternBilderPage'))
+const ImpressumPage         = lazy(() => import('./pages/ImpressumPage'))
+const DatenschutzPage       = lazy(() => import('./pages/DatenschutzPage'))
+const AusschreibungPage     = lazy(() => import('./pages/AusschreibungPage'))
+const InternOverviewPage  = lazy(() => import('./pages/intern/InternOverviewPage'))
+const InternStatusPage    = lazy(() => import('./pages/intern/InternStatusPage'))
 const ZeitungsartikelPage = lazy(() => import('./pages/ZeitungsartikelPage'))
+
+const BLUE_FALLBACK = <div style={{ minHeight: '100vh', backgroundColor: '#002266' }} />
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
       {children}
-      <Footer />
-      <FloatingCTA />
-      <CookieBanner />
+      <Suspense fallback={null}><Footer /></Suspense>
+      <Suspense fallback={null}><FloatingCTA /></Suspense>
+      <Suspense fallback={null}><CookieBanner /></Suspense>
     </>
   )
 }
@@ -29,57 +31,75 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   const location = useLocation()
   const isIntern = location.pathname.startsWith('/intern')
-  const isZeitungsartikel = location.pathname === '/zeitungsartikel'
   const isAusschreibung = location.pathname === '/ausschreibung'
 
-  if (isZeitungsartikel) {
-    return (
-      <Routes>
-        <Route path="/zeitungsartikel" element={<ZeitungsartikelPage />} />
-      </Routes>
-    )
-  }
+  // React Router doesn't auto-scroll on client-side hash navigation (e.g. from
+  // /impressum back to /#kontakt), so do it manually once the target route has mounted.
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    const scrollToTarget = () => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+    const raf = requestAnimationFrame(scrollToTarget)
+    return () => cancelAnimationFrame(raf)
+  }, [location.pathname, location.hash])
+
+  useEffect(() => {
+    const isHome = location.pathname === '/' || location.pathname === '/ausschreibung'
+    let meta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null
+    if (!isHome) {
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.name = 'robots'
+        document.head.appendChild(meta)
+      }
+      meta.content = 'noindex, nofollow'
+    } else if (meta) {
+      meta.remove()
+    }
+  }, [location.pathname])
 
   if (isAusschreibung) {
     return (
-      <Routes>
-        <Route path="/ausschreibung" element={<AusschreibungPage />} />
-      </Routes>
+      <Suspense fallback={BLUE_FALLBACK}>
+        <Routes>
+          <Route path="/ausschreibung" element={<AusschreibungPage />} />
+        </Routes>
+      </Suspense>
     )
   }
 
   if (isIntern) {
     return (
-      <Routes>
-        <Route path="/intern/social-media" element={<InternSocialMediaPage />} />
-        <Route path="/intern/bilder" element={<InternBilderPage />} />
-        <Route path="/intern" element={<InternSocialMediaPage />} />
-      </Routes>
+      <Suspense fallback={BLUE_FALLBACK}>
+        <Routes>
+          <Route path="/intern/zeitungsartikel" element={<ZeitungsartikelPage />} />
+          <Route path="/intern/status" element={<InternStatusPage />} />
+          <Route path="/intern" element={<InternOverviewPage />} />
+        </Routes>
+      </Suspense>
     )
   }
 
   return (
     <PublicLayout>
-      <Routes>
-        <Route path="/" element={<VolkslaufPage />} />
-        <Route path="/how-it-works" element={<MarketplaceHowItWorksPage />} />
-        <Route path="/impressum" element={<ImpressumPage />} />
-        <Route path="/datenschutz" element={<DatenschutzPage />} />
-      </Routes>
+      <Suspense fallback={BLUE_FALLBACK}>
+        <Routes>
+          <Route path="/" element={<VolkslaufPage />} />
+          <Route path="/impressum" element={<ImpressumPage />} />
+          <Route path="/datenschutz" element={<DatenschutzPage />} />
+        </Routes>
+      </Suspense>
     </PublicLayout>
   )
 }
 
 export default function App() {
-  useEffect(() => {
-    document.body.classList.add('app-ready')
-  }, [])
-
   return (
     <BrowserRouter>
-      <Suspense fallback={null}>
-        <AppRoutes />
-      </Suspense>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

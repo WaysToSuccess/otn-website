@@ -58,7 +58,7 @@ export default function FloatingCTA() {
         }}
       >
         <a
-          href="#anmelden"
+          href="/#anmelden"
           className="pointer-events-auto relative inline-flex items-center gap-2.5 font-bold text-sm text-white px-6 py-3.5 rounded-2xl transition-all duration-200"
           style={{
             background: 'rgba(0, 51, 153, 0.72)',

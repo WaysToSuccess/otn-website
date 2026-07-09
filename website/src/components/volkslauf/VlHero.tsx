@@ -16,15 +16,11 @@ function useCountdown(target: Date) {
   }
 }
 
-function CountBox({ value, label, delay }: { value: number; label: string; delay: number }) {
-  const [on, setOn] = useState(false)
-  useEffect(() => { const t = setTimeout(() => setOn(true), Math.max(0, delay - 400)); return () => clearTimeout(t) }, [delay])
+function CountBox({ value, label }: { value: number; label: string; delay?: number }) {
   return (
     <div
       style={{
-        opacity: on ? 1 : 0,
-        transform: on ? 'none' : 'translateY(16px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease',
+        opacity: 1,
       }}
       className="bg-white/20 rounded-xl px-2 sm:px-5 py-2.5 sm:py-4 text-center border border-white/25 flex-1 min-w-0"
     >
@@ -40,13 +36,9 @@ function CountBox({ value, label, delay }: { value: number; label: string; delay
 export default function VlHero() {
   const raceStart = new Date('2026-09-05T15:30:00')
   const { d, h, m, s } = useCountdown(raceStart)
-  const [on, setOn] = useState(false)
-  useEffect(() => { setOn(true) }, [])
-
-  const fade = (delay: number) => ({
-    opacity: on ? 1 : 0,
-    transform: on ? 'none' : 'translateY(10px)',
-    transition: `opacity 0.4s ease ${delay}ms, transform 0.4s ease ${delay}ms`,
+  const fade = (_delay: number) => ({
+    opacity: 1,
+    transform: 'none',
   })
 
   return (
@@ -70,6 +62,7 @@ export default function VlHero() {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight flex flex-wrap items-center justify-center gap-3 sm:gap-5 pb-1">
           <span
             style={{
+              color: '#003399',
               background: 'linear-gradient(135deg, #003399 0%, #0055ff 60%, #003db3 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -140,7 +133,7 @@ export default function VlHero() {
 
       {/* Scroll indicator — dark blue, sits in the white fade zone */}
       <div
-        style={{ opacity: on ? 1 : 0, transition: 'opacity 0.4s ease 400ms' }}
+        style={{ opacity: 1 }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2"
       >
         <div className="w-7 h-11 border-2 border-[#003399] rounded-full flex justify-center pt-2 bg-[#003399]/10">

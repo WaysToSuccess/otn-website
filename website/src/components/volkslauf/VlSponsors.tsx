@@ -20,16 +20,19 @@ const midSponsors = [
 ]
 
 const allSponsors = [
+  { name: 'ARAG', logo: '/images/Sponsor/Dabei/ARAG_Logo transparent.png', href: 'https://www.arag-partner.de/gst-neumuenster/', subtitle: 'Versicherungsvertretung in Neumünster' },
+  { name: 'Glaus', logo: '/images/Sponsor/Dabei/glaus_logo transparent.webp', href: 'https://www.glaus.de/impressum/' },
   { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp', href: 'https://www.meine-vrbank.de/startseite.html' },
-  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp', href: 'http://www.netkom-nms.de/' },
+  { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp', href: 'http://www.netkom-nms.de/', imgScale: 'sm' as const },
   { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png', href: 'https://www.provinzial.de/nord/neumuenster.mitte' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp', href: 'https://mks-bauelemente.de/' },
-  { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de' },
-  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', href: '#' },
-  { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/' },
+  { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de', imgScale: 'sm' as const },
+  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', href: '#', imgScale: 'lg' as const },
+  { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/', imgScale: 'sm' as const },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', href: 'https://www.mirekbau.de/' },
   { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: '#' },
   { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', href: '#' },
+  { name: 'Transcoject', logo: '/images/Sponsor/Dabei/transcoject Logo transparent.webp', href: 'https://www.transcoject.com/' },
 ]
 
 const tierStyles = {
@@ -59,11 +62,13 @@ const tierStyles = {
   },
 }
 
-function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index = 0 }: {
+function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index = 0, subtitle, imgScale }: {
   name: string; logo: string; href: string
   size?: 'large' | 'medium' | 'small'
   tier?: 'gold' | 'silver' | 'bronze' | 'plain'
   index?: number
+  subtitle?: string
+  imgScale?: 'xs' | 'sm' | 'lg'
 }) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [visible, setVisible] = useState(false)
@@ -77,7 +82,8 @@ function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index =
   }, [])
   const t = tierStyles[tier]
   const sizeClass = size === 'large' ? 'p-5 h-32' : size === 'medium' ? 'p-4 h-24' : 'p-3 h-16'
-  const imgClass = size === 'large' ? 'max-h-16 max-w-full w-full' : size === 'medium' ? 'max-h-12 max-w-full w-full' : 'max-h-9 max-w-[110px]'
+  const baseImgClass = size === 'large' ? 'max-h-16 max-w-full w-full' : size === 'medium' ? 'max-h-12 max-w-full w-full' : subtitle ? 'max-h-6 max-w-[110px]' : 'max-h-9 max-w-[110px]'
+  const imgClass = imgScale === 'xs' ? 'max-h-5 max-w-[80px]' : imgScale === 'sm' ? 'max-h-7 max-w-[90px]' : imgScale === 'lg' ? 'max-h-12 max-w-[130px]' : baseImgClass
   const imgW = size === 'large' ? 200 : size === 'medium' ? 160 : 110
   const imgH = size === 'large' ? 64 : size === 'medium' ? 48 : 36
   return (
@@ -95,9 +101,10 @@ function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index =
         transition: `opacity 0.45s ease ${index * 60}ms, transform 0.45s ease ${index * 60}ms`,
         background: t.bg,
         backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         boxShadow: hovered ? t.hoverShadow : t.shadow,
       }}
-      className={`group rounded-2xl border flex items-center justify-center transition-all duration-200 ${t.card} ${sizeClass}`}
+      className={`group rounded-2xl border flex flex-col items-center justify-center transition-all duration-200 ${t.card} ${sizeClass}`}
     >
       <img
         src={logo}
@@ -108,6 +115,11 @@ function SponsorCard({ name, logo, href, size = 'small', tier = 'plain', index =
         height={imgH}
         className={`object-contain transition-all duration-200 group-hover:scale-105 ${imgClass}`}
       />
+      {subtitle && (
+        <span className="mt-1 text-[10px] text-center leading-tight opacity-50" style={{ color: 'inherit' }}>
+          {subtitle}
+        </span>
+      )}
     </a>
   )
 }
@@ -143,7 +155,7 @@ export default function VlSponsors() {
   const { ref: ctaRef, visible: ctaVisible } = useInView()
 
   return (
-    <section id="sponsoren">
+    <section>
 
       {/* ── Veranstalter ─────────────────────────────────────────── */}
       <div className="py-20 border-b border-[#003399]/10">

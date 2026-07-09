@@ -2,8 +2,8 @@ import { useState, useRef } from 'react'
 import { Mail, MapPin, Send, Bell, Phone } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
 
-const RECIPIENT = 'info@otn-olympia-volkslauf.de'
-const FORMSUBMIT_URL = `https://formsubmit.co/${RECIPIENT}`
+const CONTACT_URL    = '/api/contact'
+const NEWSLETTER_URL = '/api/newsletter'
 
 export default function VlContact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -24,16 +24,12 @@ export default function VlContact() {
 
     const form = e.currentTarget
     const data = new FormData(form)
-    data.append('_subject', 'Neue Kontaktanfrage – Volkslauf Neumünster')
-    data.append('_template', 'table')
-    data.append('_captcha', 'false')
-
     setStatus('sending')
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
+      const res = await fetch(CONTACT_URL, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(data.entries())),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       })
       if (res.ok) {
         setStatus('sent')
@@ -49,20 +45,18 @@ export default function VlContact() {
 
   const handleNewsletterSubmit = async () => {
     if (!newsletterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) return
-    const data = new FormData()
-    data.append('Email', newsletterEmail)
-    data.append('Anfrage', 'Newsletter-Anmeldung')
-    data.append('_subject', 'Newsletter-Anmeldung – Volkslauf Neumünster')
-    data.append('_template', 'table')
-    data.append('_captcha', 'false')
     try {
-      await fetch(FORMSUBMIT_URL, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      await fetch(NEWSLETTER_URL, {
+        method: 'POST',
+        body: JSON.stringify({ Email: newsletterEmail }),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      })
     } catch { /* silent */ }
     setNewsletter(true)
   }
 
   return (
-    <section id="kontakt" className="py-24" style={{ background: '#002080' }}>
+    <section className="py-24" style={{ background: '#002080' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-14">
           <span className="inline-block text-[#2dd4bf] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-white/10 rounded-full mb-4">Kontakt</span>

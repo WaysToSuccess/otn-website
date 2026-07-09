@@ -2,3 +2,8 @@
 .claude/
 .claude-flow/
 .mcp.json
+
+# Secrets — nie in Git
+.env
+.env.local
+server/.env

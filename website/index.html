@@ -2,21 +2,62 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon%20o.t.n/favicon-96x96%20-%20o.t.n.png" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon%20o.t.n/favicon%20-%20o.t.n.ico" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon%20o.t.n/favicon%20-%20o.t.n.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>51. Volkslauf bei Olympia · Neumünster 2026</title>
+    <meta name="description" content="51. o.t.n Volkslauf bei Olympia – 5. September 2026 in Neumünster. Jetzt anmelden für 5 km oder 10 km." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://otn-olympia-volkslauf.de/" />
+    <meta property="og:title" content="51. Volkslauf bei Olympia · Neumünster 2026" />
+    <meta property="og:description" content="5. September 2026 · Forstweg 5, Neumünster · 5 km und 10 km" />
+    <meta property="og:image" content="https://otn-olympia-volkslauf.de/images/o.t.n%20Laufbild%20-%20aktuell.png" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://otn-olympia-volkslauf.de/images/o.t.n%20Laufbild%20-%20aktuell.png" />
     <style>
-      html,body{margin:0;background:#002266}
-      #root{min-height:100vh;background:linear-gradient(to bottom,rgba(255,255,255,.8) 0%,rgba(255,255,255,.3) 50%,rgba(0,32,128,.95) 100%) #002266}
+      html,body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#002266!important;-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh;background:#002266}
+      #si{position:relative;min-height:100vh;background-color:#002266;background-image:linear-gradient(to bottom,rgba(255,255,255,.8) 0%,rgba(255,255,255,.3) 50%,rgba(0,32,128,.95) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:0 1rem;box-sizing:border-box}
+      #si-inner{max-width:48rem;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;padding:2.5rem 0 4rem}
+      #si-badge{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.92);padding:8px 16px;border-radius:999px;border:1px solid rgba(0,51,153,.2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+      #si-badge img{height:24px;width:auto;object-fit:contain;display:block}
+      #si-badge .pipe{color:rgba(0,51,153,.3);font-weight:300;font-size:14px}
+      #si-badge .label{color:#003399;font-size:11px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+      #si h1{margin:0;font-size:clamp(1.6rem,5vw,3rem);font-weight:900;color:#003399;line-height:1.2;letter-spacing:-.02em}
+      #si-cards{display:flex;flex-direction:column;gap:8px;width:100%;max-width:36rem}
+      @media(min-width:600px){#si-cards{flex-direction:row;justify-content:center}}
+      .si-card{background:#fff;color:#003399;font-size:12px;font-weight:600;padding:10px 14px;border-radius:12px;border:1px solid rgba(0,51,153,.12);text-align:center}
+      #si-cta{display:inline-block;background:#003399;color:#fff;font-weight:800;font-size:14px;padding:14px 36px;border-radius:12px;text-decoration:none;margin-top:4px;-webkit-tap-highlight-color:transparent}
     </style>
     <!-- Preload critical hero images -->
-    <link rel="preload" as="image" href="/images/otn_logo_sm.webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/MSTV_Olympia_sm.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/otn_logo_sm.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/MSTV_Olympia_sm.webp" type="image/webp" fetchpriority="high" />
     <!-- DNS-prefetch for RaceResult iframe (loaded on scroll) -->
     <link rel="dns-prefetch" href="https://my.raceresult.com" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="si">
+        <div id="si-inner">
+          <div id="si-badge">
+            <img src="/images/otn_logo_sm.webp" alt="o.t.n" width="100" height="49" />
+            <span class="pipe">|</span>
+            <img src="/images/MSTV_Olympia_sm.webp" alt="MSTV Olympia" width="28" height="28" />
+            <span class="label">Veranstalter: o.t.n und MSTV Olympia 1859 e.V.</span>
+          </div>
+          <h1>51. Volkslauf bei Olympia</h1>
+          <div id="si-cards">
+            <span class="si-card">5. September 2026 &middot; 15:30 Uhr</span>
+            <span class="si-card">Forstweg 5, 24537 Neumünster</span>
+          </div>
+          <a id="si-cta" href="#anmelden">Jetzt anmelden &rarr;</a>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

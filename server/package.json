@@ -1,0 +1,16 @@
+{
+  "name": "otn-server",
+  "version": "1.0.0",
+  "description": "OTN Volkslauf – Mailserver (kein Drittanbieter)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.14",
+    "dotenv": "^16.4.5"
+  }
+}

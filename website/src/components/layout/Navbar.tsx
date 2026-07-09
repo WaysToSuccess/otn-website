@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const links = [
-  { label: 'Übersicht', href: '#uebersicht' },
-  { label: 'Anmelden', href: '#anmelden' },
-  { label: 'Zeitplan', href: '#zeitplan' },
-  { label: 'Strecke', href: '#strecke' },
-  { label: 'Sponsoren', href: '#sponsoren' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Kontakt', href: '#kontakt' },
+  { label: 'Übersicht', href: '/#uebersicht' },
+  { label: 'Anmelden', href: '/#anmelden' },
+  { label: 'Zeitplan', href: '/#zeitplan' },
+  { label: 'Strecke', href: '/#strecke' },
+  { label: 'Sponsoren', href: '/#sponsoren' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ]
 
 export default function Navbar() {
@@ -34,6 +34,7 @@ export default function Navbar() {
       style={{
         background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(0,0,0,0.07)' : 'none',
         boxShadow: scrolled ? '0 1px 12px rgba(0,0,0,0.06)' : 'none',
       }}
@@ -88,7 +89,7 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a href="#anmelden" className="ml-3 relative inline-flex items-center" style={{ isolation: 'isolate' }}>
+            <a href="/#anmelden" className="ml-3 relative inline-flex items-center" style={{ isolation: 'isolate' }}>
               {/* Spark pixels */}
               {[
                 { style: { top: '-4px', left: '12px',  animationDelay: '0s',    animationName: 'sparkUp' } },
@@ -149,7 +150,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#anmelden"
+            href="/#anmelden"
             onClick={() => setOpen(false)}
             className="block mt-2 text-center bg-[#003399] text-white font-semibold px-4 py-3 rounded-xl text-sm"
           >

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import { toPng } from 'html-to-image'
 import { ArrowRight, Calendar, Info, MapPin, PartyPopper } from 'lucide-react'
+import InternLayout from './intern/InternLayout'
 
 const REGISTRATION_URL = 'https://my.raceresult.com/407322/registration'
 
@@ -342,6 +343,7 @@ export default function ZeitungsartikelPage() {
   }
 
   return (
+    <InternLayout>
     <div className="min-h-screen bg-gray-950 flex flex-col items-center gap-16 py-12 px-8">
 
       {FORMATS.map((fmt, i) => {
@@ -427,5 +429,6 @@ export default function ZeitungsartikelPage() {
       })()}
 
     </div>
+    </InternLayout>
   )
 }

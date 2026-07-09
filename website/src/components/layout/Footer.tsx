@@ -37,12 +37,13 @@ export default function Footer() {
             <h3 className="font-semibold text-xs mb-4 text-white/60 uppercase tracking-wider">Navigation</h3>
             <ul className="space-y-2 text-sm">
               {[
-                ['#uebersicht', 'Übersicht'],
-                ['#anmelden', 'Anmeldung'],
-                ['#zeitplan', 'Zeitplan'],
-                ['#strecke', 'Strecke'],
-                ['#faq', 'FAQ'],
-                ['#kontakt', 'Kontakt'],
+                ['/#uebersicht', 'Übersicht'],
+                ['/#anmelden', 'Anmeldung'],
+                ['/#zeitplan', 'Zeitplan'],
+                ['/#strecke', 'Strecke'],
+                ['/#faq', 'FAQ'],
+                ['/#kontakt', 'Kontakt'],
+                ['/ausschreibung', 'Ausschreibung'],
               ].map(([href, label]) => (
                 <li key={href}>
                   <a href={href} className="text-blue-300 hover:text-[#2dd4bf] transition-colors">

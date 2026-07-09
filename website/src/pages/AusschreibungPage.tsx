@@ -40,6 +40,7 @@ const sponsors = [
   { name: 'Netkom', logo: '/images/Sponsor/Dabei/Netkom_Logo transparent.webp' },
   { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png' },
   { name: 'Doksbau', logo: '/images/Sponsor/Dabei/doksbau logo transparent.png' },
+  { name: 'Glaus', logo: '/images/Sponsor/Dabei/glaus_logo transparent.webp' },
   { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp' },
   { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp' },
