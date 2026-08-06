@@ -1,7 +1,7 @@
 import { User, Calendar, Mail, Heart, Flag } from 'lucide-react'
 
 const fields = [
-  { icon: Flag, label: 'Laufauswahl', hint: 'Bambini · 5 km · 10 km' },
+  { icon: Flag, label: 'Laufauswahl', hint: 'Bambini · Jugendlauf · 5 km · 10 km' },
   { icon: User, label: 'Vor- und Nachname', hint: 'Vollständiger Name' },
   { icon: Calendar, label: 'Geburtsdatum', hint: 'TT.MM.JJJJ' },
   { icon: Mail, label: 'E-Mail-Adresse', hint: 'Für Bestätigung & Unterlagen' },
@@ -53,6 +53,10 @@ export default function VlRegister() {
                   <span className="font-semibold text-white">2,00 €</span>
                 </div>
                 <div className="flex justify-between text-white/80">
+                  <span>Jugendlauf (1,2 km)</span>
+                  <span className="font-semibold text-white">4,00 €</span>
+                </div>
+                <div className="flex justify-between text-white/80">
                   <span>5 km / 10 km</span>
                   <span className="font-semibold text-white">15,00 €</span>
                 </div>
@@ -84,6 +88,10 @@ export default function VlRegister() {
                 className="block"
               />
             </div>
+            <p className="text-white/50 text-xs mt-2 px-1">
+              Das Formular wird vom Anbieter RaceResult AG bereitgestellt. Details zur Datenverarbeitung
+              finden Sie in unserer <a href="/datenschutz" className="text-[#2dd4bf] hover:underline">Datenschutzerklärung</a>.
+            </p>
           </div>
         </div>
       </div>

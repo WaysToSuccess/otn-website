@@ -12,6 +12,7 @@ export default function VlContact() {
   const [agreed, setAgreed] = useState(false)
   const [agreeError, setAgreeError] = useState(false)
   const honeypotRef = useRef<HTMLInputElement>(null)
+  const newsletterHoneypotRef = useRef<HTMLInputElement>(null)
   const { ref: headRef, visible: headVisible } = useInView()
   const { ref: leftRef, visible: leftVisible } = useInView()
   const { ref: rightRef, visible: rightVisible } = useInView()
@@ -45,10 +46,11 @@ export default function VlContact() {
 
   const handleNewsletterSubmit = async () => {
     if (!newsletterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) return
+    if (newsletterHoneypotRef.current?.value) { setNewsletter(true); return }
     try {
       await fetch(NEWSLETTER_URL, {
         method: 'POST',
-        body: JSON.stringify({ Email: newsletterEmail }),
+        body: JSON.stringify({ Email: newsletterEmail, _honey: newsletterHoneypotRef.current?.value }),
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       })
     } catch { /* silent */ }
@@ -103,19 +105,23 @@ export default function VlContact() {
               </div>
               <p className="text-blue-300 text-xs mb-4">Newsletter für Updates zum Volkslauf & Gartenstadt Open Air</p>
               {newsletter ? (
-                <p className="text-[#2dd4bf] text-sm font-medium">Danke! Sie erhalten bald unsere Updates.</p>
+                <p role="status" aria-live="polite" className="text-[#2dd4bf] text-sm font-medium">Danke! Sie erhalten bald unsere Updates.</p>
               ) : (
                 <div className="flex gap-2">
+                  <input ref={newsletterHoneypotRef} type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+                  <label htmlFor="newsletter-email" className="sr-only">E-Mail für Newsletter</label>
                   <input
+                    id="newsletter-email"
                     type="email"
                     value={newsletterEmail}
                     onChange={e => setNewsletterEmail(e.target.value)}
                     placeholder="Ihre E-Mail"
+                    autoComplete="email"
                     className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white placeholder-blue-300 text-sm focus:outline-none focus:border-[#2dd4bf] transition-colors"
                   />
                   <button
                     onClick={handleNewsletterSubmit}
-                    className="bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#003399] font-semibold px-4 py-2.5 rounded-xl text-sm transition-all hover:scale-105 active:scale-95"
+                    className="bg-[#2dd4bf] hover:bg-[#14b8a6] text-[#003399] font-semibold px-4 py-3 rounded-xl text-sm transition-all hover:scale-105 active:scale-95"
                   >
                     OK
                   </button>
@@ -126,7 +132,7 @@ export default function VlContact() {
 
           <div ref={rightRef} style={anim(rightVisible, 150, 'right')}>
             {status === 'sent' ? (
-              <div className="bg-white/10 rounded-2xl p-8 text-center h-full flex flex-col items-center justify-center border border-white/10">
+              <div role="status" aria-live="polite" className="bg-white/10 rounded-2xl p-8 text-center h-full flex flex-col items-center justify-center border border-white/10">
                 <div className="w-16 h-16 bg-[#2dd4bf] rounded-full flex items-center justify-center mb-4">
                   <Send className="w-8 h-8 text-[#003399]" />
                 </div>
@@ -184,19 +190,19 @@ export default function VlContact() {
                     />
                     <span className="text-blue-200 text-xs leading-relaxed">
                       Ich stimme den{' '}
-                      <a href="/datenschutz" target="_blank" className="text-[#2dd4bf] hover:underline font-medium">
+                      <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="text-[#2dd4bf] hover:underline font-medium">
                         Datenschutzbestimmungen
                       </a>{' '}
                       zu.
                     </span>
                   </label>
                   {agreeError && (
-                    <p className="text-red-300 text-xs mt-2 ml-7">Bitte stimmen Sie den Datenschutzbestimmungen zu.</p>
+                    <p role="alert" className="text-red-300 text-xs mt-2 ml-7">Bitte stimmen Sie den Datenschutzbestimmungen zu.</p>
                   )}
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-red-300 text-xs text-center">
+                  <p role="alert" aria-live="assertive" className="text-red-300 text-xs text-center">
                     Fehler beim Senden. Bitte schreiben Sie direkt an{' '}
                     <a href="mailto:info@otn-olympia-volkslauf.de" className="underline">info@otn-olympia-volkslauf.de</a>
                   </p>

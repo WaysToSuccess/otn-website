@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
-
-const STORAGE_KEY = 'otn_cookie_consent'
+import { CONSENT_KEY, setConsentDecision } from '../../lib/consent'
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
+    const stored = localStorage.getItem(CONSENT_KEY)
     if (!stored) setVisible(true)
   }, [])
 
   const save = (decision: 'all' | 'necessary' | 'rejected') => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ decision, date: new Date().toISOString() }))
+    setConsentDecision(decision)
     setVisible(false)
   }
 
@@ -24,20 +23,22 @@ export default function CookieBanner() {
         <div className="h-[3px] bg-gradient-to-r from-[#003399] to-[#0d9488]" />
 
         <div className="p-5 sm:p-6">
-          <p className="text-gray-900 font-bold text-sm mb-1">Wir verwenden Cookies 🍪</p>
+          <p className="text-gray-900 font-bold text-sm mb-1">Wir verwenden keine Analyse-Cookies 🍪</p>
           <p className="text-gray-500 text-xs leading-relaxed">
-            Technisch notwendige Cookies sind immer aktiv. Mit „Alle akzeptieren" stimmen Sie auch der Verwendung optionaler Analyse-Cookies zu (Art. 6 Abs. 1 lit. a DSGVO).{' '}
+            Diese Website selbst setzt keine Tracking- oder Analyse-Cookies. Für die Streckenkarte binden wir
+            optional Google Maps ein, wodurch Daten an Google übertragen werden. Mit „Alle akzeptieren" laden
+            wir die Karte automatisch; sonst erscheint dort ein Button zum manuellen Laden.{' '}
             {!expanded ? (
               <button onClick={() => setExpanded(true)} className="text-[#003399] hover:underline font-medium">
                 Mehr erfahren
               </button>
             ) : (
               <span>
-                Sie können Ihre Einwilligung jederzeit widerrufen. Mehr dazu in unserer{' '}
+                Sie können Ihre Einwilligung jederzeit über diesen Banner oder in unserer{' '}
                 <a href="/datenschutz" className="text-[#003399] hover:underline font-medium">
                   Datenschutzerklärung
-                </a>
-                .
+                </a>{' '}
+                widerrufen.
               </span>
             )}
           </p>

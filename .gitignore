@@ -3,7 +3,17 @@
 .claude-flow/
 .mcp.json
 
+# Dependencies — reproduzierbar via npm install
+node_modules/
+
 # Secrets — nie in Git
 .env
 .env.local
 server/.env
+
+# Backups & lokale Build-/Tool-Caches — nicht Teil des Projekt-Quellcodes
+backup_*/
+website_backup_*/
+website/.wrangler/
+void
+server/,

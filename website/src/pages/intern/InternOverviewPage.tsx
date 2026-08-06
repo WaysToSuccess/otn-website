@@ -14,6 +14,12 @@ const PAGES = [
     description: 'Übersicht: was Google indexiert und was privat bleibt',
     icon: '🔒',
   },
+  {
+    to: '/intern/flyer',
+    title: 'Flyer',
+    description: 'Druckvorlagen (99×210mm) für Vorder- und Rückseite — 2 Varianten',
+    icon: '📄',
+  },
 ]
 
 export default function InternOverviewPage() {

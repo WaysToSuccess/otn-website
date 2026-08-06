@@ -8,7 +8,8 @@ function todayFormatted() {
 }
 
 const distances = [
-  { name: 'Bambini-Lauf',       dist: '400 m', priceEarly: '2,00 €',  priceLate: '5,00 €',  note: 'Jg. 2020 u. jünger' },
+  { name: 'Bambini-Lauf',       dist: '400 m',   priceEarly: '2,00 €',  priceLate: '5,00 €',  note: 'Jg. 2020 u. jünger' },
+  { name: 'Jugendlauf',         dist: '1,2 km',  priceEarly: '4,00 €',  priceLate: '7,00 €',  note: 'Kinder & Jugend' },
   { name: 'Kurzstrecke',        dist: '5 km',  priceEarly: '15,00 €', priceLate: '18,00 €', note: 'Jg. 2007 u. älter' },
   { name: 'Kurzstrecke Jugend', dist: '5 km',  priceEarly: '6,00 €',  priceLate: '9,00 €',  note: 'Jg. 2008 – 2016' },
   { name: 'Hauptlauf',          dist: '10 km', priceEarly: '15,00 €', priceLate: '18,00 €', note: 'Jg. 2007 u. älter' },
@@ -17,7 +18,7 @@ const distances = [
 
 const zeitplan = [
   ['15:30 Uhr', 'Startnummernausgabe', false],
-  ['16:15 Uhr', 'Bambini-Lauf 400 m', false],
+  ['16:15 Uhr', 'Bambini-Lauf 400 m & Jugendlauf 1,2 km', false],
   ['17:00 Uhr', 'Start 5 km & 10 km', false],
   ['18:30 Uhr', 'Zieleinlauf geschlossen', false],
   ['18:45 Uhr', 'Siegerehrung', false],
@@ -25,7 +26,7 @@ const zeitplan = [
 ] as const
 
 const formSteps = [
-  { step: 1, label: 'Laufauswahl', desc: 'Bambini (400 m) · 5 km · 10 km' },
+  { step: 1, label: 'Laufauswahl', desc: 'Bambini (400 m) · Jugendlauf (1,2 km) · 5 km · 10 km' },
   { step: 2, label: 'Vor- und Nachname', desc: 'Vollständiger bürgerlicher Name' },
   { step: 3, label: 'Geburtsdatum', desc: 'TT.MM.JJJJ, Altersklassenzuordnung' },
   { step: 4, label: 'E-Mail-Adresse', desc: 'Für Bestätigung & Rennunterlagen' },

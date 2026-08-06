@@ -1,8 +1,37 @@
 @import "tailwindcss";
 
+/*
+ * Marken-Farb-Tokens. Erzeugt automatisch Utility-Klassen wie bg-brand-blue,
+ * text-brand-teal usw. Bestehende Arbitrary-Value-Klassen (z.B. bg-[#003399])
+ * funktionieren unverändert weiter — neue/geänderte Stellen sollten diese
+ * Tokens statt roher Hex-Werte verwenden, damit Markenfarben an einer Stelle
+ * gepflegt werden können.
+ */
+@theme {
+  --color-brand-blue: #003399;       /* Primärfarbe: Buttons, Links, Headlines */
+  --color-brand-blue-dark: #002080;  /* Dunkler Sektions-Hintergrund (Anmeldung, Kontakt, Footer) */
+  --color-brand-blue-darker: #002266; /* Hero-/Skeleton-Hintergrund */
+  --color-brand-teal: #0d9488;       /* Akzentfarbe: Badges, Icons */
+  --color-brand-teal-light: #2dd4bf; /* Akzentfarbe auf dunklem Hintergrund */
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Keep the fixed navbar from covering anchor-scrolled sections */

@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import { MapPin, Flag, Droplets, Navigation } from 'lucide-react'
 import { useInView, anim } from '../../hooks/useInView'
+import { CONSENT_EVENT, embedsAllowed, setConsentDecision } from '../../lib/consent'
 
 const MAPS_URL = 'https://www.google.com/maps/dir/?api=1&destination=Forstweg+5%2C+24537+Neum%C3%BCnster'
 
@@ -31,6 +33,13 @@ export default function VlRoute() {
   const { ref: headRef, visible: headVisible } = useInView()
   const { ref: leftRef, visible: leftVisible } = useInView()
   const { ref: rightRef, visible: rightVisible } = useInView()
+  const [mapAllowed, setMapAllowed] = useState(embedsAllowed)
+
+  useEffect(() => {
+    const onChange = () => setMapAllowed(embedsAllowed())
+    window.addEventListener(CONSENT_EVENT, onChange)
+    return () => window.removeEventListener(CONSENT_EVENT, onChange)
+  }, [])
 
   return (
     <section className="py-24">
@@ -75,16 +84,33 @@ export default function VlRoute() {
                 transition: 'opacity 0.7s ease 200ms',
               }}
             >
-              <iframe
-                title="MSTV Olympia 1965 e.V. – Forstweg 5, Neumünster"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://maps.google.com/maps?q=MSTV+Olympia+1965+eV,+Forstweg+5,+24537+Neumünster&hl=de&z=16&output=embed"
-              />
+              {mapAllowed ? (
+                <iframe
+                  title="MSTV Olympia 1965 e.V. – Forstweg 5, Neumünster"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=MSTV+Olympia+1965+eV,+Forstweg+5,+24537+Neumünster&hl=de&z=16&output=embed"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-gray-50 text-center px-6">
+                  <MapPin className="w-6 h-6 text-gray-400" />
+                  <p className="text-gray-500 text-xs max-w-xs">
+                    Beim Laden der Karte werden Daten an Google übertragen.{' '}
+                    <a href="/datenschutz" className="text-[#003399] hover:underline">Mehr erfahren</a>
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setConsentDecision('all'); setMapAllowed(true) }}
+                    className="text-xs font-semibold text-white bg-[#003399] hover:bg-[#0040cc] px-4 py-2 rounded-lg transition-colors"
+                  >
+                    Karte laden
+                  </button>
+                </div>
+              )}
             </div>
             <a
               href={MAPS_URL}

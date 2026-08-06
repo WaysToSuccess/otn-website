@@ -69,7 +69,7 @@ export default function VolkslaufPage() {
   return (
     <>
       <PageBackground />
-      <main>
+      <main id="main-content">
 
         {/* ① Hero — eager, loads immediately */}
         <VlHero />

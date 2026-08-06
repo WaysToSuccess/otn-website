@@ -1,11 +1,21 @@
 export default function DatenschutzPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24 pb-20">
+    <main id="main-content" className="min-h-screen bg-gray-50 pt-24 pb-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-12">
 
           <h1 className="text-3xl font-extrabold text-[#003399] mb-2">Datenschutzerklärung</h1>
           <div className="w-12 h-1 bg-[#003399] rounded-full mb-10" />
+
+          <p className="text-gray-600 text-sm leading-relaxed mb-10 bg-blue-50 border border-blue-100 rounded-xl p-4">
+            Diese Datenschutzerklärung gilt für die Veranstaltungs-Website{' '}
+            <strong>otn-olympia-volkslauf.de</strong> („Volkslauf bei Olympia"). Verantwortliche Stelle
+            ist die orthopädie.technik.nord GmbH (siehe Abschnitt „Hinweis zur verantwortlichen Stelle").
+            Für Anfragen zu dieser Veranstaltung erreichen Sie uns unter{' '}
+            <a href="mailto:info@otn-olympia-volkslauf.de" className="text-[#003399] hover:underline">info@otn-olympia-volkslauf.de</a>.
+            Diese Seite bietet weder eine Warenkorbfunktion noch eine eigene Zahlungsabwicklung —
+            entsprechende Hinweise in dieser Erklärung beziehen sich nicht auf diese Website.
+          </p>
 
           {/* 1 */}
           <Section title="Allgemeine Hinweise">
@@ -108,9 +118,20 @@ export default function DatenschutzPage() {
           {/* 5 */}
           <Section title="Datenerfassung auf unserer Website">
             <SubSection title="Cookies">
-              <p>Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt. Teilweise können auch Cookies von Drittunternehmen auf Ihrem Endgerät gespeichert werden, wenn Sie unsere Seite betreten (Third-Party-Cookies). Diese ermöglichen uns oder Ihnen die Nutzung bestimmter Dienstleistungen des Drittunternehmens (z.B. Cookies zur Abwicklung von Zahlungsdienstleistungen).</p>
-              <p className="mt-3">Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte Webseitenfunktionen ohne diese nicht funktionieren würden (z.B. die Warenkorbfunktion oder die Anzeige von Videos). Andere Cookies dienen dazu, das Nutzerverhalten auszuwerten oder Werbung anzuzeigen. Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs (notwendige Cookies) oder zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (funktionale Cookies, z. B. für die Warenkorbfunktion) oder zur Optimierung der Webseite (z.B. Cookies zur Messung des Webpublikums) erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Sofern eine Einwilligung zur Speicherung von Cookies abgefragt wurde, erfolgt die Speicherung der betreffenden Cookies ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO); die Einwilligung ist jederzeit widerrufbar.</p>
-              <p className="mt-3">Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein. Soweit Cookies von Drittunternehmen oder zu Analysezwecken eingesetzt werden, werden wir Sie hierüber im Rahmen dieser Datenschutzerklärung gesondert informieren und ggf. eine Einwilligung abfragen.</p>
+              <p>Diese Website selbst setzt keine Analyse- oder Tracking-Cookies und bindet keine Werbenetzwerke ein. Die beim Aufruf angezeigte Cookie-Auswahl steuert ausschließlich das Nachladen der unten genannten Drittanbieter-Inhalte (Google Maps, RaceResult). Technisch notwendige Session-Daten (z. B. Ihre Consent-Entscheidung) werden lokal in Ihrem Browser gespeichert (<code>localStorage</code>), nicht als Cookie und nicht an uns übertragen.</p>
+              <p className="mt-3">Sie können Ihre Consent-Entscheidung jederzeit über den Cookie-Banner am unteren Bildschirmrand ändern; ein Klick auf „Einstellungen" beim erneuten Laden der Seite genügt dafür.</p>
+            </SubSection>
+
+            <SubSection title="Google Maps">
+              <p>Auf der Seite „Strecke" binden wir eine interaktive Karte des Anbieters Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google") ein, um den Veranstaltungsort zu zeigen. Die Karte wird erst geladen, wenn Sie ihr im Cookie-Banner ausdrücklich zustimmen oder aktiv auf die Kartenvorschau klicken. Erst dann baut Ihr Browser eine Verbindung zu Google-Servern auf; dabei werden Ihre IP-Adresse und weitere Nutzungsdaten an Google übertragen und dort ggf. auch außerhalb der EU/des EWR verarbeitet. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#003399] hover:underline break-all">https://policies.google.com/privacy</a>.</p>
+            </SubSection>
+
+            <SubSection title="RaceResult (Anmeldeformular)">
+              <p>Die Online-Anmeldung zum Volkslauf erfolgt über ein eingebettetes Formular des Anbieters RaceResult AG, Bahnhofstrasse 30, 6210 Sursee, Schweiz. Beim Laden des Formulars werden Ihre IP-Adresse und technische Nutzungsdaten an RaceResult übertragen; bei der Anmeldung selbst verarbeitet RaceResult die von Ihnen eingegebenen Teilnehmerdaten in unserem Auftrag zur Durchführung der Veranstaltung. Rechtsgrundlage ist die Erfüllung vorvertraglicher bzw. vertraglicher Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO). Informationen des Anbieters: <a href="https://www.raceresult.com/de/privacy/" target="_blank" rel="noopener noreferrer" className="text-[#003399] hover:underline break-all">https://www.raceresult.com/de/privacy/</a>.</p>
+            </SubSection>
+
+            <SubSection title="Kontaktformular und Newsletter-Anmeldung">
+              <p>Wenn Sie uns über das Kontaktformular oder die Newsletter-Anmeldung eine Nachricht senden, werden die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, ggf. Nachrichtentext) per E-Mail an unser Postfach <a href="mailto:info@otn-olympia-volkslauf.de" className="text-[#003399] hover:underline">info@otn-olympia-volkslauf.de</a> weitergeleitet. Eine Speicherung in einer Datenbank findet nicht statt; die Daten verbleiben ausschließlich in diesem Postfach, solange die Bearbeitung Ihrer Anfrage es erfordert bzw. solange sie nicht von Ihnen gelöscht werden. Rechtsgrundlage ist Ihre Einwilligung bei Absenden des Formulars (Art. 6 Abs. 1 lit. a DSGVO) bzw. die Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. b DSGVO).</p>
             </SubSection>
 
             <SubSection title="Server-Log-Dateien">
@@ -126,12 +147,12 @@ export default function DatenschutzPage() {
               <p className="mt-3">Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, der die Verarbeitung von Daten zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen gestattet.</p>
             </SubSection>
 
-            <SubSection title="Verarbeiten von Daten (Kunden- und Vertragsdaten)">
-              <p>Wir erheben, verarbeiten und nutzen personenbezogene Daten nur, soweit sie für die Begründung, inhaltliche Ausgestaltung oder Änderung des Rechtsverhältnisses erforderlich sind (Bestandsdaten). Dies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, der die Verarbeitung von Daten zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen gestattet. Personenbezogene Daten über die Inanspruchnahme unserer Internetseiten (Nutzungsdaten) erheben, verarbeiten und nutzen wir nur, soweit dies erforderlich ist, um dem Nutzer die Inanspruchnahme des Dienstes zu ermöglichen oder abzurechnen. Die erhobenen Kundendaten werden nach Abschluss des Auftrags oder Beendigung der Geschäftsbeziehung gelöscht. Gesetzliche Aufbewahrungsfristen bleiben unberührt.</p>
+            <SubSection title="Verarbeiten von Anmeldedaten (Veranstaltungsteilnahme)">
+              <p>Wenn Sie sich über das eingebundene RaceResult-Formular zum Volkslauf anmelden, erheben und verarbeiten wir die dafür notwendigen Teilnehmerdaten (z. B. Name, Geburtsjahr, Kontaktdaten, Lauf-Kategorie) zur Durchführung der Veranstaltung. Dies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Details zur Verarbeitung durch RaceResult selbst entnehmen Sie dem Abschnitt „RaceResult (Anmeldeformular)" weiter oben.</p>
             </SubSection>
 
-            <SubSection title="Datenübermittlung bei Vertragsschluss für Dienstleistungen und digitale Inhalte" last>
-              <p>Wir übermitteln personenbezogene Daten an Dritte nur dann, wenn dies im Rahmen der Vertragsabwicklung notwendig ist, etwa an das mit der Zahlungsabwicklung beauftragte Kreditinstitut. Eine weitergehende Übermittlung der Daten erfolgt nicht bzw. nur dann, wenn Sie der Übermittlung ausdrücklich zugestimmt haben. Eine Weitergabe Ihrer Daten an Dritte ohne ausdrückliche Einwilligung, etwa zu Zwecken der Werbung, erfolgt nicht. Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, der die Verarbeitung von Daten zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen gestattet.</p>
+            <SubSection title="Datenübermittlung an Dritte" last>
+              <p>Wir übermitteln personenbezogene Daten an Dritte nur dann, wenn dies zur Durchführung der Veranstaltung notwendig ist (z. B. an RaceResult zur Anmeldeabwicklung, siehe oben) oder Sie ausdrücklich zugestimmt haben. Eine Weitergabe Ihrer Daten zu Werbezwecken erfolgt nicht.</p>
             </SubSection>
           </Section>
 

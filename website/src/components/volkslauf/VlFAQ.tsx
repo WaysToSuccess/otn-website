@@ -4,7 +4,7 @@ import { useInView, anim } from '../../hooks/useInView'
 
 const faqs = [
   { q: 'Wie melde ich mich an?', a: 'Die Anmeldung erfolgt online über das Race Result Anmeldeformular auf dieser Seite. Benötigt werden Name, Geburtsjahr, Geschlecht (optional), Verein/Firma (optional) und ein Notfallkontakt.' },
-  { q: 'Welche Strecken gibt es?', a: 'Es gibt drei Distanzen: Bambini (400 m), Kurzstrecke (5 km) und Hauptlauf (10 km). Alle Strecken starten und enden am MTSV Olympia Gelände.' },
+  { q: 'Welche Strecken gibt es?', a: 'Es gibt vier Distanzen: Bambini (400 m), Jugendlauf (1,2 km), Kurzstrecke (5 km) und Hauptlauf (10 km). Alle Strecken starten und enden am MTSV Olympia Gelände.' },
   { q: 'Wo und wann kann ich meine Startunterlagen abholen?', a: 'Die Startnummernausgabe findet in der Laufwoche (Mittwoch 03.09, Donnerstag 04.09 und Freitag 05.09 – jeweils 14:00–17:00 Uhr) in der o.t.n Zentrale, Wendenstraße 1, 24539 Neumünster, statt. Am Veranstaltungstag (5. September 2026) ab 15:30 Uhr auch direkt vor Ort am MTSV Olympia, Forstweg 5.' },
   { q: 'Muss ich trainiert sein?', a: 'Nein! Der Volkslauf richtet sich an Freizeitläufer, Einsteiger und Familien. Wichtig ist, dass Sie dabei sind und Spaß haben. Zusätzlich bieten wir kostenlose Lauftrainings für Anfänger und Fortgeschrittene an – jeden Mittwoch ab 18:00 Uhr am MTSV Olympia, Forstweg 5, 24537 Neumünster (ab 8. Juli 2026).' },
   { q: 'Wie wird die Zeit gemessen?', a: 'Die Zeitmessung erfolgt professionell durch die sportservice hamburg GmbH mit Zeitmesschip. Die Ergebnisse sind live abrufbar.' },
@@ -50,6 +50,9 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
       >
         <button
           onClick={onToggle}
+          aria-expanded={isOpen}
+          aria-controls={`faq-panel-${index}`}
+          id={`faq-trigger-${index}`}
           className="w-full flex items-center justify-between px-6 py-5 text-left group"
         >
           {/* Number badge */}
@@ -71,6 +74,9 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
         </button>
 
         <div
+          id={`faq-panel-${index}`}
+          role="region"
+          aria-labelledby={`faq-trigger-${index}`}
           style={{
             maxHeight: isOpen ? '300px' : '0px',
             overflow: 'hidden',
@@ -78,8 +84,8 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
           }}
         >
           <div className="px-6 pb-6 pt-0">
-            <div className="ml-11 pl-0 border-l-2 border-[#003399]/15 pl-4">
-              <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+            <div className="ml-11 pl-4">
+              <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
             </div>
           </div>
         </div>
@@ -103,7 +109,7 @@ export default function VlFAQ() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
             Häufige <span className="text-[#003399]">Fragen</span>
           </h2>
-          <p className="text-gray-400 text-sm">Klicken Sie auf eine Frage für die Antwort.</p>
+          <p className="text-gray-500 text-sm">Klicken Sie auf eine Frage für die Antwort.</p>
         </div>
 
         {/* Items */}
@@ -125,7 +131,7 @@ export default function VlFAQ() {
           style={anim(ctaVisible, 100)}
           className="mt-12 text-center"
         >
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             Noch eine Frage?{' '}
             <a href="#kontakt" className="text-[#003399] font-semibold hover:underline">
               Schreiben Sie uns →

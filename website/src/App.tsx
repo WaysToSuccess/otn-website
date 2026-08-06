@@ -12,6 +12,7 @@ const DatenschutzPage       = lazy(() => import('./pages/DatenschutzPage'))
 const AusschreibungPage     = lazy(() => import('./pages/AusschreibungPage'))
 const InternOverviewPage  = lazy(() => import('./pages/intern/InternOverviewPage'))
 const InternStatusPage    = lazy(() => import('./pages/intern/InternStatusPage'))
+const InternFlyerPage     = lazy(() => import('./pages/intern/InternFlyerPage'))
 const ZeitungsartikelPage = lazy(() => import('./pages/ZeitungsartikelPage'))
 
 const BLUE_FALLBACK = <div style={{ minHeight: '100vh', backgroundColor: '#002266' }} />
@@ -35,15 +36,37 @@ function AppRoutes() {
 
   // React Router doesn't auto-scroll on client-side hash navigation (e.g. from
   // /impressum back to /#kontakt), so do it manually once the target route has mounted.
+  // On a cold direct load, sections above the target are still lazy-loading and their
+  // placeholders resize once the real chunk arrives, which shifts the target out of view
+  // right after we scroll — so keep re-scrolling while the page layout is still settling.
   useEffect(() => {
     if (!location.hash) return
     const id = location.hash.slice(1)
+    let cancelled = false
+    let raf = 0
+
     const scrollToTarget = () => {
       const el = document.getElementById(id)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
     }
-    const raf = requestAnimationFrame(scrollToTarget)
-    return () => cancelAnimationFrame(raf)
+
+    scrollToTarget()
+
+    const ro = new ResizeObserver(() => {
+      if (cancelled) return
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(scrollToTarget)
+    })
+    ro.observe(document.body)
+
+    const stopTimeout = setTimeout(() => ro.disconnect(), 2000)
+
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(raf)
+      ro.disconnect()
+      clearTimeout(stopTimeout)
+    }
   }, [location.pathname, location.hash])
 
   useEffect(() => {
@@ -77,6 +100,7 @@ function AppRoutes() {
         <Routes>
           <Route path="/intern/zeitungsartikel" element={<ZeitungsartikelPage />} />
           <Route path="/intern/status" element={<InternStatusPage />} />
+          <Route path="/intern/flyer" element={<InternFlyerPage />} />
           <Route path="/intern" element={<InternOverviewPage />} />
         </Routes>
       </Suspense>

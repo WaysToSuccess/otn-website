@@ -1,6 +1,6 @@
 export default function ImpressumPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24 pb-20">
+    <main id="main-content" className="min-h-screen bg-gray-50 pt-24 pb-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-12">
 

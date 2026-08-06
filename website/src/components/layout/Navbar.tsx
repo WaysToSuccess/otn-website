@@ -17,18 +17,32 @@ export default function Navbar() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const handler = () => {
+    let ticking = false
+    const update = () => {
+      ticking = false
       setScrolled(window.scrollY > 40)
       const el = document.documentElement
       const scrolled = el.scrollTop || document.body.scrollTop
       const total = el.scrollHeight - el.clientHeight
       setProgress(total > 0 ? Math.min(100, (scrolled / total) * 100) : 0)
     }
+    const handler = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   return (
+    <>
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[9999999] focus:bg-[#003399] focus:text-white focus:font-semibold focus:px-4 focus:py-2.5 focus:rounded-lg"
+    >
+      Zum Inhalt springen
+    </a>
     <header
       className="fixed top-0 left-0 right-0 z-[999999] transition-all duration-300"
       style={{
@@ -129,7 +143,10 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-lg transition-colors"
+            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            className="md:hidden p-3 -m-1 rounded-lg transition-colors"
             style={{ color: '#111827' }}
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -138,7 +155,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-1">
+        <div id="mobile-nav" className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-1">
           {links.map((l) => (
             <a
               key={l.href}
@@ -159,5 +176,6 @@ export default function Navbar() {
         </div>
       )}
     </header>
+    </>
   )
 }

@@ -6,7 +6,7 @@ const steps = [
   { time: '10:00', title: 'Aufbau der Veranstaltung', desc: 'Aufbau des Veranstaltungsgeländes auf dem Olympia Platz.' },
   { time: '14:00', title: 'Startnummernausgabe', desc: 'Abholung in der o.t.n Zentrale – Wendenstr. 1, 24539 Neumünster. Mittwoch, Donnerstag und Freitag in der Laufwoche (02.09, 03.09 und 04.09) von 14:00 – 17:00 Uhr.' },
   { time: '15:45', title: 'Begrüßung durch o.t.n und Olympia', desc: 'Offizielle Begrüßung durch o.t.n und den MTSV Olympia im Stadion.' },
-  { time: '16:15', title: 'Start Bambinilauf', desc: 'Startschuss für den Bambinilauf im Stadion.' },
+  { time: '16:15', title: 'Start Bambini- & Jugendlauf', desc: 'Startschuss für den Bambinilauf (400 m) und den Jugendlauf (1,2 km) im Stadion.' },
   { time: '17:00', title: 'Start 5 km & 10 km', desc: 'Offizieller Startschuss im Stadion. Zeitmessung via sportservice hamburg GmbH.' },
   { time: '18:30', title: 'Zieleinlauf beendet', desc: 'Letzter offizieller Zieleinlauf. Einsatz Security im Stadion.' },
   { time: '18:45', title: 'Auswertung & Siegerehrung', desc: 'Auswertung und anschließende Siegerehrung im Stadion.' },
@@ -154,7 +154,7 @@ export default function VlSchedule() {
                 >
                   {step.time}
                 </span>
-                <span className="text-xs text-gray-400 uppercase tracking-wider">Uhr</span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider">Uhr</span>
               </div>
 
               {/* Content */}

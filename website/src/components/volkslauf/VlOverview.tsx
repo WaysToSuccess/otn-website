@@ -8,6 +8,7 @@ const sponsorLogos = [
   { name: 'JUZO', logo: '/images/Sponsor/Dabei/juzo_logo transparent.png' },
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp' },
   { name: 'Bauerfeind', logo: '/images/Sponsor/Dabei/Bauerfeind_Logo Transparent.png' },
+  { name: 'Farbenzauber', logo: '/images/Sponsor/Dabei/Farbenzauber.png' },
   { name: 'ARAG', logo: '/images/Sponsor/Dabei/ARAG_Logo transparent.png' },
   { name: 'Glaus', logo: '/images/Sponsor/Dabei/glaus_logo transparent.webp' },
   { name: 'VR Bank', logo: '/images/Sponsor/Dabei/VR_Bank_zwischen_den_Meeren logo transparent.webp' },
@@ -26,7 +27,7 @@ const sponsorLogos = [
 const facts = [
   { icon: PersonStanding, label: 'Kostenlose Lauftrainings', value: 'Ab 8. Juli · Jeden Mittwoch um 18:00 Uhr · Für Einsteiger und Fortgeschrittene' },
   { icon: MapPin, label: 'Veranstaltungsort', value: 'MTSV Olympia · Forstweg 5, 24537 Neumünster' },
-  { icon: Ruler, label: 'Strecken', value: 'Bambini 400 m · 5 km · 10 km' },
+  { icon: Ruler, label: 'Strecken', value: 'Bambini 400 m · Jugendlauf 1,2 km · 5 km · 10 km' },
   { icon: Users, label: 'Teilnehmer', value: 'Sportler, Familien, Vereine, Firmen' },
   { icon: Trophy, label: 'Auszeichnungen', value: 'Siegerehrung mit Pokalen, Medaillen und Urkunden · Zeitmessung' },
   { icon: Shield, label: 'Sicherheit', value: 'Sanitätsdienst & Rettungsfahrzeug vor Ort' },
@@ -35,6 +36,7 @@ const facts = [
 
 const distances = [
   { dist: '400 m', label: 'Bambini', desc: 'Für die jüngsten Sportler', color: '#2dd4bf' },
+  { dist: '1,2 km', label: 'Jugendlauf', desc: 'Für Kinder & Jugendliche', color: '#f59e0b' },
   { dist: '5 km', label: 'Kurzstrecke', desc: 'Für Einsteiger & Familien', color: '#0d9488' },
   { dist: '10 km', label: 'Hauptlauf', desc: 'Für Vereine & Firmen', color: '#003399' },
 ]
@@ -79,7 +81,7 @@ function FactCard({ f, index }: { f: typeof facts[0]; index: number }) {
         <f.icon className={`w-5 h-5 ${hl ? 'text-white' : 'text-[#0d9488]'}`} />
       </div>
       <div>
-        <p className={`text-xs uppercase tracking-wider mb-1 ${hl ? 'text-white/70' : 'text-gray-400'}`}>{f.label}</p>
+        <p className={`text-xs uppercase tracking-wider mb-1 ${hl ? 'text-white/70' : 'text-gray-500'}`}>{f.label}</p>
         <p className={`font-semibold text-sm leading-snug ${hl ? 'text-white' : 'text-[#003399]'}`}>{f.value}</p>
       </div>
     </div>
@@ -98,12 +100,12 @@ export default function VlOverview() {
           <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Auf einen Blick</span>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">Alles was Sie wissen müssen</h2>
           <p className="text-gray-500 max-w-lg mx-auto text-sm">
-            Drei Distanzen, ein Ziel: Sport, Gemeinschaft, guter Zweck. Mit dem 1. Gartenstadt Open Air danach.
+            Vier Distanzen, ein Ziel: Sport, Gemeinschaft, guter Zweck. Mit dem 1. Gartenstadt Open Air danach.
           </p>
         </div>
 
         {/* Distance cards */}
-        <div ref={distRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <div ref={distRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
           {distances.map((d, i) => (
             <div
               key={d.dist}
@@ -147,12 +149,16 @@ export default function VlOverview() {
         <div className="absolute inset-y-0 left-0 w-24 pointer-events-none" style={{ background: 'linear-gradient(to right, white, transparent)', zIndex: 1 }} />
         <div className="absolute inset-y-0 right-0 w-24 pointer-events-none" style={{ background: 'linear-gradient(to left, white, transparent)', zIndex: 1 }} />
 
-        <div className="flex gap-12 items-center py-6" style={{ animation: 'sponsorScroll 36s linear infinite', width: 'max-content', willChange: 'transform' }}>
+        <div
+          className="flex gap-12 items-center py-6"
+          aria-hidden="true"
+          style={{ animation: 'sponsorScroll 36s linear infinite', width: 'max-content', willChange: 'transform' }}
+        >
           {[...sponsorLogos, ...sponsorLogos, ...sponsorLogos].map((s, i) => (
             <img
               key={i}
               src={s.logo}
-              alt={s.name}
+              alt=""
               title={s.name}
               loading="lazy"
               decoding="async"

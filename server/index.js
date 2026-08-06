@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import crypto from 'crypto'
 import express from 'express'
 import nodemailer from 'nodemailer'
 import { fileURLToPath } from 'url'
@@ -7,6 +8,9 @@ import { dirname, join } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
 const PORT = process.env.PORT || 3000
+
+// Hinter nginx: X-Forwarded-For nur vom eigenen Reverse-Proxy vertrauen
+app.set('trust proxy', 1)
 
 // SMTP-Transporter — Zugangsdaten aus .env
 const transporter = nodemailer.createTransport({
@@ -17,6 +21,18 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
+  // rejectUnauthorized bleibt aktiv; für selbstsignierte Zertifikate stattdessen
+  // SMTP_CA_CERT (PEM-Pfad) setzen statt die Prüfung global abzuschalten.
+  ...(process.env.SMTP_CA_CERT ? { tls: { ca: [process.env.SMTP_CA_CERT] } } : {}),
+})
+
+// Basis-Security-Header (falls der Server ohne nginx davor direkt exponiert wird)
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff')
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN')
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin')
+  res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()')
+  next()
 })
 
 // JSON-Body parsen (max 10kb — kein Upload-Missbrauch)
@@ -34,10 +50,55 @@ function rateLimit(ip, maxPerMinute = 3) {
   return entry.count > maxPerMinute
 }
 
+// Abgelaufene Einträge periodisch entfernen, damit die Map nicht unbegrenzt wächst
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, entry] of rateMap) {
+    if (now > entry.reset) rateMap.delete(ip)
+  }
+}, 5 * 60_000).unref()
+
+// ── POST /api/intern-auth ──────────────────────────────────────────────────
+// Passwortprüfung für den internen Bereich läuft serverseitig (INTERN_PASSWORD
+// aus .env), damit kein Klartext-Passwort mehr im ausgelieferten JS-Bundle
+// steht. Erfolgreiche Prüfung liefert ein signiertes, 8h gültiges Token.
+const INTERN_TOKEN_TTL_MS = 8 * 60 * 60 * 1000
+function signInternToken() {
+  const expires = Date.now() + INTERN_TOKEN_TTL_MS
+  const sig = crypto.createHmac('sha256', process.env.INTERN_TOKEN_SECRET ?? process.env.INTERN_PASSWORD ?? '')
+    .update(String(expires)).digest('hex')
+  return `${expires}.${sig}`
+}
+function verifyInternToken(token) {
+  if (!token || typeof token !== 'string') return false
+  const [expiresStr, sig] = token.split('.')
+  const expires = Number(expiresStr)
+  if (!expires || Date.now() > expires || !sig) return false
+  const expected = crypto.createHmac('sha256', process.env.INTERN_TOKEN_SECRET ?? process.env.INTERN_PASSWORD ?? '')
+    .update(expiresStr).digest('hex')
+  return sig.length === expected.length && crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))
+}
+
+app.post('/api/intern-auth', (req, res) => {
+  if (rateLimit(req.ip, 10)) return res.status(429).json({ ok: false })
+
+  const { password } = req.body
+  const expected = process.env.INTERN_PASSWORD
+  if (!expected || typeof password !== 'string' ||
+      password.length !== expected.length ||
+      !crypto.timingSafeEqual(Buffer.from(password), Buffer.from(expected))) {
+    return res.status(401).json({ ok: false })
+  }
+  res.json({ ok: true, token: signInternToken() })
+})
+
+app.post('/api/intern-verify', (req, res) => {
+  res.json({ ok: verifyInternToken(req.body?.token) })
+})
+
 // ── POST /api/contact ──────────────────────────────────────────────────────
 app.post('/api/contact', async (req, res) => {
-  const ip = req.headers['x-forwarded-for']?.split(',')[0] ?? req.socket.remoteAddress
-  if (rateLimit(ip)) return res.status(429).json({ ok: false, error: 'Zu viele Anfragen' })
+  if (rateLimit(req.ip)) return res.status(429).json({ ok: false, error: 'Zu viele Anfragen' })
 
   const { Name, Email, Nachricht, _honey } = req.body
 
@@ -79,10 +140,13 @@ app.post('/api/contact', async (req, res) => {
 
 // ── POST /api/newsletter ───────────────────────────────────────────────────
 app.post('/api/newsletter', async (req, res) => {
-  const ip = req.headers['x-forwarded-for']?.split(',')[0] ?? req.socket.remoteAddress
-  if (rateLimit(ip)) return res.status(429).json({ ok: false })
+  if (rateLimit(req.ip)) return res.status(429).json({ ok: false })
 
-  const { Email } = req.body
+  const { Email, _honey } = req.body
+
+  // Honeypot — Bots füllen dieses Feld aus
+  if (_honey) return res.json({ ok: true }) // Fake-Erfolg
+
   if (!Email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(Email))
     return res.status(400).json({ ok: false })
 

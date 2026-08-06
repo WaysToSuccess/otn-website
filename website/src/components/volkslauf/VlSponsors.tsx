@@ -17,6 +17,7 @@ const topSponsors = [
 const midSponsors = [
   { name: 'Brandes', logo: '/images/Sponsor/Dabei/Brandes_logo transparent.webp', href: 'https://www.brandes.de/' },
   { name: 'Bauerfeind', logo: '/images/Sponsor/Dabei/Bauerfeind_Logo Transparent.png', href: 'https://www.bauerfeind.com/' },
+  { name: 'Farbenzauber', logo: '/images/Sponsor/Dabei/Farbenzauber.png', href: 'https://www.malerei-farbenzauber.de/' },
 ]
 
 const allSponsors = [
@@ -27,11 +28,11 @@ const allSponsors = [
   { name: 'Provinzial', logo: '/images/Sponsor/Dabei/Provinzial_Logo_transparent neu.png', href: 'https://www.provinzial.de/nord/neumuenster.mitte' },
   { name: 'MKS Bauelemente', logo: '/images/Sponsor/Dabei/mks_bauelemente transparent.webp', href: 'https://mks-bauelemente.de/' },
   { name: 'Össur', logo: '/images/Sponsor/Dabei/ossur logo transparent.webp', href: 'https://www.ossur.com/de-de', imgScale: 'sm' as const },
-  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', href: '#', imgScale: 'lg' as const },
+  { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', href: 'https://baeckerei-tackmann.de/', imgScale: 'lg' as const },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', href: 'https://www.lithon.de/', imgScale: 'sm' as const },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', href: 'https://www.mirekbau.de/' },
-  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: '#' },
-  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', href: '#' },
+  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', href: 'https://pfd-nms.de/' },
+  { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', href: 'https://www.perfectone-werbeagentur.de/' },
   { name: 'Transcoject', logo: '/images/Sponsor/Dabei/transcoject Logo transparent.webp', href: 'https://www.transcoject.com/' },
 ]
 
@@ -216,7 +217,7 @@ export default function VlSponsors() {
           <div ref={allHeadRef} style={anim(allHeadVisible)} className="text-center mb-12">
             <span className="inline-block text-[#003399] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#003399]/8 rounded-full mb-4">Volkslauf Sponsoren</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Unsere Unterstützer</h3>
-            <p className="text-gray-400 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
+            <p className="text-gray-500 mt-2 text-sm">Wir danken allen Sponsoren für ihre Unterstützung.</p>
           </div>
 
           {/* Gold */}
@@ -229,7 +230,7 @@ export default function VlSponsors() {
 
           {/* Silber */}
           <TierBadge tier="silver" />
-          <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
             {midSponsors.map((s, i) => (
               <SponsorCard key={s.name} {...s} size="medium" tier="silver" index={i} />
             ))}
@@ -251,7 +252,7 @@ export default function VlSponsors() {
           <div ref={openAirHeadRef} style={anim(openAirHeadVisible)} className="text-center mb-12">
             <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Gartenstadt Open Air Party</span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Sponsoren der Gartenstadt Open Air Party</h3>
-            <p className="text-gray-400 mt-2 text-sm">mit DJ · Einlass ab 19 Uhr · 5. September 2026</p>
+            <p className="text-gray-500 mt-2 text-sm">mit DJ · Einlass ab 19 Uhr · 5. September 2026</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">

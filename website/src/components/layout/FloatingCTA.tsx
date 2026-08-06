@@ -22,9 +22,16 @@ export default function FloatingCTA() {
     const resizeHandler = () => { vh = window.innerHeight }
     window.addEventListener('resize', resizeHandler, { passive: true })
 
-    const scrollHandler = () => {
+    const update = () => {
       const pastHero = window.scrollY > vh * 0.75
       setVisible(pastHero && !footerVisible)
+    }
+
+    let ticking = false
+    const scrollHandler = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => { ticking = false; update() })
     }
 
     const footer = document.querySelector('footer')
@@ -32,13 +39,13 @@ export default function FloatingCTA() {
     if (footer) {
       obs = new IntersectionObserver(([e]) => {
         footerVisible = e.isIntersecting
-        scrollHandler()
+        update()
       }, { threshold: 0 })
       obs.observe(footer)
     }
 
     window.addEventListener('scroll', scrollHandler, { passive: true })
-    scrollHandler()
+    update()
     return () => {
       window.removeEventListener('scroll', scrollHandler)
       window.removeEventListener('resize', resizeHandler)
@@ -59,6 +66,8 @@ export default function FloatingCTA() {
       >
         <a
           href="/#anmelden"
+          tabIndex={visible ? 0 : -1}
+          aria-hidden={!visible}
           className="pointer-events-auto relative inline-flex items-center gap-2.5 font-bold text-sm text-white px-6 py-3.5 rounded-2xl transition-all duration-200"
           style={{
             background: 'rgba(0, 51, 153, 0.72)',
