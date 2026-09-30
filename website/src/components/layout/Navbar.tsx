@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { MenuIcon as Menu, XIcon as X } from '../icons'
 
 const links = [
   { label: 'Übersicht', href: '/#uebersicht' },
-  { label: 'Anmelden', href: '/#anmelden' },
+  { label: 'Ergebnisse', href: '/#anmelden' },
   { label: 'Zeitplan', href: '/#zeitplan' },
   { label: 'Strecke', href: '/#strecke' },
   { label: 'Sponsoren', href: '/#sponsoren' },
@@ -46,10 +46,10 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-[999999] transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(0,0,0,0.07)' : 'none',
+        background: scrolled ? 'rgba(255,255,255,0.97)' : 'rgba(255,255,255,0.35)',
+        backdropFilter: scrolled ? 'blur(12px)' : 'blur(10px)',
+        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'blur(10px)',
+        borderBottom: scrolled ? '1px solid rgba(0,0,0,0.07)' : '1px solid rgba(255,255,255,0.25)',
         boxShadow: scrolled ? '0 1px 12px rgba(0,0,0,0.06)' : 'none',
       }}
     >
@@ -130,7 +130,7 @@ export default function Navbar() {
                 />
               ))}
               <span className="relative z-10 bg-[#003399] hover:bg-[#0040cc] text-white text-sm font-semibold px-5 py-2 rounded-xl transition-all shadow-md hover:scale-105 active:scale-95 inline-block">
-                Jetzt anmelden
+                Ergebnisse
               </span>
             </a>
             <style>{`
@@ -171,7 +171,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
             className="block mt-2 text-center bg-[#003399] text-white font-semibold px-4 py-3 rounded-xl text-sm"
           >
-            Jetzt anmelden
+            Ergebnisse
           </a>
         </div>
       )}

@@ -8,22 +8,16 @@ const MAPS_URL = 'https://www.google.com/maps/dir/?api=1&destination=Forstweg+5%
 const infoCards = [
   {
     icon: Flag,
-    color: 'bg-green-50',
-    iconColor: 'text-green-600',
     title: 'Start & Ziel',
     text: 'MTSV Olympia von 1859 e.V.\nForstweg 5, 24537 Neumünster',
   },
   {
     icon: Droplets,
-    color: 'bg-blue-50',
-    iconColor: 'text-blue-600',
     title: 'Versorgung',
     text: 'Wasser- und Verpflegungsstation auf halber Strecke. Am Ziel: Obst, Getränke und Verpflegung.',
   },
   {
     icon: MapPin,
-    color: 'bg-teal-50',
-    iconColor: 'text-[#0d9488]',
     title: 'Parken',
     text: 'Parken auf dem Veranstaltungsgelände nicht möglich, bitte ausweichen.',
   },
@@ -46,13 +40,14 @@ export default function VlRoute() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div ref={headRef} style={anim(headVisible)} className="text-center mb-14">
-          <span className="inline-block text-[#0d9488] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-[#0d9488]/8 rounded-full mb-4">Strecke</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#003399] mt-2 mb-4">
+          <span className="inline-block text-[#2dd4bf] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-white/10 rounded-full mb-4">Strecke</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">
             Die schönste Route durch Neumünster
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
+          <p className="text-white/70 max-w-xl mx-auto">
             5 km und 10 km Rundkurs durch Park und Stadtgebiet. Gut ausgeschildert, mit Verpflegungsstation auf halber Strecke.
           </p>
+          <p className="text-white/40 text-xs mt-3">Die einzelnen Läufe sind farblich unterschieden.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-start">
@@ -62,14 +57,14 @@ export default function VlRoute() {
               <div
                 key={c.title}
                 style={anim(leftVisible, i * 120, 'left')}
-                className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-start gap-4 bg-white/10 rounded-2xl p-5 border border-white/15 transition-colors hover:bg-white/15"
               >
-                <div className={`w-10 h-10 ${c.color} rounded-xl flex items-center justify-center shrink-0`}>
-                  <c.icon className={`w-5 h-5 ${c.iconColor}`} />
+                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                  <c.icon className="w-5 h-5 text-[#2dd4bf]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#003399] mb-1">{c.title}</h3>
-                  <p className="text-gray-500 text-sm whitespace-pre-line">{c.text}</p>
+                  <h3 className="font-semibold text-white mb-1">{c.title}</h3>
+                  <p className="text-white/60 text-sm whitespace-pre-line">{c.text}</p>
                 </div>
               </div>
             ))}
@@ -78,7 +73,7 @@ export default function VlRoute() {
           {/* Map + buttons — slide from right */}
           <div ref={rightRef} style={anim(rightVisible, 100, 'right')} className="flex flex-col gap-3">
             <div
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-64"
+              className="bg-white rounded-2xl overflow-hidden border border-white/20 shadow-sm h-64"
               style={{
                 opacity: rightVisible ? 1 : 0,
                 transition: 'opacity 0.7s ease 200ms',
@@ -127,7 +122,7 @@ export default function VlRoute() {
               target="_blank"
               rel="noreferrer"
               style={anim(rightVisible, 450, 'right')}
-              className="flex items-center justify-center gap-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-xl transition-all text-sm hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-medium py-3 rounded-xl border border-white/15 transition-all text-sm hover:scale-[1.02] active:scale-[0.98]"
             >
               <MapPin className="w-4 h-4" />
               In Apple Maps öffnen

@@ -17,12 +17,17 @@ const distances = [
 ]
 
 const zeitplan = [
-  ['15:30 Uhr', 'Startnummernausgabe', false],
-  ['16:15 Uhr', 'Bambini-Lauf 400 m & Jugendlauf 1,2 km', false],
+  ['10:00 Uhr', 'Aufbau der Veranstaltung', false],
+  ['14:00 Uhr', 'Startnummernausgabe', false],
+  ['15:45 Uhr', 'Begrüßung durch o.t.n und Olympia', false],
+  ['16:00 Uhr', 'Bambini-Lauf 400 m', false],
+  ['16:15 Uhr', 'Jugendlauf 1,2 km', false],
   ['17:00 Uhr', 'Start 5 km & 10 km', false],
-  ['18:30 Uhr', 'Zieleinlauf geschlossen', false],
-  ['18:45 Uhr', 'Siegerehrung', false],
-  ['19:00 Uhr', 'Gartenstadt Open Air', true],
+  ['18:30 Uhr', 'Zieleinlauf beendet', false],
+  ['18:45 Uhr', 'Auswertung & Siegerehrung', false],
+  ['19:00 Uhr', 'Einlass Gartenstadt Open Air', true],
+  ['19:30 Uhr', 'Gartenstadt Open Air Start', true],
+  ['01:00 Uhr', 'Ende der Veranstaltung', false],
 ] as const
 
 const formSteps = [
@@ -49,7 +54,12 @@ const sponsors = [
   { name: 'Tackmann Bäckerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp' },
-  { name: 'Partnerschaft für Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
+  { name: 'WVK', logo: '/images/Sponsor/Dabei/WVK logo transparent.webp' },
+  { name: 'Meyers', logo: '/images/Sponsor/Dabei/Meyers-Logo.png' },
+  { name: 'Schrott und Metallhandel Holstein', logo: '/images/Sponsor/Dabei/Schrott und Metallhandel Holstein.jpg' },
+  { name: 'Lootsquad', logo: '/images/Sponsor/Dabei/lootsquad-logo-removebg-preview.png' },
+  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp' },
+  { name: 'M. Fehrs', logo: '/images/Sponsor/Dabei/M. Fehrs Logo NEU.png' },
 ]
 
 function printViaPopup() {
@@ -73,7 +83,7 @@ function A4Content() {
       </div>
       <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* HEADER */}
-        <div style={{ borderBottom: '3px solid #003399', padding: '12mm 14mm 8mm', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ borderBottom: '3px solid #003399', padding: '6mm 14mm 4mm', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <img src={OTN_LOGO} alt="O.T.N." style={{ height: 48, objectFit: 'contain' }} />
             <img src="/images/MSTV_Olympia_Neumünster transparent.webp" alt="MSTV Olympia" style={{ height: 48, objectFit: 'contain' }} />
@@ -84,27 +94,27 @@ function A4Content() {
           </div>
         </div>
         {/* EMPFÄNGER */}
-        <div style={{ padding: '6mm 14mm 4mm' }}>
+        <div style={{ padding: '4mm 14mm 3mm' }}>
           <div style={{ fontSize: 8, color: '#aaa', borderBottom: '0.5px solid #ddd', paddingBottom: 2, marginBottom: 8 }}>orthopädie.technik.nord GmbH · Wendenstraße 1 · 24539 Neumünster</div>
-          <div style={{ height: 28 }} />
+          <div style={{ height: 14 }} />
           <div style={{ textAlign: 'right', fontSize: 9, color: '#666' }}>Neumünster, den {todayFormatted()}</div>
         </div>
         {/* TITLE */}
-        <div style={{ padding: '3mm 14mm 4mm', borderBottom: '1px solid #e5e7eb' }}>
+        <div style={{ padding: '2mm 14mm 3mm', borderBottom: '1px solid #e5e7eb' }}>
           <h1 style={{ fontSize: 21, fontWeight: 900, color: '#003399', lineHeight: 1.1, margin: 0 }}>51. o.t.n Volkslauf bei Olympia in Neumünster</h1>
           <p style={{ fontSize: 9.5, color: '#555', marginTop: 4, marginBottom: 0 }}>Samstag, 5. September 2026 · 15:30 Uhr · MTSV Olympia von 1859 e.V., Forstweg 5, 24537 Neumünster</p>
         </div>
         {/* BODY */}
-        <div style={{ padding: '4mm 14mm', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ padding: '2mm 14mm', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <p style={{ fontSize: 9.5, color: '#333', lineHeight: 1.6, margin: 0 }}>
             Der <strong>51. o.t.n Volkslauf bei Olympia in Neumünster</strong> wird am <strong>5. September 2026</strong> beim <strong>MTSV Olympia von 1859 e.V.</strong> ausgetragen.
             Zeitmessung via <strong>sportservice hamburg GmbH</strong>. Anschließend: <strong>1. Gartenstadt Open Air</strong> mit DJ & Live-Band (Einlass 19:00 Uhr).{' '}
-            <strong>Der Erlös wird zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</strong>
+            <strong>Der Erlös wurde zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</strong>
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 6 }}>
             {[
               { Icon: Calendar, label: 'Datum', value: '5. Sept. 2026' },
-              { Icon: Clock,    label: 'Start',  value: '16:15 / 17:00 Uhr' },
+              { Icon: Clock,    label: 'Start',  value: '16:00 / 17:00 Uhr' },
               { Icon: MapPin,   label: 'Ort',    value: 'Forstweg 5, NMS' },
               { Icon: Users,    label: 'TN',     value: 'ca. 600 erwartet' },
             ].map(({ Icon, label, value }) => (
@@ -137,18 +147,20 @@ function A4Content() {
                     </tr>
                   ))}</tbody>
                 </table>
-                <div style={{ background: '#f0fff4', borderTop: '0.5px solid #6ee7b7', padding: '4px 8px', fontSize: 8, color: '#047857' }}>Der Erlös wird zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</div>
+                <div style={{ background: '#f0fff4', borderTop: '0.5px solid #6ee7b7', padding: '4px 8px', fontSize: 8, color: '#047857' }}>Der Erlös wurde zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</div>
               </div>
             </div>
             <div>
               <div style={sectionHeader('#0d9488')}><Clock style={{ width: 8, height: 8, display: 'inline', marginRight: 4 }} />Zeitplan</div>
-              <div style={sectionBody}>
-                {zeitplan.map(([time, event, hl], i) => (
-                  <div key={String(time)} style={{ display: 'flex', gap: 8, padding: '4px 8px', background: hl ? '#f0fdfa' : (i % 2 ? '#fafbff' : '#fff'), borderBottom: i < 5 ? '0.5px solid #e5e7eb' : 'none' }}>
-                    <span style={{ fontSize: 8.5, fontWeight: 800, color: hl ? '#0d9488' : '#003399', minWidth: 46 }}>{time}</span>
-                    <span style={{ fontSize: 8.5, color: hl ? '#0d9488' : '#333', fontWeight: hl ? 700 : 400 }}>{event}</span>
-                  </div>
-                ))}
+              <div style={{ ...sectionBody, padding: '4px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
+                  {zeitplan.map(([time, event, hl]) => (
+                    <div key={String(time) + event} style={{ padding: '2.5px 5px', borderRadius: 4, background: hl ? '#f0fdfa' : '#fafbff' }}>
+                      <div style={{ fontSize: 7.5, fontWeight: 800, color: hl ? '#0d9488' : '#003399', lineHeight: 1.3 }}>{time}</div>
+                      <div style={{ fontSize: 7, color: hl ? '#0d9488' : '#333', fontWeight: hl ? 700 : 400, lineHeight: 1.25 }}>{event}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -193,7 +205,7 @@ function A4Content() {
           <div>
             <div style={sectionHeader('#003399')}>Unsere Sponsoren</div>
             <div style={{ ...sectionBody, padding: '7px 10px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6, alignItems: 'center' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10,1fr)', gap: 5, alignItems: 'center' }}>
                 {sponsors.map((s) => (
                   <div key={s.name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                     <img src={s.logo} alt={s.name} style={{ height: 22, width: '100%', objectFit: 'contain' }} />
@@ -209,7 +221,7 @@ function A4Content() {
           </div>
           <div style={{ background: '#f0fdfa', border: '0.5px solid #6ee7b7', borderRadius: 6, padding: '5px 10px', fontSize: 8.5, color: '#047857', display: 'flex', alignItems: 'center', gap: 7 }}>
             <Trophy style={{ width: 12, height: 12, flexShrink: 0, color: '#0d9488' }} />
-            <span><strong>Der Erlös wird zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</strong> Teilnehmer geben im Anmeldeformular an, für welchen Sponsor oder Verein sie starten, alternativ „Für mich selbst".</span>
+            <span><strong>Der Erlös wurde zu 100&nbsp;% einem gemeinnützigen Zweck gespendet.</strong> Teilnehmer geben im Anmeldeformular an, für welchen Sponsor oder Verein sie starten, alternativ „Für mich selbst".</span>
           </div>
         </div>
         {/* FOOTER */}
@@ -239,7 +251,7 @@ function A4Content() {
 const sectionHeader = (bg: string): React.CSSProperties => ({
   background: bg, color: '#fff',
   borderRadius: '6px 6px 0 0',
-  padding: '5px 10px',
+  padding: '3.5px 10px',
   fontSize: 8, fontWeight: 800,
   letterSpacing: '0.12em', textTransform: 'uppercase',
 })
@@ -297,7 +309,7 @@ export default function AusschreibungPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 bg-[#003399] text-white text-xs sm:text-sm font-semibold px-3 sm:px-5 py-2 rounded-lg hover:bg-[#0040cc] transition-colors shadow-md"
           >
-            <span>Jetzt anmelden</span>
+            <span>Ergebnisse</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>

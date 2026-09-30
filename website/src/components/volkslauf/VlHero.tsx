@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, Calendar, Info, MapPin, PartyPopper } from 'lucide-react'
+import { ArrowRightIcon as ArrowRight, CalendarIcon as Calendar, InfoIcon as Info, MapPinIcon as MapPin, PartyPopperIcon as PartyPopper } from '../icons'
 
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(target.getTime() - Date.now())
@@ -43,12 +43,14 @@ export default function VlHero() {
 
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#002266', backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 50%, rgba(0,32,128,0.95) 100%)' }}
+      className="vl-hero-bg relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
 
+      {/* Glass pane — replaces the old blue/white gradient, sits between photo and content */}
+      <div className="absolute inset-0 bg-[#001238]/40 border-y border-white/20" aria-hidden="true" />
+
       {/* Content */}
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center pt-10 sm:pt-12 pb-14 sm:pb-18 flex flex-col items-center gap-3 sm:gap-4">
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center pt-10 sm:pt-12 pb-24 sm:pb-28 flex flex-col items-center gap-3 sm:gap-4">
 
         {/* Veranstalter badge */}
         <div style={fade(0)} className="flex flex-wrap items-center justify-center gap-2.5 bg-white/92 px-4 py-2 rounded-full border border-[#003399]/20 shadow-sm">
@@ -101,43 +103,37 @@ export default function VlHero() {
           </span>
         </div>
 
-        {/* Countdown — on dark area */}
+        {/* Countdown */}
         <div style={fade(160)} className="flex justify-center gap-2 sm:gap-3 w-full">
           <CountBox value={d} label="Tage" delay={580} />
           <CountBox value={h} label="Stunden" delay={700} />
           <CountBox value={m} label="Minuten" delay={820} />
           <CountBox value={s} label="Sekunden" delay={940} />
         </div>
-
-        {/* CTAs */}
-        <div style={fade(240)} className="flex flex-col sm:flex-row gap-4 justify-center relative z-[9999]">
-          <a
-            href="#anmelden"
-            className="inline-flex items-center justify-center gap-2 bg-[#003399] hover:bg-[#0040cc] text-white font-extrabold px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all text-sm sm:text-base hover:scale-105 active:scale-95 w-full sm:w-auto"
-            style={{ animation: 'heroGlow 2s ease-in-out infinite' }}
-          >
-            Jetzt anmelden
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <a
-            href="#uebersicht"
-            className="inline-flex items-center justify-center gap-2 bg-white/25 hover:bg-white/35 text-white font-semibold px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl transition-all border border-white/30 text-sm sm:text-base hover:scale-105 active:scale-95 w-full sm:w-auto"
-          >
-            Mehr erfahren
-          </a>
-        </div>
       </div>
 
-      {/* Soft bottom fade — taller, softer */}
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      {/* Bottom window — light glass pane holding the CTAs + scroll indicator, replaces the old white fade */}
+      <div className="absolute bottom-6 left-0 right-0 z-[9999] flex justify-center px-4">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 rounded-2xl border border-white/40 bg-white/70 shadow-lg px-4 sm:px-6 py-3">
+          <a
+            href="#anmelden"
+            className="inline-flex items-center gap-1.5 bg-[#003399] hover:bg-[#0040cc] text-white font-bold px-4 sm:px-6 py-2.5 rounded-xl transition-all text-xs sm:text-sm hover:scale-105 active:scale-95"
+            style={{ animation: 'heroGlow 2s ease-in-out infinite' }}
+          >
+            Ergebnisse
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </a>
 
-      {/* Scroll indicator — dark blue, sits in the white fade zone */}
-      <div
-        style={{ opacity: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-7 h-11 border-2 border-[#003399] rounded-full flex justify-center pt-2 bg-[#003399]/10">
-          <div className="w-1.5 h-3 bg-[#003399] rounded-full animate-bounce" />
+          <div className="w-7 h-11 border-2 border-[#003399] rounded-full flex justify-center pt-2 bg-[#003399]/10 shrink-0" aria-hidden="true">
+            <div className="w-1.5 h-3 bg-[#003399] rounded-full animate-bounce" />
+          </div>
+
+          <a
+            href="#fotos"
+            className="inline-flex items-center gap-1.5 bg-[#003399] hover:bg-[#0040cc] text-white font-bold px-4 sm:px-6 py-2.5 rounded-xl transition-all text-xs sm:text-sm hover:scale-105 active:scale-95"
+          >
+            Zur Bildergalerie
+          </a>
         </div>
       </div>
 
@@ -145,6 +141,17 @@ export default function VlHero() {
 @keyframes heroGlow {
           0%,100% { box-shadow: 0 4px 24px rgba(0,51,153,0.5); }
           50%     { box-shadow: 0 0 28px 8px rgba(0,51,153,0.75), 0 6px 32px rgba(0,51,153,0.6); }
+        }
+        .vl-hero-bg {
+          background-color: #002266;
+          background-image: url('/images/hero/volkslauf-start-mobile.webp');
+          background-size: cover;
+          background-position: center 35%;
+        }
+        @media (min-width: 768px) {
+          .vl-hero-bg {
+            background-image: url('/images/hero/volkslauf-start-desktop.webp');
+          }
         }
       `}</style>
     </section>

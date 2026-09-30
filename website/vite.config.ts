@@ -20,6 +20,13 @@ function nonBlockingCss(): Plugin {
         /<link rel="modulepreload" crossorigin href="[^"]*vendor-heavy[^"]*">/g,
         ''
       )
+      // Remove lucide preload — Vite injects this because some lazy-loaded sections use it,
+      // but forcing it to fetch/parse/execute before first paint was costing real TBT on the
+      // eager render path. It still loads on demand once a lazy section that needs it mounts.
+      result = result.replace(
+        /<link rel="modulepreload" crossorigin href="[^"]*\/lucide-[^"]*">/g,
+        ''
+      )
       return result
     },
   }

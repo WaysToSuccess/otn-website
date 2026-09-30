@@ -14,13 +14,13 @@ export default function VlRegister() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-14">
-          <span className="inline-block text-[#2dd4bf] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-white/10 rounded-full mb-4">Anmeldung</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Jetzt einen Startplatz sichern</h2>
+          <span className="inline-block text-[#2dd4bf] font-semibold text-xs uppercase tracking-[0.2em] px-4 py-1.5 bg-white/10 rounded-full mb-4">Ergebnisse</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Ihre Ergebnisse ansehen</h2>
           <p className="text-white/70 max-w-lg mx-auto text-sm">
-            Anmeldung über Race Result, das offizielle Zeitmess- und Anmeldesystem für Laufveranstaltungen.
+            Ergebnisse über Race Result, das offizielle Zeitmess- und Anmeldesystem für Laufveranstaltungen.
           </p>
           <p className="mt-3 text-white/90 font-semibold text-sm">
-            Der Erlös wird zu 100 % einem gemeinnützigen Zweck gespendet.
+            Der Erlös wurde zu 100 % einem gemeinnützigen Zweck gespendet.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export default function VlRegister() {
                 </div>
               </div>
               <p className="text-[#2dd4bf] text-xs mt-3">
-                Der Erlös wird zu 100 % einem gemeinnützigen Zweck gespendet.
+                Der Erlös wurde zu 100 % einem gemeinnützigen Zweck gespendet.
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function VlRegister() {
             <div className="rounded-2xl border border-white/20 bg-white overflow-hidden shadow-sm">
               <div className="bg-white/10 px-6 py-4 flex items-center gap-3 border-b border-white/15">
                 <div className="w-2 h-2 bg-[#2dd4bf] rounded-full animate-pulse" />
-                <span className="text-white font-semibold text-sm">Race Result · Anmeldeformular</span>
+                <span className="text-white font-semibold text-sm">Race Result · Ergebnisse</span>
               </div>
               <iframe
                 src="https://my.raceresult.com/407322/registration"
@@ -84,7 +84,7 @@ export default function VlRegister() {
                 height="600"
                 frameBorder="0"
                 loading="lazy"
-                title="Race Result Anmeldung"
+                title="Race Result Ergebnisse"
                 className="block"
               />
             </div>
