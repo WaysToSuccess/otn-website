@@ -5,12 +5,12 @@ import { useInView, anim } from '../../hooks/useInView'
 const faqs = [
   { q: 'Wie melde ich mich an?', a: 'Die Anmeldung erfolgt online über das Race Result Anmeldeformular auf dieser Seite. Benötigt werden Name, Geburtsjahr, Geschlecht (optional), Verein/Firma (optional) und ein Notfallkontakt.' },
   { q: 'Welche Strecken gibt es?', a: 'Es gibt vier Distanzen: Bambini (400 m), Jugendlauf (1,2 km), Kurzstrecke (5 km) und Hauptlauf (10 km). Alle Strecken starten und enden am MTSV Olympia Gelände.' },
-  { q: 'Wo und wann kann ich meine Startunterlagen abholen?', a: 'Die Startnummernausgabe findet in der Laufwoche (Mittwoch 03.09, Donnerstag 04.09 und Freitag 05.09 – jeweils 14:00–17:00 Uhr) in der o.t.n Zentrale, Wendenstraße 1, 24539 Neumünster, statt. Am Veranstaltungstag (5. September 2026) ab 15:30 Uhr auch direkt vor Ort am MTSV Olympia, Forstweg 5.' },
+  { q: 'Wo und wann kann ich meine Startunterlagen abholen?', a: 'Am Veranstaltungstag (5. September 2026) ab 14:00 Uhr im Stadion des MTSV Olympia, Forstweg 5. Zusätzlich vorab möglich in der o.t.n Zentrale, Wendenstraße 1, 24539 Neumünster (Mittwoch 02.09, Donnerstag 03.09 und Freitag 04.09 – jeweils 14:00–17:00 Uhr).' },
   { q: 'Muss ich trainiert sein?', a: 'Nein! Der Volkslauf richtet sich an Freizeitläufer, Einsteiger und Familien. Wichtig ist, dass Sie dabei sind und Spaß haben. Zusätzlich bieten wir kostenlose Lauftrainings für Anfänger und Fortgeschrittene an – jeden Mittwoch ab 18:00 Uhr am MTSV Olympia, Forstweg 5, 24537 Neumünster (ab 8. Juli 2026).' },
   { q: 'Wie wird die Zeit gemessen?', a: 'Die Zeitmessung erfolgt professionell durch die sportservice hamburg GmbH mit Zeitmesschip. Die Ergebnisse sind live abrufbar.' },
   { q: 'Was passiert nach dem Lauf?', a: 'Ab 18:45 Uhr findet die Siegerehrung statt. Ab 19:00 Uhr öffnet das 1. Gartenstadt Open Air mit Musik und Verpflegung für alle. Mit Ihrer Startnummer sind Sie herzlich eingeladen – Duschen und Umkleiden sind vor Ort vorhanden.' },
   { q: 'Gibt es Parkplätze?', a: 'Parken auf dem Veranstaltungsgelände ist nicht möglich, bitte auf umliegende Parkflächen ausweichen.' },
-  { q: 'Wohin gehen die Startgebühren?', a: 'Der Erlös wird zu 100 % einem gemeinnützigen Zweck gespendet.' },
+  { q: 'Wohin gehen die Startgebühren?', a: 'Der Erlös wurde zu 100 % einem gemeinnützigen Zweck gespendet.' },
   { q: 'Welche medizinische Versorgung gibt es?', a: 'Ein Sanitätsdienst mit Rettungsfahrzeug ist vor Ort. Es gibt definierte Rettungswege und ein Notfalltelefon.' },
   { q: 'Kann ich als Laufteilnehmer an der Gartenstadt Open Air Party teilnehmen?', a: 'Mit Ihrer Startnummer sind Sie herzlich zum Open Air eingeladen. Externe Open Air Party Besucher zahlen 5 € extra per Abendkasse. Unter allen Open Air Tickets werden 3x 100€ Verlost.' },
 ]

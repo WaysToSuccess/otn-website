@@ -1,14 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { CONSENT_KEY, setConsentDecision } from '../../lib/consent'
 
 export default function CookieBanner() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(() => !localStorage.getItem(CONSENT_KEY))
   const [expanded, setExpanded] = useState(false)
-
-  useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY)
-    if (!stored) setVisible(true)
-  }, [])
 
   const save = (decision: 'all' | 'necessary' | 'rejected') => {
     setConsentDecision(decision)
@@ -25,16 +20,16 @@ export default function CookieBanner() {
         <div className="p-5 sm:p-6">
           <p className="text-gray-900 font-bold text-sm mb-1">Wir verwenden keine Analyse-Cookies 🍪</p>
           <p className="text-gray-500 text-xs leading-relaxed">
-            Diese Website selbst setzt keine Tracking- oder Analyse-Cookies. Für die Streckenkarte binden wir
-            optional Google Maps ein, wodurch Daten an Google übertragen werden. Mit „Alle akzeptieren" laden
-            wir die Karte automatisch; sonst erscheint dort ein Button zum manuellen Laden.{' '}
+            Diese Website selbst setzt keine Tracking- oder Analyse-Cookies.{' '}
             {!expanded ? (
               <button onClick={() => setExpanded(true)} className="text-[#003399] hover:underline font-medium">
                 Mehr erfahren
               </button>
             ) : (
               <span>
-                Sie können Ihre Einwilligung jederzeit über diesen Banner oder in unserer{' '}
+                Für die Streckenkarte binden wir optional Google Maps ein, wodurch Daten an Google übertragen
+                werden. Mit „Alle akzeptieren" laden wir die Karte automatisch; sonst erscheint dort ein Button
+                zum manuellen Laden. Sie können Ihre Einwilligung jederzeit über diesen Banner oder in unserer{' '}
                 <a href="/datenschutz" className="text-[#003399] hover:underline font-medium">
                   Datenschutzerklärung
                 </a>{' '}

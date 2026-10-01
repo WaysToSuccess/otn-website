@@ -30,9 +30,14 @@ const bronzeSponsors = [
   { logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png', name: 'Tackmann Bäckerei' },
   { logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp', name: 'Lithon Betonwerk' },
   { logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp', name: 'Mirek Bau' },
-  { logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp', name: 'Partnerschaft für Demokratie' },
   { logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png', name: 'Perfectone Werbeagentur' },
   { logo: '/images/Sponsor/Dabei/transcoject Logo transparent.webp', name: 'Transcoject' },
+  { logo: '/images/Sponsor/Dabei/WVK logo transparent.webp', name: 'WVK' },
+  { logo: '/images/Sponsor/Dabei/Meyers-Logo.png', name: 'Meyers' },
+  { logo: '/images/Sponsor/Dabei/Schrott und Metallhandel Holstein.jpg', name: 'Schrott und Metallhandel Holstein' },
+  { logo: '/images/Sponsor/Dabei/lootsquad-logo-removebg-preview.png', name: 'Lootsquad' },
+  { logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp', name: 'MediCar' },
+  { logo: '/images/Sponsor/Dabei/M. Fehrs Logo NEU.png', name: 'M. Fehrs' },
 ]
 
 // ───────────────────────── Flyer 1 (Original) ─────────────────────────
@@ -62,7 +67,7 @@ function FlyerFrontV1() {
       <div className="flyer-facts">
         <div className="flyer-fact">
           <div className="flyer-dot">1</div>
-          <div><b>Start: 17:00 Uhr (5/10 km)</b><span className="flyer-hint">Bambinilauf bereits um 16:15 Uhr</span></div>
+          <div><b>Start: 17:00 Uhr (5/10 km)</b><span className="flyer-hint">Bambinilauf 16:00 Uhr · Jugendlauf 16:15 Uhr</span></div>
         </div>
         <div className="flyer-fact">
           <div className="flyer-dot">2</div>
@@ -186,7 +191,7 @@ function FlyerFrontV2() {
       <div className="flyer-facts">
         <div className="flyer-fact">
           <div className="flyer-dot">1</div>
-          <div><b>Start: 17:00 Uhr (5/10 km)</b><span className="flyer-hint">Bambinilauf bereits um 16:15 Uhr</span></div>
+          <div><b>Start: 17:00 Uhr (5/10 km)</b><span className="flyer-hint">Bambinilauf 16:00 Uhr · Jugendlauf 16:15 Uhr</span></div>
         </div>
         <div className="flyer-fact">
           <div className="flyer-dot">2</div>

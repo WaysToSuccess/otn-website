@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRightIcon as ArrowRight } from '../icons'
 
 const sparks = [
   { style: { top: '-5px', left: '14px',  animationDelay: '0s',   animationName: 'fsparkUp' } },
@@ -102,7 +102,7 @@ export default function FloatingCTA() {
             />
           ))}
 
-          Jetzt anmelden
+          Ergebnisse
           <ArrowRight className="w-4 h-4" />
         </a>
       </div>

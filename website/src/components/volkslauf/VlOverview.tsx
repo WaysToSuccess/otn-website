@@ -19,9 +19,21 @@ const sponsorLogos = [
   { name: 'Tackmann Backerei', logo: '/images/Sponsor/Dabei/Tackmann_Bäckerei_Logo Transparent.png' },
   { name: 'Lithon Betonwerk', logo: '/images/Sponsor/Dabei/Lithon_Betonwerk_Logo transparent.webp' },
   { name: 'Mirek Bau', logo: '/images/Sponsor/Dabei/Mirek_Bau_logo transparent.webp' },
-  { name: 'Partnerschaft fur Demokratie', logo: '/images/Sponsor/Dabei/Partnerschaft_für_Demokratie_logo transparent.webp' },
   { name: 'Perfectone Werbeagentur', logo: '/images/Sponsor/Dabei/perfectone-werbeagentur-removebg-preview.png' },
   { name: 'Transcoject', logo: '/images/Sponsor/Dabei/transcoject Logo transparent.webp' },
+  { name: 'WVK', logo: '/images/Sponsor/Dabei/WVK logo transparent.webp' },
+  { name: 'Meyers', logo: '/images/Sponsor/Dabei/Meyers-Logo.png' },
+  { name: 'Schrott und Metallhandel Holstein', logo: '/images/Sponsor/Dabei/Schrott und Metallhandel Holstein.jpg' },
+  { name: 'Lootsquad', logo: '/images/Sponsor/Dabei/lootsquad-logo-removebg-preview.png' },
+  { name: 'MediCar', logo: '/images/Sponsor/Dabei/MediCar Logo transparent.webp' },
+  { name: 'M. Fehrs', logo: '/images/Sponsor/Dabei/M. Fehrs Logo NEU.png' },
+]
+
+const distances = [
+  { dist: '400 m', label: 'Bambini', desc: 'Für die jüngsten Sportler', color: '#2dd4bf' },
+  { dist: '1,2 km', label: 'Jugendlauf', desc: 'Für Kinder & Jugendliche', color: '#f59e0b' },
+  { dist: '5 km', label: 'Kurzstrecke', desc: 'Für Einsteiger & Familien', color: '#0d9488' },
+  { dist: '10 km', label: 'Hauptlauf', desc: 'Für Vereine & Firmen', color: '#003399' },
 ]
 
 const facts = [
@@ -32,13 +44,6 @@ const facts = [
   { icon: Trophy, label: 'Auszeichnungen', value: 'Siegerehrung mit Pokalen, Medaillen und Urkunden · Zeitmessung' },
   { icon: Shield, label: 'Sicherheit', value: 'Sanitätsdienst & Rettungsfahrzeug vor Ort' },
   { icon: Music, label: 'Open Air', value: 'Einlass ab 19:00 Uhr · 1. Gartenstadt Open Air', highlight: true },
-]
-
-const distances = [
-  { dist: '400 m', label: 'Bambini', desc: 'Für die jüngsten Sportler', color: '#2dd4bf' },
-  { dist: '1,2 km', label: 'Jugendlauf', desc: 'Für Kinder & Jugendliche', color: '#f59e0b' },
-  { dist: '5 km', label: 'Kurzstrecke', desc: 'Für Einsteiger & Familien', color: '#0d9488' },
-  { dist: '10 km', label: 'Hauptlauf', desc: 'Für Vereine & Firmen', color: '#003399' },
 ]
 
 function FactCard({ f, index }: { f: typeof facts[0]; index: number }) {
@@ -93,7 +98,7 @@ export default function VlOverview() {
   const { ref: distRef, visible: distVisible } = useInView()
 
   return (
-    <section id="uebersicht" className="pt-24 pb-0">
+    <section className="pt-24 pb-0">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div ref={headRef} style={anim(headVisible, 0)} className="text-center mb-14">
@@ -102,6 +107,7 @@ export default function VlOverview() {
           <p className="text-gray-500 max-w-lg mx-auto text-sm">
             Vier Distanzen, ein Ziel: Sport, Gemeinschaft, guter Zweck. Mit dem 1. Gartenstadt Open Air danach.
           </p>
+          <p className="text-gray-400 text-xs mt-3">Die einzelnen Läufe sind farblich unterschieden.</p>
         </div>
 
         {/* Distance cards */}
@@ -114,10 +120,10 @@ export default function VlOverview() {
                 transform: distVisible ? 'none' : 'translateY(28px)',
                 transition: `opacity 0.55s ease ${i * 120}ms, transform 0.55s ease ${i * 120}ms`,
               }}
-              className="bg-white rounded-2xl p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow"
             >
               <div
-                className="text-4xl font-extrabold mb-1"
+                className="text-2xl sm:text-4xl font-extrabold mb-1 whitespace-nowrap"
                 style={{ color: d.color }}
               >
                 {d.dist}

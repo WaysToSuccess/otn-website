@@ -1,4 +1,4 @@
-import { Mail, MapPin, Calendar } from 'lucide-react'
+import { MailIcon as Mail, MapPinIcon as MapPin, CalendarIcon as Calendar } from '../icons'
 
 export default function Footer() {
   return (
@@ -38,7 +38,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {[
                 ['/#uebersicht', 'Übersicht'],
-                ['/#anmelden', 'Anmeldung'],
+                ['/#anmelden', 'Ergebnisse'],
                 ['/#zeitplan', 'Zeitplan'],
                 ['/#strecke', 'Strecke'],
                 ['/#faq', 'FAQ'],
